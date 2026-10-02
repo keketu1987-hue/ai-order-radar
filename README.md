@@ -19,6 +19,10 @@ Key ideas:
 - **Project race slots** — run a small number of opportunity types in parallel and reallocate effort toward the routes that create the strongest paid signals.
 - **Fail closed on uncertainty** — do not turn research, drafts, local tests, or tool repair into fake progress.
 
+## Public proof asset
+
+For a compact, inspectable example of the reliability patterns in this repository, see [Automation Reliability Proof](./PROOF_AUTOMATION_RELIABILITY.md). It links the concrete workflow, channel-capability registry, sanitized external status receipt, and permanent-bounce suppression behavior.
+
 ## Example workflow
 
 1. Discover a current paid opportunity.
