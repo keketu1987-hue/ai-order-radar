@@ -28,12 +28,14 @@ jobs:
           OIDC_TOKEN: ${{ steps.oidc.outputs.token }}
         run: |
           set -euo pipefail
-          RESPONSE=$(curl -fsS -X POST \
+          CODE=$(curl -sS -X POST \
             -H "Authorization: Bearer $OIDC_TOKEN" \
             -H "Content-Type: application/json" \
             --data-binary @.bboss/frantic-request.json \
-            "https://ai-order-radar.netlify.app/api/frantic-bridge")
-          printf '%s\n' "$RESPONSE" > .bboss/frantic-result.json
+            -o /tmp/frantic-body -w "%{http_code}" \
+            "https://ai-order-radar.netlify.app/api/frantic-bridge" || true)
+          jq -n --arg http_status "$CODE" --rawfile body /tmp/frantic-body \
+            '{http_status:$http_status,body:$body}' > .bboss/frantic-result.json
       - name: Record sanitized receipt
         shell: bash
         run: |
