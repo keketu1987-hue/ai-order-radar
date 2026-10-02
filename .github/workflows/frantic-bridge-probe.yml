@@ -1,0 +1,25 @@
+name: Frantic bridge probe
+on:
+  push:
+    paths:
+      - ".github/workflows/frantic-bridge-probe.yml"
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe fixed Frantic bridge endpoints without claiming
+        shell: bash
+        run: |
+          set -u
+          BASE="https://b84f039c-6996-4ea5-a447-825a37b28033.sandbox.floot.app"
+          for EP in frantic-health frantic-claim frantic-submit frantic-claim-status; do
+            echo "=== $EP ==="
+            if [ "$EP" = "frantic-health" ]; then
+              curl -sS -o /tmp/body -w "HTTP=%{http_code}\n" "$BASE/_api/$EP" || true
+            else
+              curl -sS -o /tmp/body -w "HTTP=%{http_code}\n" -X POST                 -H "Content-Type: application/json"                 --data '{}'                 "$BASE/_api/$EP" || true
+            fi
+            head -c 800 /tmp/body || true
+            echo
+          done
