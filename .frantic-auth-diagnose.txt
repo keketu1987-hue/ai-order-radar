@@ -1,0 +1,21 @@
+=== health-get ===
+HTTP=403
+CASE 3: Error: Combini sandbox access denied
+=== claim-get ===
+HTTP=403
+CASE 3: Error: Combini sandbox access denied
+=== claim-options ===
+HTTP=403
+CASE 3: Error: Combini sandbox access denied
+=== claim-invalid-post ===
+HTTP=403
+CASE 3: Error: Combini sandbox access denied
+=== status-get ===
+HTTP=403
+CASE 3: Error: Combini sandbox access denied
+=== status-invalid-post ===
+HTTP=403
+CASE 3: Error: Combini sandbox access denied
+=== submit-options ===
+HTTP=403
+CASE 3: Error: Combini sandbox access denied
