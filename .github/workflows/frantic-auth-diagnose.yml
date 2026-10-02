@@ -1,0 +1,47 @@
+name: Frantic auth diagnose
+on:
+  push:
+    paths:
+      - ".github/workflows/frantic-auth-diagnose.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Diagnose auth layer without real claim
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="https://b84f039c-6996-4ea5-a447-825a37b28033.sandbox.floot.app"
+          OUT=".frantic-auth-diagnose.txt"
+          : > "$OUT"
+          probe() {
+            NAME="$1"; METHOD="$2"; URL="$3"; DATA="${4:-}"
+            echo "=== $NAME ===" >> "$OUT"
+            if [ "$METHOD" = "GET" ]; then
+              CODE=$(curl -sS -o /tmp/body -w "%{http_code}" "$URL" || true)
+            elif [ "$METHOD" = "OPTIONS" ]; then
+              CODE=$(curl -sS -X OPTIONS -o /tmp/body -w "%{http_code}" "$URL" || true)
+            else
+              CODE=$(curl -sS -X "$METHOD" -H "Content-Type: application/json" --data "$DATA" -o /tmp/body -w "%{http_code}" "$URL" || true)
+            fi
+            echo "HTTP=$CODE" >> "$OUT"
+            tr '\n' ' ' < /tmp/body | head -c 1200 >> "$OUT" || true
+            echo >> "$OUT"
+          }
+          probe "health-get" GET "$BASE/_api/frantic-health"
+          probe "claim-get" GET "$BASE/_api/frantic-claim"
+          probe "claim-options" OPTIONS "$BASE/_api/frantic-claim"
+          probe "claim-invalid-post" POST "$BASE/_api/frantic-claim" '{"bounty_id":"__invalid_probe__"}'
+          probe "status-get" GET "$BASE/_api/frantic-claim-status"
+          probe "status-invalid-post" POST "$BASE/_api/frantic-claim-status" '{"claim_id":"__invalid_probe__"}'
+          probe "submit-options" OPTIONS "$BASE/_api/frantic-submit"
+          git config user.email "keketu1987@gmail.com"
+          git config user.name "B-Boss Probe"
+          git add "$OUT"
+          git commit -m "chore: record Frantic auth diagnosis" || true
+          git push
