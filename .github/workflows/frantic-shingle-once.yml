@@ -1,8 +1,6 @@
 name: Frantic shingle one-shot
 on:
   push:
-    paths:
-      - ".github/workflows/frantic-shingle-once.yml"
 
 jobs:
   call:
