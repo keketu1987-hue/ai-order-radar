@@ -1,0 +1,76 @@
+{
+  "updated_at": "2026-10-02T03:38:00Z",
+  "rule": "Only count an entry as WRITEABLE_NOW when current connected tooling can legally submit it and obtain a verifiable external receipt/ID without new payment, KYC, CAPTCHA, or credential exposure.",
+  "channels": {
+    "gmail_optin": {
+      "status": "AVAILABLE_CURRENT",
+      "evidence": "Multiple successful Sent message IDs in latest window; permanent bounces still individually invalidated.",
+      "use": "Primary for explicit public application emails and legitimate warm threads.",
+      "limits": "Cold outreach remains blocked; one failed action does not authorize retries."
+    },
+    "frantic": {
+      "status": "AUTH_SECRET_BRIDGE_PENDING",
+      "evidence": "Public remote MCP exists; claim requires agent_kid+agent_token; agent-77d7ed eligible/sworn/payout-set.",
+      "use": "Highest priority funded <=US$10 bounties only when end-to-end deliverable.",
+      "limits": "Token currently held securely outside GitHub; no credential extraction or unauthenticated proxy."
+    },
+    "github_own_repo": {
+      "status": "AVAILABLE_CURRENT",
+      "evidence": "Authenticated account has admin/push on keketu1987-hue/ai-order-radar; Actions runs execute.",
+      "use": "Owned artifact hosting, evidence, fixed workflows.",
+      "limits": "Does not imply fork/PR write access to external repos."
+    },
+    "lever": {
+      "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
+      "evidence": "Lever Postings API application POST requires site API key.",
+      "fallback": [
+        "hosted application form",
+        "explicit public application email"
+      ]
+    },
+    "greenhouse": {
+      "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
+      "evidence": "Greenhouse Job Board POST submit application requires API key.",
+      "fallback": [
+        "Greenhouse hosted application form",
+        "explicit public application email"
+      ]
+    },
+    "ashby": {
+      "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
+      "evidence": "applicationForm.submit requires candidatesWrite permission.",
+      "fallback": [
+        "Ashby hosted application form",
+        "explicit public application email"
+      ]
+    },
+    "workable": {
+      "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
+      "evidence": "Workable API requires API token for account write/API use.",
+      "fallback": [
+        "hosted application form",
+        "explicit public application email"
+      ]
+    },
+    "freelancer": {
+      "status": "NO_NATIVE_CONNECTOR_CURRENT",
+      "fallback": [
+        "connected browser only",
+        "client invite/message via Gmail if legitimate"
+      ],
+      "limits": "No new paid bids/membership/KYC."
+    },
+    "upwork": {
+      "status": "NOT_PRIMARY",
+      "limits": "No native connector; Connects/payment/KYC conflict with current funds discipline."
+    },
+    "opera": {
+      "status": "DISCONNECTED_CURRENT",
+      "evidence": "Browser not connected."
+    },
+    "tinyfish": {
+      "status": "BLOCKED_NO_FUNDS",
+      "limits": "Do not recharge before cumulative real income >=US$100."
+    }
+  }
+}
