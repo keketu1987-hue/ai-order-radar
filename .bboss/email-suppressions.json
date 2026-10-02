@@ -1,0 +1,24 @@
+{
+  "updated_at": "2026-10-02T03:40:00Z",
+  "permanent_bounce_suppressions": [
+    {
+      "email": "hello@synops.dev",
+      "dsn_message_id": "1a0fa492f3671a68",
+      "reason": "550 No Such User Here"
+    },
+    {
+      "email": "careers@wop360.com",
+      "dsn_message_id": "1a0f774ce437ed33",
+      "reason": "550 5.1.1 Recipient address rejected"
+    }
+  ],
+  "rule": "Never send again to permanent-bounce addresses. New permanent DSNs are appended and their originating action is retroactively invalidated.",
+  "current_success_evidence": [
+    "1a0fa90e32082d51",
+    "1a0fa90e9ff64b0a",
+    "1a0fa9161743817f",
+    "1a0fa920912ef618",
+    "1a0fa92999cb6cc0",
+    "1a0fa9b22d5494c9"
+  ]
+}
