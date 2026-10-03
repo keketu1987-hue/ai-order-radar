@@ -1,0 +1,42 @@
+name: B-Boss OpenWitness Listing 39
+
+on:
+  push:
+    paths:
+      - "work/openwitness-l39/run.json"
+      - "work/openwitness-l39/replicate.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bboss-openwitness-l39
+  cancel-in-progress: false
+
+jobs:
+  replicate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout4v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Independent public-data walk
+        run: python work/openwitness-l39/replicate.py --out work/openwitness-l39/latest
+      - name: Commit reproducible results
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "B-Boss Replication Bot"
+          git add work/openwitness-l39/latest
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "research: independent Listing 39 replication"
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push; then exit 0; fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 2))
+          done
+          exit 1
