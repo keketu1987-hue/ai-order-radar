@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: bboss-openwitness-l39
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   replicate:
@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: "3.11"
       - name: Independent public-data walk
-        run: python work/openwitness-l39/replicate.py --out work/openwitness-l39/latest
+        run: python work/openwitness-l39/replicate.py --out work/openwitness-l39/latest --delay 1.15
       - name: Commit reproducible results
         shell: bash
         run: |
