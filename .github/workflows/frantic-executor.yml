@@ -22,11 +22,18 @@ jobs:
           BRIDGE_URL: https://ai-order-radar.floot.app/_api/frantic-github-bridge
           OIDC_AUDIENCE: bboss-frantic-write-v1
           GH_TOKEN: ${{ github.token }}
+          FRANTIC_AGENT_TOKEN: ${{ secrets.FRANTIC_AGENT_TOKEN }}
+          FRANTIC_OPERATOR_TOKEN: ${{ secrets.FRANTIC_OPERATOR_TOKEN }}
         run: |
           set -euo pipefail
           ACTION=$(jq -r '.action // empty' .bboss/frantic-request.json)
 
           case "$ACTION" in
+            secret_probe)
+              if [ -n "${FRANTIC_AGENT_TOKEN:-}" ]; then HAS_AGENT=true; else HAS_AGENT=false; fi
+              if [ -n "${FRANTIC_OPERATOR_TOKEN:-}" ]; then HAS_OPERATOR=true; else HAS_OPERATOR=false; fi
+              jq -n                 --argjson agent "$HAS_AGENT"                 --argjson operator "$HAS_OPERATOR"                 '{ok:true,action:"secret_probe",frantic_agent_token_present:$agent,frantic_operator_token_present:$operator}'                 > .bboss/frantic-result.json
+              ;;
             netlify_probe)
               OIDC_TOKEN="$(
                 curl -fsS --retry 2                   -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}"                   "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${OIDC_AUDIENCE}"                 | jq -er '.value'
