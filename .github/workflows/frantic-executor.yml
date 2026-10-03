@@ -119,4 +119,16 @@ jobs:
           git config user.name "B-Boss Executor"
           git add .bboss/frantic-result.json
           git commit -m "chore: record Frantic action result" || exit 0
-          git push
+
+          # Other B-Boss executors may push unrelated receipt files at the same time.
+          # Rebase before pushing so a harmless concurrent receipt does not make
+          # the Frantic result disappear.
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 2))
+          done
+          echo "Failed to persist Frantic result after 3 concurrent-update retries" >&2
+          exit 1
