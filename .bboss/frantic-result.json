@@ -1,1 +1,5 @@
-{"ok":false,"error":"OIDC claim rejected: sub"}
+{
+  "ok": true,
+  "action": "desk_signin",
+  "http": 200
+}
