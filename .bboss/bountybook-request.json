@@ -1,5 +1,4 @@
 {
-  "action": "claim",
-  "job_id": "def03885-5007-44a5-be0b-133d08c131df",
-  "request_id": "bb-claim-restapis-20261004T0127+08"
+  "action": "triage",
+  "request_id": "bb-triage-all-20261004T0132+08"
 }
