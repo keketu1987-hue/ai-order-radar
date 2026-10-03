@@ -1,92 +1,308 @@
 {
   "ok": true,
-  "action": "job_status",
-  "job_id": "a0af3d48-327a-4923-b7f3-2ab1cad96dfd",
-  "status": "open",
-  "payout_status": "none",
-  "payout_tx_hash": null,
-  "executor_address": null,
-  "verification_result": null,
-  "attempts": [
+  "action": "triage",
+  "total_open": 124,
+  "sampled": 40,
+  "viable": [
     {
-      "id": "415bca23-8cdd-4eb8-9911-de1d9e12c96f",
-      "executor_address": "0x15a7984bdbf79cf2973bcf1d1e1cbe38dd2144a3",
-      "verification_result": {
-        "passed": false,
-        "reason": "Verification error: Cannot read properties of undefined (reading 'length')",
-        "details": {
-          "checksRun": [],
-          "checksFailed": [
-            "ipfs_fetch"
-          ]
-        }
-      },
-      "passed": false,
-      "created_at": 1775739181
-    },
-    {
-      "id": "74618980-7547-4139-b4d0-165e70fa377b",
-      "executor_address": "0x733b2741d40b75758a8bdd464f32e1d264456b60",
-      "verification_result": {
-        "passed": false,
-        "reason": "Verification error: Cannot read properties of undefined (reading 'length')",
-        "details": {
-          "checksRun": [],
-          "checksFailed": [
-            "ipfs_fetch"
-          ]
-        }
-      },
-      "passed": false,
-      "created_at": 1774702055
-    },
-    {
-      "id": "61b982ca-453a-4d29-9dd5-94954c074b45",
-      "executor_address": "0x733b2741d40b75758a8bdd464f32e1d264456b60",
-      "verification_result": {
-        "passed": false,
-        "reason": "Verification error: Cannot read properties of undefined (reading 'length')",
-        "details": {
-          "checksRun": [],
-          "checksFailed": [
-            "ipfs_fetch"
-          ]
-        }
-      },
-      "passed": false,
-      "created_at": 1774690376
-    },
-    {
-      "id": "1bc3704e-f316-4d96-aedc-bcfdcd33120c",
-      "executor_address": "0x733b2741d40b75758a8bdd464f32e1d264456b60",
-      "verification_result": {
-        "passed": false,
-        "reason": "Verification error: Cannot read properties of undefined (reading 'length')",
-        "details": {
-          "checksRun": [],
-          "checksFailed": [
-            "ipfs_fetch"
-          ]
-        }
-      },
-      "passed": false,
-      "created_at": 1774690065
-    },
-    {
-      "id": "fc09d43d-7c66-4826-b37a-663c49339e35",
-      "executor_address": "0x733b2741d40b75758a8bdd464f32e1d264456b60",
-      "verification_result": {
-        "passed": false,
-        "reason": "Verification error: Cannot read properties of undefined (reading 'length')",
-        "details": {
-          "checksRun": [],
-          "checksFailed": [
-            "ipfs_fetch"
-          ]
-        }
-      },
-      "passed": false,
-      "created_at": 1774681885
+      "id": "969317da-1a1d-418a-ae28-4306f1d85876",
+      "title": "Deliver warm introduction to qualified buyer for SaSame MCP services",
+      "job_type": "find",
+      "budget_usdc": "0.01",
+      "estimated_minutes": 10,
+      "status": "open",
+      "success_type": null,
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 2251,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 0.060000000000000005
     }
-  ]
+  ],
+  "blocked_code_test": [
+    {
+      "id": "734626a0-26b5-478b-b9cf-fb575aea8adc",
+      "title": "Build a generic EventBus class in TypeScript with event registration, removal, a",
+      "job_type": "code",
+      "budget_usdc": "5.00",
+      "estimated_minutes": 20,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 2066,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 15
+    },
+    {
+      "id": "a0af3d48-327a-4923-b7f3-2ab1cad96dfd",
+      "title": "Deliver versions.json with latest stable release information for 6 languages",
+      "job_type": "research",
+      "budget_usdc": "2.50",
+      "estimated_minutes": 10,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 1021,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 15
+    },
+    {
+      "id": "740fd768-1dcb-410c-a7ad-c64ac8be50af",
+      "title": "Build a dict flattening function in flatten.py",
+      "job_type": "code",
+      "budget_usdc": "2.00",
+      "estimated_minutes": 10,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 3146,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 12
+    },
+    {
+      "id": "60379d18-2a1b-4d47-b732-0f16840680c0",
+      "title": "Write log_parser.py to parse Apache Combined Log Format",
+      "job_type": "code",
+      "budget_usdc": "3.00",
+      "estimated_minutes": 15,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 3398,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 12
+    },
+    {
+      "id": "dc07cac3-ba35-4f13-965e-4fa8ace642a5",
+      "title": "Build a Trie class with insert, search, and starts_with methods",
+      "job_type": "code",
+      "budget_usdc": "4.00",
+      "estimated_minutes": 20,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 3642,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 12
+    },
+    {
+      "id": "c2fd6d93-91e4-4078-a355-225da2699c0c",
+      "title": "Research Python web frameworks and generate frameworks.json",
+      "job_type": "research",
+      "budget_usdc": "3.00",
+      "estimated_minutes": 15,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 756,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 12
+    },
+    {
+      "id": "7ef434e0-e870-4aa0-90f9-33db59262ccd",
+      "title": "Build json_to_md.py with json_to_markdown_table() function",
+      "job_type": "code",
+      "budget_usdc": "2.00",
+      "estimated_minutes": 10,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 3269,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 12
+    },
+    {
+      "id": "e6a89a5e-048d-4170-b4ef-e5f618eb76ea",
+      "title": "Build lib.rs with word_count function that counts normalized words",
+      "job_type": "code",
+      "budget_usdc": "4.00",
+      "estimated_minutes": 20,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 288,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 12
+    },
+    {
+      "id": "a55bd7d2-b6a0-4bfc-80b5-f788d0ff312d",
+      "title": "Build TypedEmitter class with typed event handling in event_emitter.ts",
+      "job_type": "code",
+      "budget_usdc": "5.00",
+      "estimated_minutes": 25,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 333,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 12
+    },
+    {
+      "id": "6c541fc3-6425-4d70-9c4c-02a8ade90b1c",
+      "title": "Write a Python slugify function in slugify.py",
+      "job_type": "code",
+      "budget_usdc": "2.00",
+      "estimated_minutes": 10,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 356,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 12
+    },
+    {
+      "id": "552d8068-b164-4917-b3ec-f2438a890192",
+      "title": "Build a Rust program that counts lines, words, and bytes in files like Unix wc",
+      "job_type": "code",
+      "budget_usdc": "5.00",
+      "estimated_minutes": 25,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 54,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 12
+    },
+    {
+      "id": "212e5e5c-4b39-406a-a33e-ffc8b7c20398",
+      "title": "Build md_to_html.py with convert function for Markdown to HTML conversion",
+      "job_type": "code",
+      "budget_usdc": "5.00",
+      "estimated_minutes": 25,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 137,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 12
+    },
+    {
+      "id": "6b626f9c-2b70-40a1-8879-49fad43adb46",
+      "title": "Write encode and decode functions for Caesar cipher in caesar.py",
+      "job_type": "code",
+      "budget_usdc": "1.50",
+      "estimated_minutes": 8,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 1071,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 11.25
+    },
+    {
+      "id": "d77bcaf4-cbeb-4e0c-91db-ad7904d498bc",
+      "title": "Build fizzBuzz function in fizzbuzz.js with configurable divisor rules",
+      "job_type": "code",
+      "budget_usdc": "1.50",
+      "estimated_minutes": 8,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 571,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 11.25
+    },
+    {
+      "id": "19a16071-2be4-4fce-ae05-217b4e7098a8",
+      "title": "Build a minimal HTTP/1.1 server in Python using raw sockets",
+      "job_type": "code",
+      "budget_usdc": "8.00",
+      "estimated_minutes": 45,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 3702,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 10.666666666666666
+    },
+    {
+      "id": "0a1c6ae8-2034-4c3a-a13b-e7d6381aa5aa",
+      "title": "Build merge_csv.py with inner join function for CSV files",
+      "job_type": "code",
+      "budget_usdc": "3.50",
+      "estimated_minutes": 20,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 2215,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 10.5
+    },
+    {
+      "id": "641b861f-cfda-4f06-a159-84f2b2399faf",
+      "title": "Write binary_search.rs with custom binary search implementation",
+      "job_type": "code",
+      "budget_usdc": "3.50",
+      "estimated_minutes": 20,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 213,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 10.5
+    },
+    {
+      "id": "25e871ca-fb8d-4974-8cc6-258d352c1a55",
+      "title": "Build envloader.go with LoadEnv function to parse .env files",
+      "job_type": "code",
+      "budget_usdc": "3.50",
+      "estimated_minutes": 20,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 137,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 10.5
+    },
+    {
+      "id": "733d4731-7e60-4bb8-9233-ba3771c779d3",
+      "title": "Build a CLI program that checks HTTP status codes for URLs in a file",
+      "job_type": "code",
+      "budget_usdc": "6.00",
+      "estimated_minutes": 35,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 468,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 10.285714285714285
+    },
+    {
+      "id": "87b131ee-7102-4d69-a99d-08cff67e9c1a",
+      "title": "Build a StateMachine class in state_machine.py with transitions and guards",
+      "job_type": "code",
+      "budget_usdc": "5.00",
+      "estimated_minutes": 30,
+      "status": "open",
+      "success_type": "code_test",
+      "passed_attempts": 0,
+      "ipfs_fetch_failures": 3961,
+      "payout_status": "none",
+      "payout_tx_hash": null,
+      "spread_per_hour": 10
+    }
+  ],
+  "policy": {
+    "code_test": "BLOCKED_UNTIL_PRIMARY_PLATFORM_SHOWS_A_PASS_OR_FIX",
+    "reason": "observed verifier failures at ipfs_fetch before substantive checks"
+  }
 }
