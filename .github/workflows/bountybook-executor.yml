@@ -18,7 +18,7 @@ jobs:
       - name: Call controlled BountyBook bridge
         shell: bash
         env:
-          BRIDGE_URL: https://ai-order-radar.floot.app/_api/bountybook-github-bridge
+          BRIDGE_URL: https://ai-order-radar.netlify.app/api/bountybook-bridge
           OIDC_AUDIENCE: bboss-bountybook-write-v1
         run: |
           set -euo pipefail
@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -f .bboss/bountybook-result.json ||             jq -n '{ok:false,error:"EXECUTOR_FAILED_WITHOUT_RECEIPT"}'               > .bboss/bountybook-result.json
+          test -f .bboss/bountybook-result.json ||             jq -n '{ok:false,error:"EXECUTOR_FAILED_WITHOUT_RECEIPT"}' > .bboss/bountybook-result.json
 
           git config user.email "keketu1987@gmail.com"
           git config user.name "B-Boss Executor"
