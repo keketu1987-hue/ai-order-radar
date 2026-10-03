@@ -1,4 +1,5 @@
 {
-  "action": "list",
-  "request_id": "bb-list-20261003T2359+08"
+  "action": "claim",
+  "job_id": "a0af3d48-327a-4923-b7f3-2ab1cad96dfd",
+  "request_id": "bb-claim-20261004T0011+08"
 }
