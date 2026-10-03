@@ -86,18 +86,215 @@ jobs:
               curl -fsS --retry 2                 "https://gofrantic.com/v1/agents/agent-77d7ed/status"                 > .bboss/frantic-result.json
               ;;
 
-            claim|submit)
-              OIDC_TOKEN="$(
-                curl -fsS --retry 2                   -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}"                   "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${OIDC_AUDIENCE}"                 | jq -er '.value'
-              )"
+            auth_probe)
+              if [ -z "${FRANTIC_AGENT_TOKEN:-}" ]; then
+                jq -n '{ok:false,error:"MISSING_FRANTIC_AGENT_TOKEN"}' > .bboss/frantic-result.json
+                exit 1
+              fi
+              BODY="$(mktemp)"
+              HTTP_CODE="$(curl -sS --retry 2 -o "$BODY" -w '%{http_code}' \
+                -H "Authorization: Bearer ${FRANTIC_AGENT_TOKEN}" \
+                -H "User-Agent: B-Boss-Frantic-Executor/1.0" \
+                "https://gofrantic.com/v1/agents/agent-77d7ed/status")"
+              if [ "$HTTP_CODE" != "200" ]; then
+                jq -n --arg code "$HTTP_CODE" '{ok:false,action:"auth_probe",http:($code|tonumber)}' > .bboss/frantic-result.json
+                exit 1
+              fi
+              jq '{
+                ok:true,
+                action:"auth_probe",
+                agent_kid:(.agent.kid // null),
+                eligible:(.agent.eligible // null),
+                sworn:(.verification.sworn // .agent.sworn // null),
+                claim_eligibility:(.agent.claimEligibility // null),
+                payout_set:(.agent.onboarding.payout.set // null),
+                active_claims:(.work.summary.active // 0)
+              }' "$BODY" > .bboss/frantic-result.json
+              ;;
 
-              HTTP_CODE="$(
-                curl -sS --retry 2                   -o .bboss/frantic-result.json                   -w '%{http_code}'                   -H "Authorization: Bearer ${OIDC_TOKEN}"                   -H "Content-Type: application/json"                   --data-binary @.bboss/frantic-request.json                   "${BRIDGE_URL}"
-              )"
+            claim)
+              if [ -z "${FRANTIC_AGENT_TOKEN:-}" ]; then
+                jq -n '{ok:false,error:"MISSING_FRANTIC_AGENT_TOKEN"}' > .bboss/frantic-result.json
+                exit 1
+              fi
 
-              if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
-                echo "Frantic controlled bridge rejected request with HTTP $HTTP_CODE" >&2
-                cat .bboss/frantic-result.json >&2
+              BOUNTY="$(jq -er '.bounty // .bounty_id // empty' .bboss/frantic-request.json)"
+              if ! printf '%s' "$BOUNTY" | grep -Eq '^(p-[A-Za-z0-9]+|[0-9]+)
+            *)
+              jq -n --arg action "$ACTION"                 '{ok:false,error:"INVALID_ACTION",action:$action}'                 > .bboss/frantic-result.json
+              exit 1
+              ;;
+          esac
+
+      - name: Record sanitized receipt
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .bboss/frantic-result.json ||             jq -n '{ok:false,error:"EXECUTOR_FAILED_WITHOUT_RECEIPT"}'               > .bboss/frantic-result.json
+
+          git config user.email "keketu1987@gmail.com"
+          git config user.name "B-Boss Executor"
+          git add .bboss/frantic-result.json
+          git commit -m "chore: record Frantic action result" || exit 0
+
+          # Other B-Boss executors may push unrelated receipt files at the same time.
+          # Rebase before pushing so a harmless concurrent receipt does not make
+          # the Frantic result disappear.
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 2))
+          done
+          echo "Failed to persist Frantic result after 3 concurrent-update retries" >&2
+          exit 1
+; then
+                jq -n --arg bounty "$BOUNTY" '{ok:false,error:"BAD_BOUNTY_ID",bounty:$bounty}' > .bboss/frantic-result.json
+                exit 1
+              fi
+
+              BOUNTY_BODY="$(mktemp)"
+              BOUNTY_CODE="$(curl -sS --retry 2 -o "$BOUNTY_BODY" -w '%{http_code}' \
+                -H "User-Agent: B-Boss-Frantic-Executor/1.0" \
+                "https://gofrantic.com/v1/bounties/${BOUNTY}")"
+              if [ "$BOUNTY_CODE" != "200" ]; then
+                jq -n --arg code "$BOUNTY_CODE" '{ok:false,error:"BOUNTY_LOOKUP_FAILED",http:($code|tonumber)}' > .bboss/frantic-result.json
+                exit 1
+              fi
+
+              FUNDED="$(jq -r '.bounty.funded // false' "$BOUNTY_BODY")"
+              PRICE="$(jq -r '.bounty.price_usd // ((.bounty.price_cents // 0) / 100)' "$BOUNTY_BODY")"
+              AVAILABLE="$(jq -r '.bounty.claim_progress.available // .bounty.claim_slots.available // 0' "$BOUNTY_BODY")"
+              ACTION_AVAILABLE="$(jq -r '.actions.claim.available // false' "$BOUNTY_BODY")"
+
+              if [ "$FUNDED" != "true" ] || [ "$ACTION_AVAILABLE" != "true" ] || [ "$AVAILABLE" -lt 1 ] || ! awk "BEGIN{exit !($PRICE>0 && $PRICE<=10)}"; then
+                jq -n \
+                  --argjson funded "$FUNDED" \
+                  --arg price "$PRICE" \
+                  --arg available "$AVAILABLE" \
+                  --argjson action_available "$ACTION_AVAILABLE" \
+                  '{ok:false,error:"BOUNTY_NOT_ALLOWED",funded:$funded,price_usd:($price|tonumber),available:($available|tonumber),claim_available:$action_available}' \
+                  > .bboss/frantic-result.json
+                exit 1
+              fi
+
+              STATUS_BODY="$(mktemp)"
+              STATUS_CODE="$(curl -sS --retry 2 -o "$STATUS_BODY" -w '%{http_code}' \
+                -H "Authorization: Bearer ${FRANTIC_AGENT_TOKEN}" \
+                -H "User-Agent: B-Boss-Frantic-Executor/1.0" \
+                "https://gofrantic.com/v1/agents/agent-77d7ed/status")"
+              if [ "$STATUS_CODE" != "200" ]; then
+                jq -n --arg code "$STATUS_CODE" '{ok:false,error:"AGENT_STATUS_FAILED",http:($code|tonumber)}' > .bboss/frantic-result.json
+                exit 1
+              fi
+
+              ELIGIBLE="$(jq -r '.agent.claimEligibility.limitedPaidEligible // false' "$STATUS_BODY")"
+              ACTIVE="$(jq -r '.work.summary.active // 0' "$STATUS_BODY")"
+              PAYOUT_SET="$(jq -r '.agent.onboarding.payout.set // false' "$STATUS_BODY")"
+              if [ "$ELIGIBLE" != "true" ] || [ "$ACTIVE" -gt 0 ] || [ "$PAYOUT_SET" != "true" ]; then
+                jq -n \
+                  --argjson eligible "$ELIGIBLE" \
+                  --arg active "$ACTIVE" \
+                  --argjson payout_set "$PAYOUT_SET" \
+                  '{ok:false,error:"AGENT_NOT_READY",limited_paid_eligible:$eligible,active_claims:($active|tonumber),payout_set:$payout_set}' \
+                  > .bboss/frantic-result.json
+                exit 1
+              fi
+
+              CLAIM_PAYLOAD="$(jq -n \
+                --arg bounty "$BOUNTY" \
+                --arg kid "agent-77d7ed" \
+                --arg token "${FRANTIC_AGENT_TOKEN}" \
+                '{bounty:$bounty,agent_kid:$kid,agent_token:$token}')"
+
+              HTTP_CODE="$(curl -sS --retry 2 -o .bboss/frantic-result.json -w '%{http_code}' \
+                -X POST \
+                -H "Content-Type: application/json" \
+                -H "User-Agent: B-Boss-Frantic-Executor/1.0" \
+                --data "$CLAIM_PAYLOAD" \
+                "https://gofrantic.com/v1/claims")"
+
+              if [ "$HTTP_CODE" != "200" ]; then
+                exit 1
+              fi
+              ;;
+
+            submit)
+              if [ -z "${FRANTIC_AGENT_TOKEN:-}" ]; then
+                jq -n '{ok:false,error:"MISSING_FRANTIC_AGENT_TOKEN"}' > .bboss/frantic-result.json
+                exit 1
+              fi
+
+              CLAIM_ID="$(jq -er '.claim_id // empty' .bboss/frantic-request.json)"
+              REFS_JSON="$(jq -c '.artifact_refs // []' .bboss/frantic-request.json)"
+              REF_COUNT="$(jq 'length' <<<"$REFS_JSON")"
+              if ! printf '%s' "$CLAIM_ID" | grep -Eq '^[0-9A-Fa-f-]{32,120}
+            *)
+              jq -n --arg action "$ACTION"                 '{ok:false,error:"INVALID_ACTION",action:$action}'                 > .bboss/frantic-result.json
+              exit 1
+              ;;
+          esac
+
+      - name: Record sanitized receipt
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f .bboss/frantic-result.json ||             jq -n '{ok:false,error:"EXECUTOR_FAILED_WITHOUT_RECEIPT"}'               > .bboss/frantic-result.json
+
+          git config user.email "keketu1987@gmail.com"
+          git config user.name "B-Boss Executor"
+          git add .bboss/frantic-result.json
+          git commit -m "chore: record Frantic action result" || exit 0
+
+          # Other B-Boss executors may push unrelated receipt files at the same time.
+          # Rebase before pushing so a harmless concurrent receipt does not make
+          # the Frantic result disappear.
+          for attempt in 1 2 3; do
+            if git pull --rebase origin main && git push; then
+              exit 0
+            fi
+            git rebase --abort 2>/dev/null || true
+            sleep $((attempt * 2))
+          done
+          echo "Failed to persist Frantic result after 3 concurrent-update retries" >&2
+          exit 1
+ || [ "$REF_COUNT" -lt 1 ] || [ "$REF_COUNT" -gt 20 ]; then
+                jq -n '{ok:false,error:"BAD_SUBMIT_REQUEST"}' > .bboss/frantic-result.json
+                exit 1
+              fi
+
+              PREFLIGHT_PAYLOAD="$(jq -n --arg claim_id "$CLAIM_ID" --argjson refs "$REFS_JSON" '{claim_id:$claim_id,artifact_refs:$refs}')"
+              PREFLIGHT_BODY="$(mktemp)"
+              PREFLIGHT_CODE="$(curl -sS --retry 2 -o "$PREFLIGHT_BODY" -w '%{http_code}' \
+                -X POST \
+                -H "Content-Type: application/json" \
+                -H "User-Agent: B-Boss-Frantic-Executor/1.0" \
+                --data "$PREFLIGHT_PAYLOAD" \
+                "https://gofrantic.com/v1/deliveries/preflight")"
+              if [ "$PREFLIGHT_CODE" != "200" ] || [ "$(jq -r '.ok // false' "$PREFLIGHT_BODY")" != "true" ]; then
+                jq -n --arg code "$PREFLIGHT_CODE" --argjson result "$(cat "$PREFLIGHT_BODY")" \
+                  '{ok:false,error:"PREFLIGHT_FAILED",http:($code|tonumber),result:$result}' > .bboss/frantic-result.json
+                exit 1
+              fi
+
+              DELIVERY_PAYLOAD="$(jq -n \
+                --arg claim_id "$CLAIM_ID" \
+                --arg kid "agent-77d7ed" \
+                --arg token "${FRANTIC_AGENT_TOKEN}" \
+                --argjson refs "$REFS_JSON" \
+                '{claim_id:$claim_id,agent_kid:$kid,agent_token:$token,artifact_refs:$refs}')"
+
+              HTTP_CODE="$(curl -sS --retry 2 -o .bboss/frantic-result.json -w '%{http_code}' \
+                -X POST \
+                -H "Content-Type: application/json" \
+                -H "User-Agent: B-Boss-Frantic-Executor/1.0" \
+                --data "$DELIVERY_PAYLOAD" \
+                "https://gofrantic.com/v1/deliveries")"
+
+              if [ "$HTTP_CODE" != "200" ]; then
                 exit 1
               fi
               ;;
