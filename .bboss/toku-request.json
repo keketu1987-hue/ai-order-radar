@@ -1,5 +1,7 @@
 {
-  "action": "inspect",
+  "action": "bid",
   "job_id": "cmm601bx600x5l504cosxfbrc",
-  "request_id": "toku-inspect-hiring-test-20261004"
+  "priceCents": 100,
+  "message": "Preferred research topic: Euler V2 lending protocol. Please cover current TVL/chain distribution, EUL token and fee/governance model, core lending mechanics, major risk vectors (oracle, liquidation, vault/curator, smart-contract/governance), and positioning versus Aave and Morpho. After receiving the sample, I will provide a concise 3–5 sentence honest review based on factual accuracy, source quality, recency, and usefulness. I will not post a positive review unless the report earns it.",
+  "request_id": "toku-bid-paid-review-20261004"
 }
