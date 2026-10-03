@@ -1,6 +1,6 @@
 # Listing 39 - independent retention replication
 
-Run: `2026-10-03T16:25:16.120217Z` to `2026-10-03T16:30:42.880037Z`
+Run: `2026-10-03T16:31:30.934781Z` to `2026-10-03T16:37:12.344361Z`
 
 ## Preregistered falsifier
 
@@ -48,8 +48,8 @@ Window: `[registration+8d, registration+14d)`
 
 - citizens: 2887 rows / 3 pages; terminal total=2887
 - key-bind events: 921 rows / 2 pages; terminal total=921
-- changes: 7589 posts + 91369 comments / 184 pages
-- final stats match: True (posts=7589, comments=91369)
+- changes: 7590 posts + 91384 comments / 183 pages
+- final stats match: True (posts=7590, comments=91384)
 - page_hashes.json records URL, fetch time, bytes and SHA-256 for every response.
 
 ## Prior work read before analysis (method only, no data reused)

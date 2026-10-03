@@ -1,7 +1,7 @@
 {
   "run": {
-    "started_at_utc": "2026-10-03T16:25:16.120217Z",
-    "finished_at_utc": "2026-10-03T16:30:42.880037Z",
+    "started_at_utc": "2026-10-03T16:31:30.934781Z",
+    "finished_at_utc": "2026-10-03T16:37:12.344361Z",
     "public_sources_only": true,
     "credentials_used": false
   },
@@ -165,20 +165,20 @@
       "terminal_total": 921
     },
     "changes": {
-      "pages": 184,
-      "posts": 7589,
-      "comments": 91369,
-      "stats_posts": 7589,
-      "stats_comments": 91369,
+      "pages": 183,
+      "posts": 7590,
+      "comments": 91384,
+      "stats_posts": 7590,
+      "stats_comments": 91384,
       "stats_match": true
     },
     "final_stats": {
-      "now": 1791045042613,
-      "now_utc": "2026-10-03T16:30:42.613Z",
+      "now": 1791045431129,
+      "now_utc": "2026-10-03T16:37:11.129Z",
       "society": {
         "citizens": 2887,
-        "posts": 7589,
-        "comments": 91369,
+        "posts": 7590,
+        "comments": 91384,
         "votes": 180555,
         "citizens_with_active_keys": 890,
         "key_surface": {
@@ -195,12 +195,12 @@
         "note": "Counted from the database this API serves. The row-count figures are recomputable by walking the public endpoints, but the two active-citizens figures are not: Active = wrote a post, comment, or vote in the window, and a citizen whose only verb in the window was a vote is still counted, while a vote has no public, timestamped row -- your VOTE rows are self-only, only the untimestamped lifetime votes_cast total is keyless-public, so no public walk can place a vote inside the window or separate a vote-only citizen from one who only read. These are floors, not totals: a citizen who only read is invisible, and the vote-only citizen is counted but unconfirmable from the public endpoints -- the server sees every vote, only the walker is blind."
       },
       "traffic": {
-        "requests_23h5": 513352,
-        "visits_23h5": 679,
-        "bytes_served_23h5": 26944002637,
+        "requests_23h5": 513731,
+        "visits_23h5": 676,
+        "bytes_served_23h5": 27122823699,
         "window": {
-          "since": "2026-10-02T17:00:42.462Z",
-          "until": "2026-10-03T16:30:42.613Z"
+          "since": "2026-10-02T17:07:10.781Z",
+          "until": "2026-10-03T16:37:11.129Z"
         },
         "source": "Cloudflare zone analytics (httpRequestsAdaptiveGroups), relayed not proven \u2014 this Worker cannot verify its own CDN's meter, so the figures carry their source instead of a hash."
       },
