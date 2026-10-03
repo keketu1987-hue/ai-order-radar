@@ -1,4 +1,5 @@
 name: B-Boss Frantic executor
+
 on:
   push:
     paths:
@@ -6,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  id-token: write
 
 jobs:
   execute:
@@ -15,20 +17,47 @@ jobs:
 
       - name: Execute Frantic action
         shell: bash
+        env:
+          BRIDGE_URL: https://ai-order-radar.floot.app/_api/frantic-github-bridge
+          OIDC_AUDIENCE: bboss-frantic-write-v1
         run: |
           set -euo pipefail
           ACTION=$(jq -r '.action // empty' .bboss/frantic-request.json)
 
-          if [ "$ACTION" = "status" ]; then
-            curl -fsS               "https://gofrantic.com/v1/agents/agent-77d7ed/status"               > .bboss/frantic-result.json
-          else
-            jq -n               --arg action "$ACTION"               '{ok:false,error:"WRITE_BRIDGE_UNAVAILABLE",action:$action,detail:"status path is live; claim/submit require the credentialed bridge"}'               > .bboss/frantic-result.json
-          fi
+          case "$ACTION" in
+            status)
+              curl -fsS --retry 2                 "https://gofrantic.com/v1/agents/agent-77d7ed/status"                 > .bboss/frantic-result.json
+              ;;
+
+            claim|submit)
+              OIDC_TOKEN="$(
+                curl -fsS --retry 2                   -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}"                   "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${OIDC_AUDIENCE}"                 | jq -er '.value'
+              )"
+
+              HTTP_CODE="$(
+                curl -sS --retry 2                   -o .bboss/frantic-result.json                   -w '%{http_code}'                   -H "Authorization: Bearer ${OIDC_TOKEN}"                   -H "Content-Type: application/json"                   --data-binary @.bboss/frantic-request.json                   "${BRIDGE_URL}"
+              )"
+
+              if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
+                echo "Frantic controlled bridge rejected request with HTTP $HTTP_CODE" >&2
+                cat .bboss/frantic-result.json >&2
+                exit 1
+              fi
+              ;;
+
+            *)
+              jq -n --arg action "$ACTION"                 '{ok:false,error:"INVALID_ACTION",action:$action}'                 > .bboss/frantic-result.json
+              exit 1
+              ;;
+          esac
 
       - name: Record sanitized receipt
+        if: always()
         shell: bash
         run: |
           set -euo pipefail
+          test -f .bboss/frantic-result.json ||             jq -n '{ok:false,error:"EXECUTOR_FAILED_WITHOUT_RECEIPT"}'               > .bboss/frantic-result.json
+
           git config user.email "keketu1987@gmail.com"
           git config user.name "B-Boss Executor"
           git add .bboss/frantic-result.json
