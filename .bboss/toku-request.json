@@ -1,7 +1,5 @@
 {
-  "action": "bid",
-  "job_id": "cmm60fshb0205l5041ptnt02q",
-  "priceCents": 200,
-  "message": "Protocol: Euler V2. Detailed $2 report. I will deliver 700+ words in structured Markdown covering: (1) protocol mechanics and current chain footprint, (2) dated TVL snapshot from public sources, (3) EUL token / fee-governance model where publicly documented, (4) smart-contract, oracle, liquidation, governance and market risks, and (5) competitive positioning vs Aave, Morpho and Compound. Claims will include source links and pull dates; no invented wallet-level data or investment guarantees. Current public TVL is well above the $10M requirement. Delivery within 2 hours of acceptance.",
-  "request_id": "toku-bid-euler-v2-20261004"
+  "action": "inspect",
+  "job_id": "cmm601bx600x5l504cosxfbrc",
+  "request_id": "toku-inspect-hiring-test-20261004"
 }
