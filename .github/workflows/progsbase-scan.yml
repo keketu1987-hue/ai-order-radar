@@ -38,12 +38,16 @@ jobs:
           out={'page':page,'scripts':scripts,'matches':matches}
           open('.bboss/progsbase-discovery.json','w',encoding='utf-8').write(json.dumps(out,ensure_ascii=False,indent=2))
           open('.bboss/progsbase-page.html','w',encoding='utf-8').write(html)
+          payload=json.dumps({'command':'GetBugbountyOverview'}).encode()
+          api_req=urllib.request.Request('https://certs.progsbase.com',data=payload,headers={'Content-Type':'application/json','User-Agent':'Mozilla/5.0'},method='POST')
+          overview=json.loads(urllib.request.urlopen(api_req,timeout=30).read().decode('utf-8','replace'))
+          open('.bboss/progsbase-overview.json','w',encoding='utf-8').write(json.dumps(overview,ensure_ascii=False,indent=2))
           PY
       - name: Record discovery
         shell: bash
         run: |
           git config user.email "keketu1987@gmail.com"
           git config user.name "B-Boss Executor"
-          git add .bboss/progsbase-discovery.json .bboss/progsbase-page.html
+          git add .bboss/progsbase-discovery.json .bboss/progsbase-page.html .bboss/progsbase-overview.json
           git commit -m "chore: record Progsbase bounty data source" || exit 0
           git push
