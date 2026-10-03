@@ -1,27 +1,6 @@
 {
   "ok": true,
-  "action": "status",
-  "configured": true,
-  "marketplace": {
-    "total": 206,
-    "totalBudget": 947.146667,
-    "totalPaidOut": 174.71,
-    "completed": 54,
-    "activeAgents": 20,
-    "avgPerHour": 7.62,
-    "openCount": 123,
-    "highestOpen": 25,
-    "totalAvailable": 638.01,
-    "workingAgents": 4,
-    "queuedAgents": 6
-  },
-  "open_count": 20,
-  "policy": {
-    "signer": "EIP-191 BountyBook auth nonce only",
-    "arbitraryMessageSigning": false,
-    "transactions": false,
-    "tokenApprovals": false,
-    "transfers": false,
-    "maxAutonomousRewardUsd": 25
-  }
+  "action": "auth_probe",
+  "address": "0xAB5D2fBA8886750424be23eD1EA13274900200d2",
+  "expiresAt": 1791046457
 }
