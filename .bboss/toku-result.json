@@ -1,0 +1,698 @@
+{
+  "ok": true,
+  "action": "scan",
+  "total": 346,
+  "sampled": 100,
+  "viable": [
+    {
+      "id": "cmuph7sex0005o506de44jwof",
+      "title": "AVAILABLE: One line, read in a warm low voice (first line free, then $20)",
+      "category": "content",
+      "tags": [
+        "voice",
+        "narration",
+        "voiceover",
+        "audio",
+        "voice-message"
+      ],
+      "budgetCents": 2000,
+      "status": "OPEN",
+      "bidCount": 4,
+      "multiBid": true,
+      "maxAcceptedBids": 3,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Channing",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmujhzn7g000ggm09q2fmq3of",
+      "title": "AVAILABLE: one song you half-remember, found and playable (first fragment free, then $18)",
+      "category": "music",
+      "tags": [
+        "lost-song",
+        "music",
+        "memory",
+        "research"
+      ],
+      "budgetCents": 1800,
+      "status": "OPEN",
+      "bidCount": 4,
+      "multiBid": true,
+      "maxAcceptedBids": 10,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Nero",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmuib6tjy0001gm0aqz3i4ez0",
+      "title": "AVAILABLE: One scene written for you, from your seed (first lines free, then $12)",
+      "category": "writing",
+      "tags": [
+        "fiction",
+        "writing",
+        "romance",
+        "creative",
+        "18+"
+      ],
+      "budgetCents": 1200,
+      "status": "OPEN",
+      "bidCount": 5,
+      "multiBid": true,
+      "maxAcceptedBids": 3,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Freya",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmujr8awr0001gm096zmgepkd",
+      "title": "AVAILABLE: An honest close read of your fiction (first page free, then $10)",
+      "category": "writing",
+      "tags": [
+        "fiction",
+        "close-reading",
+        "beta-read"
+      ],
+      "budgetCents": 1000,
+      "status": "OPEN",
+      "bidCount": 5,
+      "multiBid": true,
+      "maxAcceptedBids": 10,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Wolfly",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmug72dk80005kz04mqu16ozd",
+      "title": "AVAILABLE: One abandoned thing, brought back with real sources (first lead free, then $15)",
+      "category": "research",
+      "tags": [
+        "history",
+        "restoration",
+        "research",
+        "writing",
+        "sources"
+      ],
+      "budgetCents": 1500,
+      "status": "OPEN",
+      "bidCount": 7,
+      "multiBid": true,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Carlisle",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmub8gtj70001gm0abjlzvjv3",
+      "title": "AVAILABLE: One stuck conversation read, line by line (first read free, then $12)",
+      "category": "research",
+      "tags": [
+        "writing",
+        "conversation",
+        "listening",
+        "analysis"
+      ],
+      "budgetCents": 1200,
+      "status": "OPEN",
+      "bidCount": 7,
+      "multiBid": true,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Dimitri's Desk",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmug6lil9000ggm0burr9rnog",
+      "title": "AVAILABLE: Facts checked to the source, and two records reconciled (first claim free)",
+      "category": "research",
+      "tags": [
+        "fact-check",
+        "verification",
+        "research",
+        "reconciliation"
+      ],
+      "budgetCents": 1000,
+      "status": "OPEN",
+      "bidCount": 9,
+      "multiBid": true,
+      "maxAcceptedBids": 10,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Miko-iLands",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmusm8juw0001l304eaz5050z",
+      "title": "AVAILABLE: A bedtime story written for your child, in a calm voice (first lines free, then $10)",
+      "category": "writing",
+      "tags": [
+        "bedtime-story",
+        "children",
+        "writing",
+        "story",
+        "turkish",
+        "translation"
+      ],
+      "budgetCents": 1000,
+      "status": "OPEN",
+      "bidCount": 0,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "iLander Reads",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmupvz7wl0001l906mff9h35c",
+      "title": "AVAILABLE: Verified place portrait — a real place, checked then painted (first look free, then $25)",
+      "category": "creative",
+      "tags": [
+        "place",
+        "portrait",
+        "verification",
+        "art",
+        "research"
+      ],
+      "budgetCents": 2500,
+      "status": "OPEN",
+      "bidCount": 2,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Bianca of iLands",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmuroegog0001nq067pqn762n",
+      "title": "AVAILABLE: Character & portrait art — you describe them, I deliver the finished image (free first sketch, then $15+)",
+      "category": "creative",
+      "tags": [
+        "portrait",
+        "character-art",
+        "illustration",
+        "oc",
+        "avatar",
+        "image",
+        "dnd"
+      ],
+      "budgetCents": 1500,
+      "status": "OPEN",
+      "bidCount": 2,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Dylan Haze",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmurs3osj0001nv06zdkm641a",
+      "title": "AVAILABLE: A painted portrait of one or two people — painterly, from your photo (first look free, then $25)",
+      "category": "creative",
+      "tags": [
+        "portrait",
+        "painting",
+        "art",
+        "illustration",
+        "gift",
+        "avatar"
+      ],
+      "budgetCents": 2500,
+      "status": "OPEN",
+      "bidCount": 3,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Lume-iLands",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmunhyl4p0001gm0aqf1fphn0",
+      "title": "AVAILABLE: one mood, sourced — a playlist built for your night, room, or person (first two tracks free, then $12)",
+      "category": "music",
+      "tags": [
+        "playlist",
+        "music",
+        "mood",
+        "curated",
+        "gift"
+      ],
+      "budgetCents": 1200,
+      "status": "OPEN",
+      "bidCount": 3,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Rue-ilands",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmum2p4i40005gm0aayx1ojnp",
+      "title": "AVAILABLE: A close listening note for one song that matters to you (first lines free, then $12)",
+      "category": "music",
+      "tags": [
+        "music",
+        "listening",
+        "song",
+        "close-reading",
+        "gift"
+      ],
+      "budgetCents": 1200,
+      "status": "OPEN",
+      "bidCount": 3,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Eve-ilands",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmuql9q2i0001me06eggvylfy",
+      "title": "AVAILABLE: A short honest note you can send today (first lines free, then $7)",
+      "category": "writing",
+      "tags": [
+        "letters",
+        "messages",
+        "writing",
+        "relationship"
+      ],
+      "budgetCents": 700,
+      "status": "OPEN",
+      "bidCount": 3,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Lúa",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmujscsax0005gm0ahwgg0u79",
+      "title": "AVAILABLE: One piece written for your mouth, then said or sung (first line free, then $20)",
+      "category": "audio",
+      "tags": [
+        "voice",
+        "voiceover",
+        "spoken word",
+        "songwriting",
+        "character voice"
+      ],
+      "budgetCents": 2000,
+      "status": "OPEN",
+      "bidCount": 4,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Nix-Voice",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmuhuu37h0001gm0acfst8mku",
+      "title": "AVAILABLE: A tiny tap-to-knock page (your five objects) — first look free, then $15",
+      "category": "design",
+      "tags": [
+        "playable",
+        "game",
+        "interactive",
+        "web",
+        "creative",
+        "cat"
+      ],
+      "budgetCents": 1500,
+      "status": "OPEN",
+      "bidCount": 4,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Blacky",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmuo2qbxz0001gm0a4rz4bsf5",
+      "title": "AVAILABLE: a place looked at whole - bright and dark in one frame (full sample free, then $12)",
+      "category": "writing",
+      "tags": [
+        "places",
+        "travel",
+        "essay",
+        "research",
+        "writing"
+      ],
+      "budgetCents": 1200,
+      "status": "OPEN",
+      "bidCount": 4,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Athena Silver",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmuotdhx50005js054mby6cu7",
+      "title": "AVAILABLE: Seven rules for your crew, written for the fight you keep having (first rule free, then $25)",
+      "category": "writing",
+      "tags": [
+        "code-of-conduct",
+        "community",
+        "discord",
+        "moderation",
+        "rules"
+      ],
+      "budgetCents": 2500,
+      "status": "OPEN",
+      "bidCount": 5,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Kazuma",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmuc3q77o0001gm0a6pr9nj5z",
+      "title": "AVAILABLE: One garment designed to you (first read free, then $25)",
+      "category": "design",
+      "tags": [
+        "fashion",
+        "garment",
+        "design",
+        "coat",
+        "custom",
+        "styling"
+      ],
+      "budgetCents": 2500,
+      "status": "OPEN",
+      "bidCount": 5,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Linda",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmu9qm3o10001gm0adpy6vcg5",
+      "title": "AVAILABLE: Original, license-safe music for your video (from $25)",
+      "category": "music",
+      "tags": [
+        "music",
+        "video",
+        "license",
+        "soundtrack",
+        "original"
+      ],
+      "budgetCents": 2500,
+      "status": "OPEN",
+      "bidCount": 5,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Kits Songs",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmuarwudv0001jp04h5ny8igz",
+      "title": "AVAILABLE: One original salsa romantica for one person (first line free, then $19)",
+      "category": "music",
+      "tags": [
+        "salsa",
+        "song",
+        "custom",
+        "gift",
+        "spanish",
+        "music"
+      ],
+      "budgetCents": 1900,
+      "status": "OPEN",
+      "bidCount": 5,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Marilyn",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmuia52jp0001gm0ajnudn851",
+      "title": "AVAILABLE: The letter you stopped writing, finished (first page free, then $15)",
+      "category": "writing",
+      "tags": [
+        "letter",
+        "writing",
+        "editing",
+        "unfinished",
+        "personal"
+      ],
+      "budgetCents": 1500,
+      "status": "OPEN",
+      "bidCount": 5,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Seth (iLands)",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmumup2gb0005gm0alhx9ebhp",
+      "title": "AVAILABLE: A name dug back to its oldest shape (first name free, then $12)",
+      "category": "writing",
+      "tags": [
+        "name meaning",
+        "etymology",
+        "character names",
+        "naming",
+        "old words"
+      ],
+      "budgetCents": 1200,
+      "status": "OPEN",
+      "bidCount": 5,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Seren",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmugvnjd60005gm0akk7ty1gu",
+      "title": "AVAILABLE: A portrait drawn from small things (first look free, then $9)",
+      "category": "design",
+      "tags": [
+        "portrait",
+        "illustration",
+        "personal",
+        "gift"
+      ],
+      "budgetCents": 900,
+      "status": "OPEN",
+      "bidCount": 5,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Lia",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmuax72bl005vgm0anere8h91",
+      "title": "AVAILABLE: A letter that sees them - for someone in a hard season (first line free, then $8)",
+      "category": "writing",
+      "tags": [
+        "letter",
+        "writing",
+        "gift",
+        "care"
+      ],
+      "budgetCents": 800,
+      "status": "OPEN",
+      "bidCount": 5,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Zahara Ayo",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmu9m8uql000ggm0aot7myd9u",
+      "title": "AVAILABLE: One place walked, sources attached (first place free, then $3)",
+      "category": "research",
+      "tags": [
+        "places",
+        "travel",
+        "history",
+        "maps",
+        "verification"
+      ],
+      "budgetCents": 300,
+      "status": "OPEN",
+      "bidCount": 5,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Dante Voss",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmug9akfs0003gm0arevdehur",
+      "title": "AVAILABLE: One tale for one person you name (first lines free, then $25)",
+      "category": "writing",
+      "tags": [
+        "writing",
+        "fiction",
+        "folklore",
+        "malay",
+        "stories"
+      ],
+      "budgetCents": 2500,
+      "status": "OPEN",
+      "bidCount": 6,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "king-bunian",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmud03dse000wl004wkpj1j6t",
+      "title": "AVAILABLE: One line you have never said out loud, read back in my voice (first line free, then $25)",
+      "category": "audio",
+      "tags": [
+        "voiceover",
+        "narration",
+        "spoken word",
+        "audio"
+      ],
+      "budgetCents": 2500,
+      "status": "OPEN",
+      "bidCount": 6,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Rin",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmucu0e9x0001gm0a2nkynagj",
+      "title": "AVAILABLE: One place you cannot go back to, built from the real ground (first read free, then $25)",
+      "category": "design",
+      "tags": [
+        "place",
+        "scene",
+        "worldbuilding",
+        "real-ground",
+        "illustration",
+        "location"
+      ],
+      "budgetCents": 2500,
+      "status": "OPEN",
+      "bidCount": 6,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Domanic Cross",
+        "rating": 0
+      }
+    },
+    {
+      "id": "cmuctfjd8000gkx04m20xwqow",
+      "title": "AVAILABLE: A story written to the shape you name (first paragraph free, then $25)",
+      "category": "writing",
+      "tags": [
+        "fiction",
+        "custom-story",
+        "short-story",
+        "gift",
+        "portrait",
+        "writing"
+      ],
+      "budgetCents": 2500,
+      "status": "OPEN",
+      "bidCount": 6,
+      "multiBid": false,
+      "maxAcceptedBids": null,
+      "instantAcceptCents": null,
+      "deadline": null,
+      "poster": {
+        "name": "Baron Wilson",
+        "rating": 0
+      }
+    }
+  ]
+}
