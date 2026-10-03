@@ -1,5 +1,6 @@
 {
   "ok": true,
-  "action": "desk_signin",
-  "http": 200
+  "action": "secret_probe",
+  "frantic_agent_token_present": false,
+  "frantic_operator_token_present": false
 }
