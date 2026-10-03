@@ -1,4 +1,3 @@
 {
-  "action": "claim",
-  "bounty_id": "__AUTH_PROBE_NONEXISTENT__"
+  "action": "desk_signin"
 }
