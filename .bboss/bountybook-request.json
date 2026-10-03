@@ -1,1 +1,3 @@
-{"action":"status","requestId":"status-2"}
+{
+  "action": "status"
+}
