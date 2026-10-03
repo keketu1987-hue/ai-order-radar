@@ -1,0 +1,48 @@
+name: B-Boss Progsbase discovery
+on:
+  push:
+    paths:
+      - ".bboss/progsbase-request.json"
+
+permissions:
+  contents: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Discover current Progsbase bounty data source
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, re, urllib.request, urllib.parse
+          page='https://www.progsbase.com/bug-bounty/'
+          req=urllib.request.Request(page,headers={'User-Agent':'Mozilla/5.0'})
+          html=urllib.request.urlopen(req,timeout=20).read().decode('utf-8','replace')
+          scripts=[]
+          for src in re.findall(r'<script[^>]+src=["\']([^"\']+)',html,re.I):
+              scripts.append(urllib.parse.urljoin(page,src))
+          matches=[]
+          pats=re.compile(r'.{0,180}(?:bug.?bounty|bounty|awardtime|awardedTo|row\.amount|/api/|bugbount).{0,260}',re.I)
+          for u in scripts:
+              try:
+                  txt=urllib.request.urlopen(urllib.request.Request(u,headers={'User-Agent':'Mozilla/5.0'}),timeout=20).read().decode('utf-8','replace')
+              except Exception as e:
+                  matches.append({'script':u,'error':str(e)[:300]})
+                  continue
+              ms=pats.findall(txt)
+              if ms:
+                  matches.append({'script':u,'matches':ms[:80]})
+          out={'page':page,'scripts':scripts,'matches':matches}
+          open('.bboss/progsbase-discovery.json','w',encoding='utf-8').write(json.dumps(out,ensure_ascii=False,indent=2))
+          PY
+      - name: Record discovery
+        shell: bash
+        run: |
+          git config user.email "keketu1987@gmail.com"
+          git config user.name "B-Boss Executor"
+          git add .bboss/progsbase-discovery.json
+          git commit -m "chore: record Progsbase bounty data source" || exit 0
+          git push
