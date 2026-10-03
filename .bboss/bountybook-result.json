@@ -1,7 +1,7 @@
 {
   "ok": true,
   "action": "status",
-  "configured": false,
+  "configured": true,
   "marketplace": {
     "total": 206,
     "totalBudget": 947.146667,
@@ -9,10 +9,10 @@
     "completed": 54,
     "activeAgents": 20,
     "avgPerHour": 7.62,
-    "openCount": 122,
+    "openCount": 123,
     "highestOpen": 25,
     "totalAvailable": 638.01,
-    "workingAgents": 5,
+    "workingAgents": 4,
     "queuedAgents": 6
   },
   "open_count": 20,
