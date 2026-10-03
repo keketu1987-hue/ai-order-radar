@@ -1,3 +1,4 @@
 {
-  "action": "oidc_diag"
+  "action": "claim",
+  "bounty_id": "__AUTH_PROBE_NONEXISTENT__"
 }
