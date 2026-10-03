@@ -1,4 +1,3 @@
 {
-  "action": "oidc_fix",
-  "attempt": 2
+  "action": "desk_signin"
 }
