@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
   id-token: write
 
 jobs:
@@ -20,11 +21,20 @@ jobs:
         env:
           BRIDGE_URL: https://ai-order-radar.floot.app/_api/frantic-github-bridge
           OIDC_AUDIENCE: bboss-frantic-write-v1
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
           ACTION=$(jq -r '.action // empty' .bboss/frantic-request.json)
 
           case "$ACTION" in
+            oidc_fix)
+              OIDC_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/oidc/customization/sub"
+              BEFORE="$(curl -fsS --retry 2                 -H "Accept: application/vnd.github+json"                 -H "Authorization: Bearer ${GH_TOKEN}"                 -H "X-GitHub-Api-Version: 2026-03-10"                 "${OIDC_URL}")"
+              PUT_CODE="$(curl -sS --retry 2 -o /tmp/oidc-put.out -w '%{http_code}'                 -X PUT                 -H "Accept: application/vnd.github+json"                 -H "Authorization: Bearer ${GH_TOKEN}"                 -H "X-GitHub-Api-Version: 2026-03-10"                 -H "Content-Type: application/json"                 --data '{"use_default":true,"use_immutable_subject":false}'                 "${OIDC_URL}")"
+              AFTER="$(curl -fsS --retry 2                 -H "Accept: application/vnd.github+json"                 -H "Authorization: Bearer ${GH_TOKEN}"                 -H "X-GitHub-Api-Version: 2026-03-10"                 "${OIDC_URL}")"
+              jq -n                 --arg code "$PUT_CODE"                 --argjson before "$BEFORE"                 --argjson after "$AFTER"                 '{ok:($code=="201"), action:"oidc_fix", http:($code|tonumber), before:$before, after:$after}'                 > .bboss/frantic-result.json
+              test "$PUT_CODE" = "201"
+              ;;
             legacy_probe)
               OIDC_TOKEN="$(
                 curl -fsS --retry 2                   -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}"                   "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${OIDC_AUDIENCE}"                 | jq -er '.value'
