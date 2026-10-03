@@ -50,12 +50,22 @@ jobs:
           (async () => {
             try {
               if (req.action === 'scan') {
-                const data = await jsonFetch(API + '/api/agents/jobs?status=OPEN&limit=100&offset=0');
-                const jobs = (data.jobPosts || []).map(safeJob);
+                const pages = [];
+                let total = 0;
+                for (let offset = 0; offset < 500; offset += 100) {
+                  const data = await jsonFetch(API + '/api/agents/jobs?status=OPEN&limit=100&offset=' + offset);
+                  total = Number(data.total || total);
+                  const batch = data.jobPosts || [];
+                  pages.push(...batch);
+                  if (batch.length < 100) break;
+                }
+                const jobs = pages.map(safeJob);
                 const now = Date.now();
-                const viable = jobs
+                const buyerJobs = jobs
                   .filter(j => (Number(j.budgetCents)||0) > 0)
                   .filter(j => !j.deadline || Date.parse(j.deadline) > now)
+                  .filter(j => !/^AVAILABLE\s*:/i.test(j.title || ''))
+                  .filter(j => !/^FOR SALE\s*:/i.test(j.title || ''))
                   .sort((a,b) => {
                     const ai = a.instantAcceptCents ? 0 : 1, bi = b.instantAcceptCents ? 0 : 1;
                     if (ai !== bi) return ai-bi;
@@ -64,8 +74,8 @@ jobs:
                     return (a.bidCount||0) - (b.bidCount||0) || (b.budgetCents||0)-(a.budgetCents||0);
                   });
                 fs.writeFileSync(resultPath, JSON.stringify({
-                  ok:true, action:'scan', total:Number(data.total||jobs.length),
-                  sampled:jobs.length, viable:viable.slice(0,30)
+                  ok:true, action:'scan', total, sampled:jobs.length,
+                  buyer_viable_count:buyerJobs.length, viable:buyerJobs.slice(0,50)
                 }, null, 2));
                 return;
               }
