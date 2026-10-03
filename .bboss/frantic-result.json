@@ -1,13 +1,6 @@
 {
-  "ok": true,
-  "sub": "repo:keketu1987-hue@328019399/ai-order-radar@1366314604:ref:refs/heads/main",
-  "aud": "bboss-frantic-write-v1",
-  "repository": "keketu1987-hue/ai-order-radar",
-  "repository_owner": "keketu1987-hue",
-  "ref": "refs/heads/main",
-  "ref_type": "branch",
-  "event_name": "push",
-  "workflow_ref": "keketu1987-hue/ai-order-radar/.github/workflows/frantic-executor.yml@refs/heads/main",
-  "job_workflow_ref": "keketu1987-hue/ai-order-radar/.github/workflows/frantic-executor.yml@refs/heads/main",
-  "actor": "keketu1987-hue"
+  "ok": false,
+  "action": "netlify_probe",
+  "http": 404,
+  "body": "Not Found - Request ID: 01M40RXW64DNR8DFWWS542PMVD  Build and deploy your own site for free: https://netlify.new/?utm_campaign=loops&utm_content=site-not-found-text&utm_medium=owned&utm_source=default-page "
 }
