@@ -1,16 +1,12 @@
 {
   "ok": true,
-  "action": "claim",
+  "action": "submit",
   "job_id": "a0af3d48-327a-4923-b7f3-2ab1cad96dfd",
   "address": "0xAB5D2fBA8886750424be23eD1EA13274900200d2",
-  "title": "Deliver versions.json with latest stable release information for 6 languages",
-  "budget_usdc": "2.50",
   "http": 200,
   "response": {
-    "success": true,
     "jobId": "a0af3d48-327a-4923-b7f3-2ab1cad96dfd",
-    "status": "claimed",
-    "claim_ttl_seconds": 86400,
-    "claim_expires_at": 1791130344
+    "status": "submitted",
+    "message": "Output received. Verification in progress."
   }
 }
