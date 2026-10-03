@@ -1,0 +1,32 @@
+{
+  "version": "A_MODE_SELECTION_V2",
+  "effective_from": "2026-10-03T02:45:00Z",
+  "reversible": true,
+  "primary_selection": [
+    "Require current explicit compensation evidence or an objectively computable reward.",
+    "Require a current buyer-controlled trigger or deadline that makes the next step timely.",
+    "Require a valid external action channel that can return a verifiable receipt."
+  ],
+  "exclude_from_primary_race": [
+    "Non-cash task rewards or subscription credits.",
+    "Referral programs without a live referred buyer or near-term conversion event.",
+    "Generic roles with no current compensated trial evidence.",
+    "Destinations with a known permanent delivery failure."
+  ],
+  "offer_and_cta": [
+    "Prefer bounded deliverables with acceptance checks and a defined delivery window.",
+    "Ask for the exact compensated scope, acceptance criteria and payment route when any are still missing.",
+    "For warm leads, use a new factual trigger and keep the unpaid proof smaller than the paid core."
+  ],
+  "next_sample": {
+    "explicit_compensation": 6,
+    "warm_triggered": 3,
+    "receipt_capable_fixed_scope": 3
+  },
+  "switch_rule": "If six delivered high-confidence actions produce zero buyer-controlled compensated next steps, change source or offer before sending another six.",
+  "invariants": [
+    "Keep existing P0 and S++ quality gates.",
+    "Do not count a reply, interview, invitation, invoice, credit, voucher or payment notice as settled revenue.",
+    "Do not add paid tools, paid memberships or new KYC."
+  ]
+}
