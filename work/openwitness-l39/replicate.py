@@ -25,7 +25,7 @@ def newcombe(x1,n1,x2,n2):
     return d, d-math.sqrt((p1-l1)**2+(u2-p2)**2), d+math.sqrt((u1-p1)**2+(p2-l2)**2)
 
 class F:
-    def __init__(self,delay=.2): self.delay=delay; self.m=[]; self.n=0
+    def __init__(self,delay=1.15): self.delay=delay; self.m=[]; self.n=0
     def get(self,url,label):
         err=None
         for a in range(8):
@@ -44,8 +44,8 @@ class F:
                 err=f"HTTP {e.code}"
                 if e.code!=429 and not 500<=e.code<=599: raise
                 w=e.headers.get("Retry-After")
-                try: w=float(w) if w else min(20,1.5*(2**a))
-                except: w=min(20,1.5*(2**a))
+                try: w=max(60,float(w)) if w else 60
+                except: w=60
             except Exception as e:
                 err=repr(e); w=min(20,1.0*(2**a))
             time.sleep(w+random.random()*.3)
@@ -199,7 +199,7 @@ def report(r,meta,start,finish):
     return "\n".join(L)
 
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument("--out",default="work/openwitness-l39/latest"); ap.add_argument("--delay",type=float,default=.2); a=ap.parse_args()
+    ap=argparse.ArgumentParser(); ap.add_argument("--out",default="work/openwitness-l39/latest"); ap.add_argument("--delay",type=float,default=1.15); a=ap.parse_args()
     out=pathlib.Path(a.out); out.mkdir(parents=True,exist_ok=True); start=iso_now()
     prereg={"created_at_utc":start,"population_start":START,"population_cutoff":CUTOFF,
             "primary_window":"[registration+7d, registration+14d)","sensitivity_window":"[registration+8d, registration+14d)",
