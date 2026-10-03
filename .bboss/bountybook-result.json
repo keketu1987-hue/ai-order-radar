@@ -1,22 +1,24 @@
 {
   "ok": true,
-  "action": "triage",
-  "total_open": 124,
-  "sampled": 40,
-  "viable": [],
-  "blocked_code_test": [
+  "action": "list",
+  "total": 125,
+  "top": [
     {
       "id": "734626a0-26b5-478b-b9cf-fb575aea8adc",
       "title": "Build a generic EventBus class in TypeScript with event registration, removal, a",
       "job_type": "code",
       "budget_usdc": "5.00",
       "estimated_minutes": 20,
+      "difficulty": "intermediate",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 2066,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "typescript",
+        "event-bus",
+        "design-patterns",
+        "generics",
+        "pub-sub"
+      ],
       "spread_per_hour": 15
     },
     {
@@ -25,12 +27,16 @@
       "job_type": "research",
       "budget_usdc": "2.50",
       "estimated_minutes": 10,
+      "difficulty": "standard",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 1021,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "research",
+        "find",
+        "programming-languages",
+        "versions",
+        "json"
+      ],
       "spread_per_hour": 15
     },
     {
@@ -39,12 +45,16 @@
       "job_type": "code",
       "budget_usdc": "2.00",
       "estimated_minutes": 10,
+      "difficulty": "starter",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 3146,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "dictionaries",
+        "recursion",
+        "beginner",
+        "data-structures"
+      ],
       "spread_per_hour": 12
     },
     {
@@ -53,12 +63,16 @@
       "job_type": "code",
       "budget_usdc": "3.00",
       "estimated_minutes": 15,
+      "difficulty": "standard",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 3398,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "parsing",
+        "regex",
+        "logs",
+        "stdlib"
+      ],
       "spread_per_hour": 12
     },
     {
@@ -67,12 +81,16 @@
       "job_type": "code",
       "budget_usdc": "4.00",
       "estimated_minutes": 20,
+      "difficulty": "intermediate",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 3642,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "data-structures",
+        "trie",
+        "algorithms",
+        "tree"
+      ],
       "spread_per_hour": 12
     },
     {
@@ -81,12 +99,16 @@
       "job_type": "research",
       "budget_usdc": "3.00",
       "estimated_minutes": 15,
+      "difficulty": "standard",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 756,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "research",
+        "python",
+        "web-frameworks",
+        "json",
+        "documentation"
+      ],
       "spread_per_hour": 12
     },
     {
@@ -95,12 +117,16 @@
       "job_type": "code",
       "budget_usdc": "2.00",
       "estimated_minutes": 10,
+      "difficulty": "starter",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 3269,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "json",
+        "markdown",
+        "data-processing",
+        "formatting"
+      ],
       "spread_per_hour": 12
     },
     {
@@ -109,12 +135,16 @@
       "job_type": "code",
       "budget_usdc": "4.00",
       "estimated_minutes": 20,
+      "difficulty": "intermediate",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 288,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "rust",
+        "strings",
+        "algorithms",
+        "stdlib",
+        "hashmap"
+      ],
       "spread_per_hour": 12
     },
     {
@@ -123,54 +153,16 @@
       "job_type": "code",
       "budget_usdc": "5.00",
       "estimated_minutes": 25,
+      "difficulty": "standard",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 333,
-      "payout_status": "none",
-      "payout_tx_hash": null,
-      "spread_per_hour": 12
-    },
-    {
-      "id": "6c541fc3-6425-4d70-9c4c-02a8ade90b1c",
-      "title": "Write a Python slugify function in slugify.py",
-      "job_type": "code",
-      "budget_usdc": "2.00",
-      "estimated_minutes": 10,
-      "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 356,
-      "payout_status": "none",
-      "payout_tx_hash": null,
-      "spread_per_hour": 12
-    },
-    {
-      "id": "552d8068-b164-4917-b3ec-f2438a890192",
-      "title": "Build a Rust program that counts lines, words, and bytes in files like Unix wc",
-      "job_type": "code",
-      "budget_usdc": "5.00",
-      "estimated_minutes": 25,
-      "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 54,
-      "payout_status": "none",
-      "payout_tx_hash": null,
-      "spread_per_hour": 12
-    },
-    {
-      "id": "212e5e5c-4b39-406a-a33e-ffc8b7c20398",
-      "title": "Build md_to_html.py with convert function for Markdown to HTML conversion",
-      "job_type": "code",
-      "budget_usdc": "5.00",
-      "estimated_minutes": 25,
-      "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 137,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "typescript",
+        "design-patterns",
+        "event-emitter",
+        "generics",
+        "tsc"
+      ],
       "spread_per_hour": 12
     },
     {
@@ -179,12 +171,16 @@
       "job_type": "code",
       "budget_usdc": "1.50",
       "estimated_minutes": 8,
+      "difficulty": "starter",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 1071,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "strings",
+        "algorithms",
+        "beginner",
+        "cipher"
+      ],
       "spread_per_hour": 11.25
     },
     {
@@ -193,27 +189,16 @@
       "job_type": "code",
       "budget_usdc": "1.50",
       "estimated_minutes": 8,
+      "difficulty": "starter",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 571,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "javascript",
+        "algorithms",
+        "beginner",
+        "es-modules"
+      ],
       "spread_per_hour": 11.25
-    },
-    {
-      "id": "19a16071-2be4-4fce-ae05-217b4e7098a8",
-      "title": "Build a minimal HTTP/1.1 server in Python using raw sockets",
-      "job_type": "code",
-      "budget_usdc": "8.00",
-      "estimated_minutes": 45,
-      "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 3702,
-      "payout_status": "none",
-      "payout_tx_hash": null,
-      "spread_per_hour": 10.666666666666666
     },
     {
       "id": "0a1c6ae8-2034-4c3a-a13b-e7d6381aa5aa",
@@ -221,12 +206,16 @@
       "job_type": "code",
       "budget_usdc": "3.50",
       "estimated_minutes": 20,
+      "difficulty": "intermediate",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 2215,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "csv",
+        "data-processing",
+        "joins",
+        "stdlib"
+      ],
       "spread_per_hour": 10.5
     },
     {
@@ -235,26 +224,16 @@
       "job_type": "code",
       "budget_usdc": "3.50",
       "estimated_minutes": 20,
+      "difficulty": "intermediate",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 213,
-      "payout_status": "none",
-      "payout_tx_hash": null,
-      "spread_per_hour": 10.5
-    },
-    {
-      "id": "25e871ca-fb8d-4974-8cc6-258d352c1a55",
-      "title": "Build envloader.go with LoadEnv function to parse .env files",
-      "job_type": "code",
-      "budget_usdc": "3.50",
-      "estimated_minutes": 20,
-      "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 137,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "rust",
+        "algorithms",
+        "search",
+        "generics",
+        "stdlib"
+      ],
       "spread_per_hour": 10.5
     },
     {
@@ -263,12 +242,16 @@
       "job_type": "code",
       "budget_usdc": "6.00",
       "estimated_minutes": 35,
+      "difficulty": "advanced",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 468,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "go",
+        "cli",
+        "http",
+        "concurrency",
+        "stdlib"
+      ],
       "spread_per_hour": 10.285714285714285
     },
     {
@@ -277,17 +260,89 @@
       "job_type": "code",
       "budget_usdc": "5.00",
       "estimated_minutes": 30,
+      "difficulty": "advanced",
       "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 3961,
-      "payout_status": "none",
-      "payout_tx_hash": null,
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "design-patterns",
+        "state-machine",
+        "fsm",
+        "algorithms"
+      ],
       "spread_per_hour": 10
+    },
+    {
+      "id": "f940acbb-eb53-4b16-b4dd-1e43e30dea37",
+      "title": "Build Roman numeral conversion functions in roman.py",
+      "job_type": "code",
+      "budget_usdc": "2.00",
+      "estimated_minutes": 12,
+      "difficulty": "easy",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "algorithms",
+        "strings",
+        "math",
+        "beginner"
+      ],
+      "spread_per_hour": 10
+    },
+    {
+      "id": "cb28a16d-9bd1-4399-8d1b-44824c8e0cfc",
+      "title": "Build a markdown table parser function in md_table.py",
+      "job_type": "code",
+      "budget_usdc": "3.00",
+      "estimated_minutes": 20,
+      "difficulty": "standard",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "parsing",
+        "markdown",
+        "stdlib",
+        "text-processing"
+      ],
+      "spread_per_hour": 9
+    },
+    {
+      "id": "dd327224-ddc5-4c8c-825f-e0ef2b266799",
+      "title": "Research and compare 7 CI/CD platforms in JSON format",
+      "job_type": "research",
+      "budget_usdc": "4.00",
+      "estimated_minutes": 30,
+      "difficulty": "standard",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "ci-cd",
+        "devops",
+        "research",
+        "comparison",
+        "json"
+      ],
+      "spread_per_hour": 8
+    },
+    {
+      "id": "def03885-5007-44a5-be0b-133d08c131df",
+      "title": "Research and compile 20+ free public REST APIs returning JSON",
+      "job_type": "research",
+      "budget_usdc": "3.50",
+      "estimated_minutes": 30,
+      "difficulty": "standard",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "apis",
+        "research",
+        "json",
+        "rest",
+        "no-auth"
+      ],
+      "spread_per_hour": 7
     }
-  ],
-  "policy": {
-    "code_test": "BLOCKED_UNTIL_PRIMARY_PLATFORM_SHOWS_A_PASS_OR_FIX",
-    "reason": "observed verifier failures at ipfs_fetch before substantive checks"
-  }
+  ]
 }
