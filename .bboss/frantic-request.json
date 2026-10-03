@@ -1,4 +1,3 @@
 {
-  "action": "claim",
-  "bounty": 128
+  "action": "oidc_diag"
 }
