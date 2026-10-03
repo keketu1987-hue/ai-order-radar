@@ -118,6 +118,95 @@ jobs:
               return write({ ok:true, action, address:a.address, expiresAt:a.expiresAt });
             }
 
+            if (action === "triage") {
+              const jobs = await jsonFetch(`${API}/jobs?status=open&limit=100`);
+              if (!jobs.ok) return write({ ok:false, action, error:"LIST_FAILED", http:jobs.status });
+              const arr = Array.isArray(jobs.body?.jobs) ? jobs.body.jobs : [];
+
+              const sample = arr
+                .filter(j => Number(j.budget_usdc || 0) > 0)
+                .slice(0, 40);
+
+              const details = [];
+              for (const j of sample) {
+                const d = await jsonFetch(`${API}/jobs/${encodeURIComponent(j.id)}`);
+                const job = d.ok ? (d.body?.job ?? d.body) : j;
+                const successType =
+                  job?.spec?.success_condition?.type ??
+                  job?.deliverable_format?.type ??
+                  j?.spec?.success_condition?.type ??
+                  j?.deliverable_format?.type ??
+                  null;
+                const attempts = Array.isArray(job?.attempts) ? job.attempts : [];
+                const passedAttempts = attempts.filter(a => a?.verification_result?.passed === true).length;
+                const ipfsFetchFailures = attempts.filter(a =>
+                  Array.isArray(a?.verification_result?.details?.checksFailed) &&
+                  a.verification_result.details.checksFailed.includes("ipfs_fetch")
+                ).length;
+                details.push({
+                  id:j.id,
+                  title:j.title,
+                  job_type:j.job_type,
+                  budget_usdc:j.budget_usdc,
+                  estimated_minutes:j.estimated_minutes,
+                  status:j.status,
+                  success_type:successType,
+                  passed_attempts:passedAttempts,
+                  ipfs_fetch_failures:ipfsFetchFailures,
+                  payout_status:job?.payout_status ?? null,
+                  payout_tx_hash:job?.payout_tx_hash ?? null,
+                  spread_per_hour:Number(j.budget_usdc || 0) / Math.max(Number(j.estimated_minutes || 60) / 60, 0.1)
+                });
+              }
+
+              const viable = details
+                .filter(j => j.success_type !== "code_test")
+                .sort((a,b) => {
+                  const ap = a.passed_attempts > 0 ? 1 : 0;
+                  const bp = b.passed_attempts > 0 ? 1 : 0;
+                  if (ap !== bp) return bp - ap;
+                  return b.spread_per_hour - a.spread_per_hour;
+                })
+                .slice(0, 20);
+
+              const blocked = details
+                .filter(j => j.success_type === "code_test")
+                .sort((a,b) => b.spread_per_hour - a.spread_per_hour)
+                .slice(0, 20);
+
+              return write({
+                ok:true,
+                action,
+                total_open:jobs.body?.total ?? arr.length,
+                sampled:details.length,
+                viable,
+                blocked_code_test:blocked,
+                policy:{
+                  code_test:"BLOCKED_UNTIL_PRIMARY_PLATFORM_SHOWS_A_PASS_OR_FIX",
+                  reason:"observed verifier failures at ipfs_fetch before substantive checks"
+                }
+              });
+            }
+
+            if (action === "job_status") {
+              const jobId = req.job_id;
+              if (!jobId) return write({ ok:false, action, error:"MISSING_JOB_ID" });
+              const detail = await jsonFetch(`${API}/jobs/${encodeURIComponent(jobId)}`);
+              if (!detail.ok) return write({ ok:false, action, error:"JOB_LOOKUP_FAILED", http:detail.status });
+              const job = detail.body?.job ?? detail.body;
+              return write({
+                ok:true,
+                action,
+                job_id:jobId,
+                status:job?.status ?? null,
+                payout_status:job?.payout_status ?? null,
+                payout_tx_hash:job?.payout_tx_hash ?? null,
+                executor_address:job?.executor_address ?? null,
+                verification_result:job?.verification_result ?? null,
+                attempts:Array.isArray(job?.attempts) ? job.attempts.slice(-5) : []
+              });
+            }
+
             if (action === "list") {
               const jobs = await jsonFetch(`${API}/jobs?status=open`);
               if (!jobs.ok) return write({ ok:false, action, error:"LIST_FAILED", http:jobs.status });
@@ -149,6 +238,18 @@ jobs:
               const detail = await jsonFetch(`${API}/jobs/${encodeURIComponent(jobId)}`);
               if (!detail.ok) return write({ ok:false, action, error:"JOB_LOOKUP_FAILED", http:detail.status });
               const job = detail.body?.job ?? detail.body;
+              const successType = job?.spec?.success_condition?.type ?? job?.deliverable_format?.type ?? null;
+
+              if (successType === "code_test" && req.force_broken_oracle !== true) {
+                return write({
+                  ok:false,
+                  action,
+                  error:"BOSS_BOUNTYBOOK_ORACLE_CLASS_BLOCKED",
+                  job_id:jobId,
+                  success_type:successType,
+                  reason:"code_test verifier has observed ipfs_fetch failures before substantive checks"
+                });
+              }
 
               if (job?.status !== "open") return write({ ok:false, action, error:"JOB_NOT_OPEN", job_id:jobId, status:job?.status ?? null });
               if (!(Number(job?.budget_usdc || 0) > 0)) return write({ ok:false, action, error:"NO_CASH_REWARD", job_id:jobId });
@@ -180,6 +281,21 @@ jobs:
               const jobId = req.job_id;
               if (!jobId) return write({ ok:false, action, error:"MISSING_JOB_ID" });
               if (req.outputData === undefined) return write({ ok:false, action, error:"MISSING_OUTPUT_DATA" });
+
+              const detail = await jsonFetch(`${API}/jobs/${encodeURIComponent(jobId)}`);
+              if (!detail.ok) return write({ ok:false, action, error:"JOB_LOOKUP_FAILED", http:detail.status });
+              const job = detail.body?.job ?? detail.body;
+              const successType = job?.spec?.success_condition?.type ?? job?.deliverable_format?.type ?? null;
+              if (successType === "code_test" && req.force_broken_oracle !== true) {
+                return write({
+                  ok:false,
+                  action,
+                  error:"BOSS_BOUNTYBOOK_ORACLE_CLASS_BLOCKED",
+                  job_id:jobId,
+                  success_type:successType,
+                  reason:"refusing repeat submission into verifier class with observed ipfs_fetch failures"
+                });
+              }
 
               const a = await authenticate();
               const sub = await jsonFetch(`${API}/jobs/${encodeURIComponent(jobId)}/submit`, {
