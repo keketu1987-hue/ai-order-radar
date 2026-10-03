@@ -1,0 +1,26 @@
+{
+  "recorded_at": "2026-10-03T19:25:00+08:00",
+  "ssot": "/B老板最高经营宪法_CASH_FIRST_BROAD.md",
+  "drifts": [
+    {
+      "id": "FLOOT_SIGNER_CONNECT_CAPACITY_DRIFT",
+      "status": "ACTIVE",
+      "fact": "Floot daily build quota blocks request_external_resource, so BOSS_EVM_PRIVATE_KEY cannot be securely connected through Floot until quota reset.",
+      "no_rule_mutation": true
+    },
+    {
+      "id": "EXTERNAL_GITHUB_WRITE_PERMISSION_DRIFT",
+      "status": "ACTIVE",
+      "fact": "GitHub connector can read public bounty issues but add_comment_to_issue on an external repository returned 403 Resource not accessible by integration.",
+      "no_rule_mutation": true
+    },
+    {
+      "id": "FRANTIC_OIDC_SUB_MISMATCH",
+      "status": "ACTIVE",
+      "fact": "Frantic claim request reached the controlled bridge but was rejected with OIDC claim rejected: sub; status/login reads succeeding do not imply claim write success.",
+      "no_rule_mutation": true
+    }
+  ],
+  "strict_money_action_this_hour": 0,
+  "completed_added_usd": 0
+}
