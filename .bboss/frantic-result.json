@@ -1,13 +1,20 @@
 {
   "ok": true,
-  "sub": "repo:keketu1987-hue@328019399/ai-order-radar@1366314604:ref:refs/heads/main",
-  "aud": "bboss-frantic-write-v1",
-  "repository": "keketu1987-hue/ai-order-radar",
-  "repository_owner": "keketu1987-hue",
-  "ref": "refs/heads/main",
-  "ref_type": "branch",
-  "event_name": "push",
-  "workflow_ref": "keketu1987-hue/ai-order-radar/.github/workflows/frantic-executor.yml@refs/heads/main",
-  "job_workflow_ref": "keketu1987-hue/ai-order-radar/.github/workflows/frantic-executor.yml@refs/heads/main",
-  "actor": "keketu1987-hue"
+  "probes": [
+    {
+      "endpoint": "frantic-claim",
+      "http": 401,
+      "body": "{\"json\":{\"error\":\"Not authenticated\"}}"
+    },
+    {
+      "endpoint": "frantic-submit",
+      "http": 401,
+      "body": "{\"json\":{\"error\":\"Not authenticated\"}}"
+    },
+    {
+      "endpoint": "frantic-claim-status",
+      "http": 401,
+      "body": "{\"json\":{\"error\":\"Not authenticated\"}}"
+    }
+  ]
 }
