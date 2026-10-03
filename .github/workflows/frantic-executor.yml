@@ -25,6 +25,20 @@ jobs:
           ACTION=$(jq -r '.action // empty' .bboss/frantic-request.json)
 
           case "$ACTION" in
+            legacy_probe)
+              OIDC_TOKEN="$(
+                curl -fsS --retry 2                   -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}"                   "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${OIDC_AUDIENCE}"                 | jq -er '.value'
+              )"
+              TMP="$(mktemp)"
+              echo '{"ok":true,"probes":[]}' > "$TMP"
+              for EP in frantic-claim frantic-submit frantic-claim-status; do
+                BODY="$(mktemp)"
+                CODE="$(curl -sS --retry 1 -o "$BODY" -w '%{http_code}'                   -X POST                   -H "Authorization: Bearer ${OIDC_TOKEN}"                   -H "Content-Type: application/json"                   --data '{}'                   "https://ai-order-radar.floot.app/_api/${EP}" || true)"
+                SAFE_BODY="$(head -c 1200 "$BODY" | tr '\n' ' ')"
+                jq --arg ep "$EP" --arg code "$CODE" --arg body "$SAFE_BODY"                   '.probes += [{endpoint:$ep,http:($code|tonumber? // 0),body:$body}]' "$TMP" > "${TMP}.n" && mv "${TMP}.n" "$TMP"
+              done
+              mv "$TMP" .bboss/frantic-result.json
+              ;;
             oidc_diag)
               OIDC_TOKEN="$(
                 curl -fsS --retry 2                   -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}"                   "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${OIDC_AUDIENCE}"                 | jq -er '.value'
