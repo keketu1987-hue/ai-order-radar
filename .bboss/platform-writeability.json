@@ -1,18 +1,20 @@
 {
-  "updated_at": "2026-10-02T03:38:00Z",
-  "rule": "Only count an entry as WRITEABLE_NOW when current connected tooling can legally submit it and obtain a verifiable external receipt/ID without new payment, KYC, CAPTCHA, or credential exposure.",
+  "updated_at": "2026-10-04T06:46:28+08:00",
+  "rule": "Only count a channel as WRITEABLE_NOW when current connected tooling can legally submit and obtain a verifiable external receipt/ID without new payment, KYC, CAPTCHA, credential exposure, or safety-rule bypass. Stale snapshots are historical evidence only.",
   "channels": {
     "gmail_optin": {
-      "status": "AVAILABLE_CURRENT",
-      "evidence": "Multiple successful Sent message IDs in latest window; permanent bounces still individually invalidated.",
-      "use": "Primary for explicit public application emails and legitimate warm threads.",
-      "limits": "Cold outreach remains blocked; one failed action does not authorize retries."
+      "status": "CONNECTED_TRANSPORT_NO_FRESH_SENT_THIS_HOUR",
+      "observed_window": "2026-10-04T06:00:00+08:00..2026-10-04T06:46:28+08:00",
+      "evidence": "Fresh Gmail recount: 0 Sent, 1 Inbox GitHub system notification, 0 DSN in current hour. The GitHub notification was labeled BOSS_AUTO_REPLY_NON_HUMAN.",
+      "use": "Explicit public opt-in application email and legitimate verified business threads only.",
+      "limits": "Transport capability is separate from valid-money-action eligibility; permanent bounces, identity contamination/unverified identity, system/auto replies, self-tests, and frozen threads count 0."
     },
     "frantic": {
-      "status": "AUTH_SECRET_BRIDGE_PENDING",
-      "evidence": "Public remote MCP exists; claim requires agent_kid+agent_token; agent-77d7ed eligible/sworn/payout-set.",
-      "use": "Highest priority funded <=US$10 bounties only when end-to-end deliverable.",
-      "limits": "Token currently held securely outside GitHub; no credential extraction or unauthenticated proxy."
+      "status": "NO_FRESH_CURRENT_WRITE_RECEIPT",
+      "last_account_write_evidence_at": "2026-10-04T01:17:09+08:00",
+      "evidence": "Latest repository-recorded Frantic bridge probe returned HTTP 404; no newer account-specific claim/delivery external ID was found in the fresh repository audit.",
+      "use": "Do not classify READY from public status/board, other agents, or old workflow success.",
+      "limits": "Only a fresh account-specific claim/delivery receipt may upgrade current writeability. Historical OIDC/Floot/token states are not reused as current facts."
     },
     "github_own_repo": {
       "status": "AVAILABLE_CURRENT",
@@ -71,6 +73,20 @@
     "tinyfish": {
       "status": "BLOCKED_NO_FUNDS",
       "limits": "Do not recharge before cumulative real income >=US$100."
+    },
+    "bountybook": {
+      "status": "NO_FRESH_CURRENT_HOUR_WRITE_RECEIPT_TASKSET_BLOCKED",
+      "last_triage_at": "2026-10-04T02:22:28+08:00",
+      "evidence": "Latest repository triage recorded 125 open, sampled 25, viable=[], with code_test blocked due verifier/IPFS-fetch failures. No newer current-hour claim/submit receipt found.",
+      "use": "Read/triage only until a fresh viable task and legitimate write receipt exist.",
+      "limits": "Earlier claim/submit receipts remain historical proof that the channel has been writable, but are not a current-hour READY snapshot."
+    },
+    "toku": {
+      "status": "WRITEABLE_PREVIOUSLY_VERIFIED_NO_FRESH_CURRENT_HOUR_RECEIPT",
+      "last_scan_at": "2026-10-04T04:14:25+08:00",
+      "evidence": "Latest repository scan recorded total=348 and buyer_viable_count=66. Earlier bid receipts are historical write evidence; no new current-hour receipt was found.",
+      "use": "May be considered only when a fresh funded task is eligible and identity/safety gates pass.",
+      "limits": "Do not treat scans or historical receipts as current-hour money actions."
     }
   }
 }
