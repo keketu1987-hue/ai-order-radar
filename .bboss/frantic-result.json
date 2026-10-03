@@ -1,5 +1,20 @@
 {
   "ok": true,
-  "action": "desk_signin",
-  "http": 200
+  "probes": [
+    {
+      "endpoint": "frantic-claim",
+      "http": 401,
+      "body": "{\"json\":{\"error\":\"Not authenticated\"}}"
+    },
+    {
+      "endpoint": "frantic-submit",
+      "http": 401,
+      "body": "{\"json\":{\"error\":\"Not authenticated\"}}"
+    },
+    {
+      "endpoint": "frantic-claim-status",
+      "http": 401,
+      "body": "{\"json\":{\"error\":\"Not authenticated\"}}"
+    }
+  ]
 }
