@@ -27,6 +27,15 @@ jobs:
           ACTION=$(jq -r '.action // empty' .bboss/frantic-request.json)
 
           case "$ACTION" in
+            desk_signin)
+              HTTP_CODE="$(curl -sS --retry 2 -o .bboss/frantic-result.json -w '%{http_code}' \
+                -X POST \
+                -H "Content-Type: application/json" \
+                --data '{"email":"keketu1987@gmail.com"}' \
+                "https://gofrantic.com/v1/desk/signin")"
+              jq -n --arg code "$HTTP_CODE" '{ok:($code=="200"),action:"desk_signin",http:($code|tonumber)}' > .bboss/frantic-result.json
+              test "$HTTP_CODE" = "200"
+              ;;
             oidc_fix)
               OIDC_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}/actions/oidc/customization/sub"
               BEFORE="$(curl -fsS --retry 2                 -H "Accept: application/vnd.github+json"                 -H "Authorization: Bearer ${GH_TOKEN}"                 -H "X-GitHub-Api-Version: 2026-03-10"                 "${OIDC_URL}")"
