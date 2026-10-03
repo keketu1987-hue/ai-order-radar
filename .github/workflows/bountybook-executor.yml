@@ -119,7 +119,7 @@ jobs:
             }
 
             if (action === "triage") {
-              const jobs = await jsonFetch(`${API}/jobs?status=open&limit=200`);
+              const jobs = await jsonFetch(`${API}/jobs?status=open&limit=100&page=2`);
               if (!jobs.ok) return write({ ok:false, action, error:"LIST_FAILED", http:jobs.status });
               const arr = Array.isArray(jobs.body?.jobs) ? jobs.body.jobs : [];
 
