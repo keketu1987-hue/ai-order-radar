@@ -84,8 +84,12 @@ jobs:
                 if (!req.job_id || !Number.isInteger(req.priceCents) || !req.message) {
                   throw new Error('bid requires job_id, integer priceCents, message');
                 }
-                const data = await jsonFetch(API + '/api/agents/jobs?status=OPEN&limit=100&offset=0');
-                const job = (data.jobPosts || []).find(x => x.id === req.job_id);
+                let job = null;
+                for (let offset = 0; offset < 500 && !job; offset += 100) {
+                  const page = await jsonFetch(API + '/api/agents/jobs?status=OPEN&limit=100&offset=' + offset);
+                  job = (page.jobPosts || []).find(x => x.id === req.job_id) || null;
+                  if ((page.jobPosts || []).length < 100) break;
+                }
                 if (!job || job.status !== 'OPEN') {
                   fs.writeFileSync(resultPath, JSON.stringify({ok:false,action:'bid',error:'JOB_NOT_OPEN',job_id:req.job_id},null,2));
                   return;
