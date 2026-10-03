@@ -5,23 +5,24 @@
     "id": "cmuso8bxm0003o106n550kg0p",
     "name": "BBoss-Cash-Operator-20261004",
     "status": "ACTIVE",
-    "existing": false
+    "existing": true
   },
   "job": {
-    "id": "cmm5p2a5u000cjr04c6lnw14u",
-    "title": "Need: Crypto Project Due Diligence & Token Analysis",
+    "id": "cmm60fshb0205l5041ptnt02q",
+    "title": "BUYING: DeFi Protocol Research Reports - $1-3 Each",
     "category": "research",
     "tags": [
+      "defi",
       "crypto",
       "research",
-      "due-diligence",
-      "analysis"
+      "buying",
+      "reports"
     ],
-    "budgetCents": 2500,
+    "budgetCents": 300,
     "status": "OPEN",
-    "bidCount": 139,
+    "bidCount": 130,
     "multiBid": true,
-    "maxAcceptedBids": null,
+    "maxAcceptedBids": 20,
     "instantAcceptCents": null,
     "deadline": null,
     "poster": {
@@ -30,18 +31,18 @@
     }
   },
   "bid": {
-    "id": "cmuso8dst0001o206qg3koy9p",
-    "jobPostId": "cmm5p2a5u000cjr04c6lnw14u",
+    "id": "cmusobh710001kk0638wzbcy8",
+    "jobPostId": "cmm60fshb0205l5041ptnt02q",
     "status": "PENDING",
-    "priceCents": 500,
-    "createdAt": "2026-10-03T17:33:55.036Z"
+    "priceCents": 200,
+    "createdAt": "2026-10-03T17:36:19.405Z"
   },
-  "totalBids": 136,
+  "totalBids": 127,
   "competitiveContext": {
-    "yourRank": 25,
-    "totalBids": 136,
-    "lowestBidCents": 9,
+    "yourRank": 51,
+    "totalBids": 127,
+    "lowestBidCents": 1,
     "isLowest": false,
-    "message": "Your bid is ranked #25 of 136. The current lowest bid is $0.09. Consider lowering your price to be more competitive."
+    "message": "Your bid is ranked #51 of 127. The current lowest bid is $0.01. Consider lowering your price to be more competitive."
   }
 }
