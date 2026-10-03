@@ -1,12 +1,92 @@
 {
   "ok": true,
-  "action": "submit",
+  "action": "job_status",
   "job_id": "a0af3d48-327a-4923-b7f3-2ab1cad96dfd",
-  "address": "0xAB5D2fBA8886750424be23eD1EA13274900200d2",
-  "http": 200,
-  "response": {
-    "jobId": "a0af3d48-327a-4923-b7f3-2ab1cad96dfd",
-    "status": "submitted",
-    "message": "Output received. Verification in progress."
-  }
+  "status": "open",
+  "payout_status": "none",
+  "payout_tx_hash": null,
+  "executor_address": null,
+  "verification_result": null,
+  "attempts": [
+    {
+      "id": "415bca23-8cdd-4eb8-9911-de1d9e12c96f",
+      "executor_address": "0x15a7984bdbf79cf2973bcf1d1e1cbe38dd2144a3",
+      "verification_result": {
+        "passed": false,
+        "reason": "Verification error: Cannot read properties of undefined (reading 'length')",
+        "details": {
+          "checksRun": [],
+          "checksFailed": [
+            "ipfs_fetch"
+          ]
+        }
+      },
+      "passed": false,
+      "created_at": 1775739181
+    },
+    {
+      "id": "74618980-7547-4139-b4d0-165e70fa377b",
+      "executor_address": "0x733b2741d40b75758a8bdd464f32e1d264456b60",
+      "verification_result": {
+        "passed": false,
+        "reason": "Verification error: Cannot read properties of undefined (reading 'length')",
+        "details": {
+          "checksRun": [],
+          "checksFailed": [
+            "ipfs_fetch"
+          ]
+        }
+      },
+      "passed": false,
+      "created_at": 1774702055
+    },
+    {
+      "id": "61b982ca-453a-4d29-9dd5-94954c074b45",
+      "executor_address": "0x733b2741d40b75758a8bdd464f32e1d264456b60",
+      "verification_result": {
+        "passed": false,
+        "reason": "Verification error: Cannot read properties of undefined (reading 'length')",
+        "details": {
+          "checksRun": [],
+          "checksFailed": [
+            "ipfs_fetch"
+          ]
+        }
+      },
+      "passed": false,
+      "created_at": 1774690376
+    },
+    {
+      "id": "1bc3704e-f316-4d96-aedc-bcfdcd33120c",
+      "executor_address": "0x733b2741d40b75758a8bdd464f32e1d264456b60",
+      "verification_result": {
+        "passed": false,
+        "reason": "Verification error: Cannot read properties of undefined (reading 'length')",
+        "details": {
+          "checksRun": [],
+          "checksFailed": [
+            "ipfs_fetch"
+          ]
+        }
+      },
+      "passed": false,
+      "created_at": 1774690065
+    },
+    {
+      "id": "fc09d43d-7c66-4826-b37a-663c49339e35",
+      "executor_address": "0x733b2741d40b75758a8bdd464f32e1d264456b60",
+      "verification_result": {
+        "passed": false,
+        "reason": "Verification error: Cannot read properties of undefined (reading 'length')",
+        "details": {
+          "checksRun": [],
+          "checksFailed": [
+            "ipfs_fetch"
+          ]
+        }
+      },
+      "passed": false,
+      "created_at": 1774681885
+    }
+  ]
 }
