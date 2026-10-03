@@ -1,19 +1,5 @@
 {
   "ok": true,
-  "action": "oidc_fix",
-  "http": 201,
-  "before": {
-    "use_default": true,
-    "use_immutable_subject": true,
-    "sub_claim_prefix": "repo:keketu1987-hue@328019399/ai-order-radar@1366314604"
-  },
-  "after": {
-    "use_default": false,
-    "use_immutable_subject": true,
-    "include_claim_keys": [
-      "repo",
-      "ref"
-    ],
-    "sub_claim_prefix": "repo:keketu1987-hue@328019399/ai-order-radar@1366314604"
-  }
+  "action": "desk_signin",
+  "http": 200
 }
