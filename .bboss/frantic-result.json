@@ -1,6 +1,23 @@
 {
   "ok": true,
-  "action": "secret_probe",
-  "frantic_agent_token_present": false,
-  "frantic_operator_token_present": false
+  "action": "oidc_fix",
+  "http": 201,
+  "before": {
+    "use_default": false,
+    "use_immutable_subject": true,
+    "include_claim_keys": [
+      "repo",
+      "ref"
+    ],
+    "sub_claim_prefix": "repo:keketu1987-hue@328019399/ai-order-radar@1366314604"
+  },
+  "after": {
+    "use_default": false,
+    "use_immutable_subject": true,
+    "include_claim_keys": [
+      "repo",
+      "ref"
+    ],
+    "sub_claim_prefix": "repo:keketu1987-hue@328019399/ai-order-radar@1366314604"
+  }
 }
