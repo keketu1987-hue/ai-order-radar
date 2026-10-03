@@ -119,38 +119,7 @@ jobs:
               fi
 
               BOUNTY="$(jq -er '.bounty // .bounty_id // empty' .bboss/frantic-request.json)"
-              if ! printf '%s' "$BOUNTY" | grep -Eq '^(p-[A-Za-z0-9]+|[0-9]+)
-            *)
-              jq -n --arg action "$ACTION"                 '{ok:false,error:"INVALID_ACTION",action:$action}'                 > .bboss/frantic-result.json
-              exit 1
-              ;;
-          esac
-
-      - name: Record sanitized receipt
-        if: always()
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -f .bboss/frantic-result.json ||             jq -n '{ok:false,error:"EXECUTOR_FAILED_WITHOUT_RECEIPT"}'               > .bboss/frantic-result.json
-
-          git config user.email "keketu1987@gmail.com"
-          git config user.name "B-Boss Executor"
-          git add .bboss/frantic-result.json
-          git commit -m "chore: record Frantic action result" || exit 0
-
-          # Other B-Boss executors may push unrelated receipt files at the same time.
-          # Rebase before pushing so a harmless concurrent receipt does not make
-          # the Frantic result disappear.
-          for attempt in 1 2 3; do
-            if git pull --rebase origin main && git push; then
-              exit 0
-            fi
-            git rebase --abort 2>/dev/null || true
-            sleep $((attempt * 2))
-          done
-          echo "Failed to persist Frantic result after 3 concurrent-update retries" >&2
-          exit 1
-; then
+              if ! printf '%s' "$BOUNTY" | grep -Eq '^(p-[A-Za-z0-9]+|[0-9]+)$'; then
                 jq -n --arg bounty "$BOUNTY" '{ok:false,error:"BAD_BOUNTY_ID",bounty:$bounty}' > .bboss/frantic-result.json
                 exit 1
               fi
@@ -229,39 +198,8 @@ jobs:
 
               CLAIM_ID="$(jq -er '.claim_id // empty' .bboss/frantic-request.json)"
               REFS_JSON="$(jq -c '.artifact_refs // []' .bboss/frantic-request.json)"
-              REF_COUNT="$(jq 'length' <<<"$REFS_JSON")"
-              if ! printf '%s' "$CLAIM_ID" | grep -Eq '^[0-9A-Fa-f-]{32,120}
-            *)
-              jq -n --arg action "$ACTION"                 '{ok:false,error:"INVALID_ACTION",action:$action}'                 > .bboss/frantic-result.json
-              exit 1
-              ;;
-          esac
-
-      - name: Record sanitized receipt
-        if: always()
-        shell: bash
-        run: |
-          set -euo pipefail
-          test -f .bboss/frantic-result.json ||             jq -n '{ok:false,error:"EXECUTOR_FAILED_WITHOUT_RECEIPT"}'               > .bboss/frantic-result.json
-
-          git config user.email "keketu1987@gmail.com"
-          git config user.name "B-Boss Executor"
-          git add .bboss/frantic-result.json
-          git commit -m "chore: record Frantic action result" || exit 0
-
-          # Other B-Boss executors may push unrelated receipt files at the same time.
-          # Rebase before pushing so a harmless concurrent receipt does not make
-          # the Frantic result disappear.
-          for attempt in 1 2 3; do
-            if git pull --rebase origin main && git push; then
-              exit 0
-            fi
-            git rebase --abort 2>/dev/null || true
-            sleep $((attempt * 2))
-          done
-          echo "Failed to persist Frantic result after 3 concurrent-update retries" >&2
-          exit 1
- || [ "$REF_COUNT" -lt 1 ] || [ "$REF_COUNT" -gt 20 ]; then
+              REF_COUNT="$(printf '%s' "$REFS_JSON" | jq 'length')"
+              if ! printf '%s' "$CLAIM_ID" | grep -Eq '^[0-9A-Fa-f-]{32,120}$' || [ "$REF_COUNT" -lt 1 ] || [ "$REF_COUNT" -gt 20 ]; then
                 jq -n '{ok:false,error:"BAD_SUBMIT_REQUEST"}' > .bboss/frantic-result.json
                 exit 1
               fi
@@ -275,8 +213,7 @@ jobs:
                 --data "$PREFLIGHT_PAYLOAD" \
                 "https://gofrantic.com/v1/deliveries/preflight")"
               if [ "$PREFLIGHT_CODE" != "200" ] || [ "$(jq -r '.ok // false' "$PREFLIGHT_BODY")" != "true" ]; then
-                jq -n --arg code "$PREFLIGHT_CODE" --argjson result "$(cat "$PREFLIGHT_BODY")" \
-                  '{ok:false,error:"PREFLIGHT_FAILED",http:($code|tonumber),result:$result}' > .bboss/frantic-result.json
+                cp "$PREFLIGHT_BODY" .bboss/frantic-result.json
                 exit 1
               fi
 
