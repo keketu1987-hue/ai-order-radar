@@ -1,0 +1,37 @@
+{
+  "schema": "BOSS_RUNTIME_STATE_V1",
+  "observed_at": "2026-10-03T21:29:00+08:00",
+  "secrets_never_stored": true,
+  "facts": {
+    "frantic": {
+      "desk_login": "ACTIVE_VERIFIED_BY_USER_SCREENSHOT",
+      "agent_kid": "agent-77d7ed",
+      "agent_sworn": true,
+      "limited_paid_eligible_up_to_usd": 10,
+      "payout_x402_set": true,
+      "active_claims": 0,
+      "agent_token": "EXISTS_USER_HELD_NOT_IN_CHAT",
+      "github_secret_FRANTIC_AGENT_TOKEN": "MISSING_CONFIRMED_2026-10-03T21:27+08:00",
+      "executor_path": "GITHUB_ACTIONS_DIRECT_FRANTIC_OFFICIAL_API",
+      "floot_bridge": "BYPASSED_FOR_CLAIM_AND_SUBMIT",
+      "workflow_validation": "PASS_SECRET_PROBE",
+      "next_required_action": "USER_PUT_EXISTING_AGENT_TOKEN_IN_GITHUB_SECRET"
+    },
+    "paper_strike": {
+      "commercial_state": "PAYMENT_LINK_ALREADY_SENT",
+      "thread_state": "WAIT_NEW_HUMAN_TRIGGER",
+      "proactive_followup_allowed": false
+    },
+    "railway": {
+      "bounty_usd": 10,
+      "state": "OPEN_LAST_VERIFIED",
+      "replies_last_verified": 0,
+      "blocker": "USER_PLATFORM_LOGIN_REQUIRED",
+      "next_required_action": "USER_LOGIN_RAILWAY_ONCE"
+    },
+    "bountybook": {
+      "state": "RADAR_ONLY",
+      "reason": "NO_FRESH_CONFIRMED_PAYOUT_EVIDENCE"
+    }
+  }
+}
