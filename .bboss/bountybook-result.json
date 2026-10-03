@@ -2,9 +2,9 @@
   "ok": false,
   "action": "claim",
   "error": "BOSS_BOUNTYBOOK_ORACLE_CLASS_BLOCKED",
-  "job_id": "dd327224-ddc5-4c8c-825f-e0ef2b266799",
+  "job_id": "def03885-5007-44a5-be0b-133d08c131df",
   "success_type": "code_test",
   "passed_attempts": 0,
-  "ipfs_fetch_failures": 769,
+  "ipfs_fetch_failures": 613,
   "reason": "verifier history shows transport/oracle failure before substantive checks"
 }
