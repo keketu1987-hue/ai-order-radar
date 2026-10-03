@@ -1,23 +1,13 @@
 {
   "ok": true,
-  "action": "oidc_fix",
-  "http": 201,
-  "before": {
-    "use_default": false,
-    "use_immutable_subject": true,
-    "include_claim_keys": [
-      "repo",
-      "ref"
-    ],
-    "sub_claim_prefix": "repo:keketu1987-hue@328019399/ai-order-radar@1366314604"
-  },
-  "after": {
-    "use_default": false,
-    "use_immutable_subject": true,
-    "include_claim_keys": [
-      "repo",
-      "ref"
-    ],
-    "sub_claim_prefix": "repo:keketu1987-hue@328019399/ai-order-radar@1366314604"
-  }
+  "sub": "repo:keketu1987-hue@328019399/ai-order-radar@1366314604:ref:refs/heads/main",
+  "aud": "bboss-frantic-write-v1",
+  "repository": "keketu1987-hue/ai-order-radar",
+  "repository_owner": "keketu1987-hue",
+  "ref": "refs/heads/main",
+  "ref_type": "branch",
+  "event_name": "push",
+  "workflow_ref": "keketu1987-hue/ai-order-radar/.github/workflows/frantic-executor.yml@refs/heads/main",
+  "job_workflow_ref": "keketu1987-hue/ai-order-radar/.github/workflows/frantic-executor.yml@refs/heads/main",
+  "actor": "keketu1987-hue"
 }
