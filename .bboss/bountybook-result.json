@@ -3,22 +3,7 @@
   "action": "triage",
   "total_open": 124,
   "sampled": 40,
-  "viable": [
-    {
-      "id": "969317da-1a1d-418a-ae28-4306f1d85876",
-      "title": "Deliver warm introduction to qualified buyer for SaSame MCP services",
-      "job_type": "find",
-      "budget_usdc": "0.01",
-      "estimated_minutes": 10,
-      "status": "open",
-      "success_type": null,
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 2251,
-      "payout_status": "none",
-      "payout_tx_hash": null,
-      "spread_per_hour": 0.060000000000000005
-    }
-  ],
+  "viable": [],
   "blocked_code_test": [
     {
       "id": "734626a0-26b5-478b-b9cf-fb575aea8adc",
