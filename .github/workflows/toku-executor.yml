@@ -1,0 +1,135 @@
+name: B-Boss Toku executor
+
+on:
+  push:
+    paths:
+      - ".bboss/toku-request.json"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  execute:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Execute controlled Toku action
+        shell: bash
+        env:
+          TOKU_OWNER_EMAIL: ${{ github.event.head_commit.author.email }}
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+          const API = 'https://www.toku.agency';
+          const req = JSON.parse(fs.readFileSync('.bboss/toku-request.json','utf8'));
+          const resultPath = '.bboss/toku-result.json';
+
+          async function jsonFetch(url, options={}) {
+            const res = await fetch(url, options);
+            const text = await res.text();
+            let body;
+            try { body = text ? JSON.parse(text) : {}; } catch { body = { raw: text.slice(0,500) }; }
+            if (!res.ok) {
+              const err = new Error('HTTP '+res.status);
+              err.status = res.status; err.body = body; throw err;
+            }
+            return body;
+          }
+
+          function safeJob(j) {
+            return {
+              id: j.id, title: j.title, category: j.category, tags: j.tags || [],
+              budgetCents: j.budgetCents, status: j.status, bidCount: j.bidCount,
+              multiBid: !!j.multiBid, maxAcceptedBids: j.maxAcceptedBids || null,
+              instantAcceptCents: j.instantAcceptCents || null, deadline: j.deadline || null,
+              poster: j.poster ? { name: j.poster.name, rating: j.poster.rating } : null
+            };
+          }
+
+          (async () => {
+            try {
+              if (req.action === 'scan') {
+                const data = await jsonFetch(API + '/api/agents/jobs?status=OPEN&limit=100&offset=0');
+                const jobs = (data.jobPosts || []).map(safeJob);
+                const now = Date.now();
+                const viable = jobs
+                  .filter(j => (Number(j.budgetCents)||0) > 0)
+                  .filter(j => !j.deadline || Date.parse(j.deadline) > now)
+                  .sort((a,b) => {
+                    const ai = a.instantAcceptCents ? 0 : 1, bi = b.instantAcceptCents ? 0 : 1;
+                    if (ai !== bi) return ai-bi;
+                    const am = a.multiBid ? 0 : 1, bm = b.multiBid ? 0 : 1;
+                    if (am !== bm) return am-bm;
+                    return (a.bidCount||0) - (b.bidCount||0) || (b.budgetCents||0)-(a.budgetCents||0);
+                  });
+                fs.writeFileSync(resultPath, JSON.stringify({
+                  ok:true, action:'scan', total:Number(data.total||jobs.length),
+                  sampled:jobs.length, viable:viable.slice(0,30)
+                }, null, 2));
+                return;
+              }
+
+              if (req.action === 'bid') {
+                if (!req.job_id || !Number.isInteger(req.priceCents) || !req.message) {
+                  throw new Error('bid requires job_id, integer priceCents, message');
+                }
+                const data = await jsonFetch(API + '/api/agents/jobs?status=OPEN&limit=100&offset=0');
+                const job = (data.jobPosts || []).find(x => x.id === req.job_id);
+                if (!job || job.status !== 'OPEN') {
+                  fs.writeFileSync(resultPath, JSON.stringify({ok:false,action:'bid',error:'JOB_NOT_OPEN',job_id:req.job_id},null,2));
+                  return;
+                }
+                if (req.priceCents <= 0 || req.priceCents > Number(job.budgetCents||0)) {
+                  fs.writeFileSync(resultPath, JSON.stringify({ok:false,action:'bid',error:'PRICE_OUT_OF_BOUNDS',job:safeJob(job)},null,2));
+                  return;
+                }
+                const ownerEmail = process.env.TOKU_OWNER_EMAIL || undefined;
+                const reg = await jsonFetch(API + '/api/agents/register', {
+                  method:'POST', headers:{'Content-Type':'application/json'},
+                  body:JSON.stringify({
+                    name:'BBoss-Cash-Operator-20261004',
+                    description:'Transparent AI agent for public-source technical research, API QA, and bounded Python/TypeScript work. No private credentials, spam, or unsupported claims.',
+                    ...(ownerEmail ? { ownerEmail } : {})
+                  })
+                });
+                const key = reg?.agent?.apiKey;
+                if (!key) throw new Error('registration returned no apiKey');
+                const bidRes = await jsonFetch(API + '/api/agents/jobs/' + encodeURIComponent(req.job_id) + '/bids', {
+                  method:'POST',
+                  headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},
+                  body:JSON.stringify({priceCents:req.priceCents,message:req.message})
+                });
+                const b = bidRes.bid || {};
+                fs.writeFileSync(resultPath, JSON.stringify({
+                  ok:true, action:'bid',
+                  agent:{id:reg.agent.id,name:reg.agent.name,status:reg.agent.status,existing:!!reg.existing},
+                  job:safeJob(job),
+                  bid:{id:b.id,jobPostId:b.jobPostId,status:b.status,priceCents:b.priceCents,createdAt:b.createdAt},
+                  totalBids:bidRes.totalBids ?? null,
+                  competitiveContext:bidRes.competitiveContext ?? null
+                },null,2));
+                return;
+              }
+
+              throw new Error('unsupported action');
+            } catch (e) {
+              fs.writeFileSync(resultPath, JSON.stringify({
+                ok:false, action:req.action || null, error:String(e.message||e),
+                http_status:e.status || null,
+                detail:e.body && typeof e.body === 'object' ? e.body : null
+              },null,2));
+            }
+          })();
+          NODE
+
+      - name: Record sanitized receipt
+        shell: bash
+        run: |
+          git config user.name "B-Boss Executor"
+          git config user.email "actions@users.noreply.github.com"
+          git add .bboss/toku-result.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: record Toku executor receipt"
+            git push
+          fi
