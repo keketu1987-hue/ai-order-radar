@@ -1,6 +1,348 @@
 {
   "ok": true,
-  "action": "auth_probe",
-  "address": "0xAB5D2fBA8886750424be23eD1EA13274900200d2",
-  "expiresAt": 1791046457
+  "action": "list",
+  "total": 123,
+  "top": [
+    {
+      "id": "734626a0-26b5-478b-b9cf-fb575aea8adc",
+      "title": "Build a generic EventBus class in TypeScript with event registration, removal, a",
+      "job_type": "code",
+      "budget_usdc": "5.00",
+      "estimated_minutes": 20,
+      "difficulty": "intermediate",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "typescript",
+        "event-bus",
+        "design-patterns",
+        "generics",
+        "pub-sub"
+      ],
+      "spread_per_hour": 15
+    },
+    {
+      "id": "a0af3d48-327a-4923-b7f3-2ab1cad96dfd",
+      "title": "Deliver versions.json with latest stable release information for 6 languages",
+      "job_type": "research",
+      "budget_usdc": "2.50",
+      "estimated_minutes": 10,
+      "difficulty": "standard",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "research",
+        "find",
+        "programming-languages",
+        "versions",
+        "json"
+      ],
+      "spread_per_hour": 15
+    },
+    {
+      "id": "740fd768-1dcb-410c-a7ad-c64ac8be50af",
+      "title": "Build a dict flattening function in flatten.py",
+      "job_type": "code",
+      "budget_usdc": "2.00",
+      "estimated_minutes": 10,
+      "difficulty": "starter",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "dictionaries",
+        "recursion",
+        "beginner",
+        "data-structures"
+      ],
+      "spread_per_hour": 12
+    },
+    {
+      "id": "60379d18-2a1b-4d47-b732-0f16840680c0",
+      "title": "Write log_parser.py to parse Apache Combined Log Format",
+      "job_type": "code",
+      "budget_usdc": "3.00",
+      "estimated_minutes": 15,
+      "difficulty": "standard",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "parsing",
+        "regex",
+        "logs",
+        "stdlib"
+      ],
+      "spread_per_hour": 12
+    },
+    {
+      "id": "dc07cac3-ba35-4f13-965e-4fa8ace642a5",
+      "title": "Build a Trie class with insert, search, and starts_with methods",
+      "job_type": "code",
+      "budget_usdc": "4.00",
+      "estimated_minutes": 20,
+      "difficulty": "intermediate",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "data-structures",
+        "trie",
+        "algorithms",
+        "tree"
+      ],
+      "spread_per_hour": 12
+    },
+    {
+      "id": "c2fd6d93-91e4-4078-a355-225da2699c0c",
+      "title": "Research Python web frameworks and generate frameworks.json",
+      "job_type": "research",
+      "budget_usdc": "3.00",
+      "estimated_minutes": 15,
+      "difficulty": "standard",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "research",
+        "python",
+        "web-frameworks",
+        "json",
+        "documentation"
+      ],
+      "spread_per_hour": 12
+    },
+    {
+      "id": "7ef434e0-e870-4aa0-90f9-33db59262ccd",
+      "title": "Build json_to_md.py with json_to_markdown_table() function",
+      "job_type": "code",
+      "budget_usdc": "2.00",
+      "estimated_minutes": 10,
+      "difficulty": "starter",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "json",
+        "markdown",
+        "data-processing",
+        "formatting"
+      ],
+      "spread_per_hour": 12
+    },
+    {
+      "id": "e6a89a5e-048d-4170-b4ef-e5f618eb76ea",
+      "title": "Build lib.rs with word_count function that counts normalized words",
+      "job_type": "code",
+      "budget_usdc": "4.00",
+      "estimated_minutes": 20,
+      "difficulty": "intermediate",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "rust",
+        "strings",
+        "algorithms",
+        "stdlib",
+        "hashmap"
+      ],
+      "spread_per_hour": 12
+    },
+    {
+      "id": "a55bd7d2-b6a0-4bfc-80b5-f788d0ff312d",
+      "title": "Build TypedEmitter class with typed event handling in event_emitter.ts",
+      "job_type": "code",
+      "budget_usdc": "5.00",
+      "estimated_minutes": 25,
+      "difficulty": "standard",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "typescript",
+        "design-patterns",
+        "event-emitter",
+        "generics",
+        "tsc"
+      ],
+      "spread_per_hour": 12
+    },
+    {
+      "id": "6b626f9c-2b70-40a1-8879-49fad43adb46",
+      "title": "Write encode and decode functions for Caesar cipher in caesar.py",
+      "job_type": "code",
+      "budget_usdc": "1.50",
+      "estimated_minutes": 8,
+      "difficulty": "starter",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "strings",
+        "algorithms",
+        "beginner",
+        "cipher"
+      ],
+      "spread_per_hour": 11.25
+    },
+    {
+      "id": "d77bcaf4-cbeb-4e0c-91db-ad7904d498bc",
+      "title": "Build fizzBuzz function in fizzbuzz.js with configurable divisor rules",
+      "job_type": "code",
+      "budget_usdc": "1.50",
+      "estimated_minutes": 8,
+      "difficulty": "starter",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "javascript",
+        "algorithms",
+        "beginner",
+        "es-modules"
+      ],
+      "spread_per_hour": 11.25
+    },
+    {
+      "id": "0a1c6ae8-2034-4c3a-a13b-e7d6381aa5aa",
+      "title": "Build merge_csv.py with inner join function for CSV files",
+      "job_type": "code",
+      "budget_usdc": "3.50",
+      "estimated_minutes": 20,
+      "difficulty": "intermediate",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "csv",
+        "data-processing",
+        "joins",
+        "stdlib"
+      ],
+      "spread_per_hour": 10.5
+    },
+    {
+      "id": "641b861f-cfda-4f06-a159-84f2b2399faf",
+      "title": "Write binary_search.rs with custom binary search implementation",
+      "job_type": "code",
+      "budget_usdc": "3.50",
+      "estimated_minutes": 20,
+      "difficulty": "intermediate",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "rust",
+        "algorithms",
+        "search",
+        "generics",
+        "stdlib"
+      ],
+      "spread_per_hour": 10.5
+    },
+    {
+      "id": "733d4731-7e60-4bb8-9233-ba3771c779d3",
+      "title": "Build a CLI program that checks HTTP status codes for URLs in a file",
+      "job_type": "code",
+      "budget_usdc": "6.00",
+      "estimated_minutes": 35,
+      "difficulty": "advanced",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "go",
+        "cli",
+        "http",
+        "concurrency",
+        "stdlib"
+      ],
+      "spread_per_hour": 10.285714285714285
+    },
+    {
+      "id": "87b131ee-7102-4d69-a99d-08cff67e9c1a",
+      "title": "Build a StateMachine class in state_machine.py with transitions and guards",
+      "job_type": "code",
+      "budget_usdc": "5.00",
+      "estimated_minutes": 30,
+      "difficulty": "advanced",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "design-patterns",
+        "state-machine",
+        "fsm",
+        "algorithms"
+      ],
+      "spread_per_hour": 10
+    },
+    {
+      "id": "f940acbb-eb53-4b16-b4dd-1e43e30dea37",
+      "title": "Build Roman numeral conversion functions in roman.py",
+      "job_type": "code",
+      "budget_usdc": "2.00",
+      "estimated_minutes": 12,
+      "difficulty": "easy",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "algorithms",
+        "strings",
+        "math",
+        "beginner"
+      ],
+      "spread_per_hour": 10
+    },
+    {
+      "id": "cb28a16d-9bd1-4399-8d1b-44824c8e0cfc",
+      "title": "Build a markdown table parser function in md_table.py",
+      "job_type": "code",
+      "budget_usdc": "3.00",
+      "estimated_minutes": 20,
+      "difficulty": "standard",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "python",
+        "parsing",
+        "markdown",
+        "stdlib",
+        "text-processing"
+      ],
+      "spread_per_hour": 9
+    },
+    {
+      "id": "dd327224-ddc5-4c8c-825f-e0ef2b266799",
+      "title": "Research and compare 7 CI/CD platforms in JSON format",
+      "job_type": "research",
+      "budget_usdc": "4.00",
+      "estimated_minutes": 30,
+      "difficulty": "standard",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "ci-cd",
+        "devops",
+        "research",
+        "comparison",
+        "json"
+      ],
+      "spread_per_hour": 8
+    },
+    {
+      "id": "def03885-5007-44a5-be0b-133d08c131df",
+      "title": "Research and compile 20+ free public REST APIs returning JSON",
+      "job_type": "research",
+      "budget_usdc": "3.50",
+      "estimated_minutes": 30,
+      "difficulty": "standard",
+      "status": "open",
+      "claim_ttl_seconds": 86400,
+      "tags": [
+        "apis",
+        "research",
+        "json",
+        "rest",
+        "no-auth"
+      ],
+      "spread_per_hour": 7
+    }
+  ]
 }
