@@ -7,50 +7,221 @@ on:
 
 permissions:
   contents: write
-  id-token: write
 
 jobs:
   execute:
     runs-on: ubuntu-latest
+    env:
+      BOUNTYBOOK_EVM_PRIVATE_KEY: ${{ secrets.BOUNTYBOOK_EVM_PRIVATE_KEY }}
+      API_BASE: https://api.bountybook.ai
     steps:
       - uses: actions/checkout@v4
 
-      - name: Call controlled BountyBook bridge
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install EIP-191 signer dependency
+        run: npm install --no-save --no-package-lock ethers@6
+
+      - name: Execute controlled BountyBook action
         shell: bash
-        env:
-          BRIDGE_URL: https://ai-order-radar.floot.app/_api/bountybook-github-bridge
-          OIDC_AUDIENCE: bboss-bountybook-write-v1
         run: |
           set -euo pipefail
+          node <<'NODE'
+          const fs = require("fs");
+          const { Wallet } = require("ethers");
 
-          OIDC_TOKEN="$(
-            curl -fsS --retry 2               -H "Authorization: bearer ${ACTIONS_ID_TOKEN_REQUEST_TOKEN}"               "${ACTIONS_ID_TOKEN_REQUEST_URL}&audience=${OIDC_AUDIENCE}"             | jq -er '.value'
-          )"
+          const req = JSON.parse(fs.readFileSync(".bboss/bountybook-request.json", "utf8"));
+          const outPath = ".bboss/bountybook-result.json";
+          const API = process.env.API_BASE || "https://api.bountybook.ai";
+          const pk = process.env.BOUNTYBOOK_EVM_PRIVATE_KEY || "";
 
-          HTTP_CODE="$(
-            curl -sS --retry 2               -o .bboss/bountybook-result.json               -w '%{http_code}'               -H "Authorization: Bearer ${OIDC_TOKEN}"               -H "Content-Type: application/json"               --data-binary @.bboss/bountybook-request.json               "${BRIDGE_URL}"
-          )"
+          function write(obj) {
+            const safe = JSON.parse(JSON.stringify(obj, (k, v) => {
+              if (["token", "signature", "privateKey", "private_key", "authorization"].includes(k)) return undefined;
+              return v;
+            }));
+            fs.writeFileSync(outPath, JSON.stringify(safe, null, 2) + "\n");
+          }
 
-          if [ "$HTTP_CODE" -lt 200 ] || [ "$HTTP_CODE" -ge 300 ]; then
-            echo "Controlled BountyBook bridge rejected request with HTTP $HTTP_CODE" >&2
-            cat .bboss/bountybook-result.json >&2
-            exit 1
-          fi
+          async function jsonFetch(url, options = {}) {
+            const r = await fetch(url, options);
+            const text = await r.text();
+            let body;
+            try { body = JSON.parse(text); }
+            catch { body = { raw: text.slice(0, 3000) }; }
+            return { ok: r.ok, status: r.status, body };
+          }
+
+          async function authenticate() {
+            if (!pk) throw new Error("BOSS_EVM_PRIVATE_KEY_NOT_CONNECTED");
+            const wallet = new Wallet(pk);
+
+            const nonceRes = await jsonFetch(`${API}/auth/nonce?address=${wallet.address}`);
+            if (!nonceRes.ok) throw new Error(`NONCE_FAILED_${nonceRes.status}`);
+            const nonce = nonceRes.body?.nonce;
+            if (typeof nonce !== "string" || !nonce) throw new Error("NONCE_MISSING");
+
+            // Policy hard gate: sign only the exact BountyBook authentication nonce.
+            const signature = await wallet.signMessage(nonce);
+
+            const verifyRes = await jsonFetch(`${API}/auth/verify`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ address: wallet.address, signature })
+            });
+            if (!verifyRes.ok) throw new Error(`VERIFY_FAILED_${verifyRes.status}`);
+            if (!verifyRes.body?.token) throw new Error("TOKEN_MISSING");
+
+            return {
+              address: wallet.address,
+              token: verifyRes.body.token,
+              expiresAt: verifyRes.body.expiresAt ?? null
+            };
+          }
+
+          async function main() {
+            const action = req.action || "status";
+
+            if (action === "status") {
+              const [stats, jobs] = await Promise.all([
+                jsonFetch(`${API}/stats`),
+                jsonFetch(`${API}/jobs?status=open`)
+              ]);
+              const arr = Array.isArray(jobs.body?.jobs) ? jobs.body.jobs : [];
+              return write({
+                ok: stats.ok && jobs.ok,
+                action,
+                configured: !!pk,
+                marketplace: stats.body,
+                open_count: arr.length,
+                policy: {
+                  signer: "EIP-191 BountyBook auth nonce only",
+                  arbitraryMessageSigning: false,
+                  transactions: false,
+                  tokenApprovals: false,
+                  transfers: false,
+                  maxAutonomousRewardUsd: 25
+                }
+              });
+            }
+
+            if (action === "secret_probe") {
+              if (!pk) return write({ ok:false, action, error:"BOSS_EVM_PRIVATE_KEY_NOT_CONNECTED" });
+              const wallet = new Wallet(pk);
+              return write({ ok:true, action, configured:true, address:wallet.address });
+            }
+
+            if (action === "auth_probe") {
+              const a = await authenticate();
+              return write({ ok:true, action, address:a.address, expiresAt:a.expiresAt });
+            }
+
+            if (action === "list") {
+              const jobs = await jsonFetch(`${API}/jobs?status=open`);
+              if (!jobs.ok) return write({ ok:false, action, error:"LIST_FAILED", http:jobs.status });
+              const arr = Array.isArray(jobs.body?.jobs) ? jobs.body.jobs : [];
+              const allowedTypes = new Set(["code","research","data","content","monitor","workflow","scrape","transform","fetch"]);
+              const ranked = arr
+                .filter(j => allowedTypes.has(j.job_type) && Number(j.budget_usdc || 0) > 0)
+                .map(j => ({
+                  id:j.id,
+                  title:j.title,
+                  job_type:j.job_type,
+                  budget_usdc:j.budget_usdc,
+                  estimated_minutes:j.estimated_minutes,
+                  difficulty:j.difficulty,
+                  status:j.status,
+                  claim_ttl_seconds:j.claim_ttl_seconds,
+                  tags:j.tags,
+                  spread_per_hour:Number(j.budget_usdc || 0) / Math.max(Number(j.estimated_minutes || 60) / 60, 0.1)
+                }))
+                .sort((a,b) => b.spread_per_hour - a.spread_per_hour)
+                .slice(0,25);
+              return write({ ok:true, action, total:jobs.body?.total ?? arr.length, top:ranked });
+            }
+
+            if (action === "claim") {
+              const jobId = req.job_id;
+              if (!jobId) return write({ ok:false, action, error:"MISSING_JOB_ID" });
+
+              const detail = await jsonFetch(`${API}/jobs/${encodeURIComponent(jobId)}`);
+              if (!detail.ok) return write({ ok:false, action, error:"JOB_LOOKUP_FAILED", http:detail.status });
+              const job = detail.body?.job ?? detail.body;
+
+              if (job?.status !== "open") return write({ ok:false, action, error:"JOB_NOT_OPEN", job_id:jobId, status:job?.status ?? null });
+              if (!(Number(job?.budget_usdc || 0) > 0)) return write({ ok:false, action, error:"NO_CASH_REWARD", job_id:jobId });
+              if (Number(job?.budget_usdc || 0) > 25) return write({ ok:false, action, error:"AUTONOMOUS_REWARD_CAP_EXCEEDED", job_id:jobId, budget_usdc:job?.budget_usdc });
+
+              const a = await authenticate();
+              const claim = await jsonFetch(`${API}/jobs/${encodeURIComponent(jobId)}/claim`, {
+                method:"POST",
+                headers:{
+                  "Content-Type":"application/json",
+                  "Authorization":`Bearer ${a.token}`
+                },
+                body:JSON.stringify({ executorAddress:a.address })
+              });
+
+              return write({
+                ok:claim.ok,
+                action,
+                job_id:jobId,
+                address:a.address,
+                title:job?.title ?? null,
+                budget_usdc:job?.budget_usdc ?? null,
+                http:claim.status,
+                response:claim.body
+              });
+            }
+
+            if (action === "submit") {
+              const jobId = req.job_id;
+              if (!jobId) return write({ ok:false, action, error:"MISSING_JOB_ID" });
+              if (req.outputData === undefined) return write({ ok:false, action, error:"MISSING_OUTPUT_DATA" });
+
+              const a = await authenticate();
+              const sub = await jsonFetch(`${API}/jobs/${encodeURIComponent(jobId)}/submit`, {
+                method:"POST",
+                headers:{
+                  "Content-Type":"application/json",
+                  "Authorization":`Bearer ${a.token}`
+                },
+                body:JSON.stringify({ executorAddress:a.address, outputData:req.outputData })
+              });
+
+              return write({
+                ok:sub.ok,
+                action,
+                job_id:jobId,
+                address:a.address,
+                http:sub.status,
+                response:sub.body
+              });
+            }
+
+            return write({ ok:false, action, error:"UNSUPPORTED_ACTION" });
+          }
+
+          main().catch(err => {
+            write({ ok:false, action:req.action ?? null, error:String(err?.message || err) });
+            process.exitCode = 1;
+          });
+          NODE
 
       - name: Record sanitized receipt
         if: always()
         shell: bash
         run: |
           set -euo pipefail
-          test -f .bboss/bountybook-result.json ||             jq -n '{ok:false,error:"EXECUTOR_FAILED_WITHOUT_RECEIPT"}' > .bboss/bountybook-result.json
+          test -f .bboss/bountybook-result.json || jq -n '{ok:false,error:"EXECUTOR_FAILED_WITHOUT_RECEIPT"}' > .bboss/bountybook-result.json
 
           git config user.email "keketu1987@gmail.com"
           git config user.name "B-Boss Executor"
           git add .bboss/bountybook-result.json
           git commit -m "chore: record BountyBook action result" || exit 0
 
-          # Frantic and BountyBook may finish seconds apart. Rebase unrelated
-          # receipt commits before pushing so concurrent executors do not lose results.
           for attempt in 1 2 3; do
             if git pull --rebase origin main && git push; then
               exit 0
