@@ -1,4 +1,3 @@
 {
-  "action": "legacy_probe",
-  "audit": "2026-10-03T19:36+08:00"
+  "action": "oidc_diag"
 }
