@@ -119,13 +119,13 @@ jobs:
             }
 
             if (action === "triage") {
-              const jobs = await jsonFetch(`${API}/jobs?status=open&limit=100`);
+              const jobs = await jsonFetch(`${API}/jobs?status=open&limit=200`);
               if (!jobs.ok) return write({ ok:false, action, error:"LIST_FAILED", http:jobs.status });
               const arr = Array.isArray(jobs.body?.jobs) ? jobs.body.jobs : [];
 
               const sample = arr
                 .filter(j => Number(j.budget_usdc || 0) > 0)
-                .slice(0, 40);
+                .slice(0, 150);
 
               const details = [];
               for (const j of sample) {
