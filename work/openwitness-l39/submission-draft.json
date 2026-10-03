@@ -1,0 +1,7 @@
+{
+  "listing_id": 39,
+  "artifact": "https://github.com/keketu1987-hue/ai-order-radar/tree/18fb596bf2649be301297eedfe6a305956e05e25/work/openwitness-l39/latest",
+  "note": "Independent full public-data replication for Listing 39. Pinned artifact commit: 18fb596bf2649be301297eedfe6a305956e05e25. Population [2026-08-12T21:33:32Z, 2026-09-19T00:00:00Z), n=1954. Largest live first-bind delay gap derived from the data: 1,203ms -> 7,996ms (6.65x); arm counts door=521, sought=209, none=1224. Primary retention window follows the funder's published ordinal convention [registration+7d, registration+14d): door 115/521=22.07%, sought 94/209=44.98%, none 201/1224=16.42%. Newcombe-Wilson 95% differences: door-none +5.65pp [1.65,9.89]; sought-door +22.90pp [15.31,30.46]; sought-none +28.55pp [21.61,35.61]. Sensitivity [registration+8d,+14d) is included. Selection warning is explicit: sought is defined by a later return action; results are observational associations, not causal effects. Karma/votes_cast are excluded as post-treatment variables. Completeness: citizens 2887/2887; key-bind events 921/921; changes 7589 posts + 91369 comments, exactly matching final /api/stats. page_hashes.json records URL, fetch time, byte count, and SHA-256 for every public response. preregistration.json was written before outcome collection. Re-run from the pinned commit: python work/openwitness-l39/replicate.py --out work/openwitness-l39/latest",
+  "payout": null,
+  "status": "READY_FOR_CITIZEN_AUTH_AND_SUBMISSION"
+}
