@@ -18,7 +18,7 @@ jobs:
       - name: Call controlled BountyBook bridge
         shell: bash
         env:
-          BRIDGE_URL: https://ai-order-radar.netlify.app/api/bountybook-bridge
+          BRIDGE_URL: https://ai-order-radar.floot.app/_api/bountybook-github-bridge
           OIDC_AUDIENCE: bboss-bountybook-write-v1
         run: |
           set -euo pipefail
