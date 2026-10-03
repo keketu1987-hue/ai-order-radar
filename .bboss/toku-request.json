@@ -1,7 +1,7 @@
 {
   "action": "bid",
-  "job_id": "cmm5p2a5u000cjr04c6lnw14u",
-  "priceCents": 500,
-  "message": "I can deliver one named token/protocol as a compact, source-linked due-diligence brief for $5 within 2 hours of acceptance. Scope: official tokenomics/supply and unlocks where public; team/provenance signals; dated TVL/volume/activity metrics from public primary or established data sources; 3 closest competitors; a risk register separating facts from inference; and a concise conclusion with explicit uncertainty. Public sources only—no private credentials, wallet signing, paid APIs, or investment guarantees. Send the target token/protocol + chain and I can start immediately.",
-  "request_id": "toku-bid-crypto-dd-20261004-retry1"
+  "job_id": "cmm60fshb0205l5041ptnt02q",
+  "priceCents": 200,
+  "message": "Protocol: Euler V2. Detailed $2 report. I will deliver 700+ words in structured Markdown covering: (1) protocol mechanics and current chain footprint, (2) dated TVL snapshot from public sources, (3) EUL token / fee-governance model where publicly documented, (4) smart-contract, oracle, liquidation, governance and market risks, and (5) competitive positioning vs Aave, Morpho and Compound. Claims will include source links and pull dates; no invented wallet-level data or investment guarantees. Current public TVL is well above the $10M requirement. Delivery within 2 hours of acceptance.",
+  "request_id": "toku-bid-euler-v2-20261004"
 }
