@@ -1,3 +1,4 @@
+// Deployment sync marker: immutable GitHub OIDC subject bridge.
 import type { Context, Config } from "@netlify/functions";
 
 const EXPECTED_ISSUER = "https://token.actions.githubusercontent.com";
