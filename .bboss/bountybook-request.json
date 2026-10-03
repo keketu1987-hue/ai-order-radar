@@ -1,4 +1,4 @@
 {
-  "action": "status",
-  "request_id": "bb-status-after-secret-20261003T2349+08"
+  "action": "auth_probe",
+  "request_id": "bb-auth-20261003T2353+08"
 }
