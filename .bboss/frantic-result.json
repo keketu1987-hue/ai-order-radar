@@ -1,6 +1,6 @@
 {
-  "ok": false,
-  "action": "netlify_probe",
-  "http": 404,
-  "body": "Not Found - Request ID: 01M40RXW64DNR8DFWWS542PMVD  Build and deploy your own site for free: https://netlify.new/?utm_campaign=loops&utm_content=site-not-found-text&utm_medium=owned&utm_source=default-page "
+  "ok": true,
+  "action": "secret_probe",
+  "frantic_agent_token_present": false,
+  "frantic_operator_token_present": false
 }
