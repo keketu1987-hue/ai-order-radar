@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/style.css" rel="stylesheet">
+    <script src="/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <title>progsbase.com - Bug Bounty Program</title>
+
+    <link rel="icon" type="image/png" href="/img/favicon.png" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120901997-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-120901997-1');
+    </script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-light mb-5">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="/img/logo-violet.png" width="100" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog/">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/bug-bounty/">Bug Bounty</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pricing/">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://manage.progsbase.com/createaccount">Create Account</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tutorials
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/blog/develop-progsbase-code-using-the-command-line/">Develop using the Command Line</a></li>
+                            <li><a class="dropdown-item" href="/blog/develop-progsbase-using-intellij-idea/">Develop using IntelliJ</a></li>
+                            <li><a class="dropdown-item" href="/blog/writing-an-area-library-in-8-programming-languages-at-once/">Creating a New Simple Project</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="https://repo.progsbase.com/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Libraries
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="https://repo.progsbase.com/">Libraries</a></li>
+                            <li><a class="dropdown-item" href="/algowidgets/">Algowidgets</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/isa/">ISA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/noos/">NoOS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/docs/">Docs</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Account
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="https://manage.progsbase.com/">Account</a></li>
+                            <li><a class="dropdown-item" href="/downloads/">Client</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+
+<script>
+var app = angular.module("app", []);
+app.controller("ctrl", function ($scope, $http, $sce) {
+    $http.post("https://certs.progsbase.com", {"command": "GetBugbountyOverview"})
+       .then(function successCallback(response) {
+          $scope.rows = response.data.rows;
+
+          //$scope.rows[20].underreview = true;
+
+          console.log($scope.rows);
+       }, function errorCallback(response) {
+          // This function handles errors (status code 400+)
+          console.error("Request failed: " + response.statusText);
+       });
+
+
+    $scope.GetBugbountyDescription = function(row){
+        $http.post("https://certs.progsbase.com", {"command": "GetBugbountyDescription", "namespace": row.orgnamespace, "version": row.version, "library": row.lib, "function": row.function})
+           .then(function successCallback(response) {
+              row.description = $sce.trustAsHtml(response.data.description);
+              console.log(response);
+           }, function errorCallback(response) {
+              // This function handles errors (status code 400+)
+              console.error("Request failed: " + response.statusText);
+           });
+    };
+});
+</script>
+
+<div class="container-lg">
+
+<div class="row mb-4" ng-app="app" ng-controller="ctrl">
+    <div class="col-md-2">
+    </div>
+    <div class="col-md-8">
+        <h1>Bug Bounty Program</h1>
+        <p>
+            <ul>
+                <li>Make money by finding bugs in the functions listed below.</li>
+                <li>You can <a href="/cdn-cgi/l/email-protection#a9c4c8dbddc0c7cfc3c6c1c8c7daccc7e9d9dbc6cedacbc8dacc87cac6c4">purchase guarantee certificates</a> to increase the bounty of a function of your choosing.</li>
+                <li>Read more about the theory behind this program in the book <a href="https://www.amazon.com/dp/B0DZX7RPBK">Foundations of Computer Science</a>.</li>
+
+            </ul>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col" style="cursor: help;"
+                    title="The name of the function. You can expand the row for more details. See below for details about how to download and test the code."
+                  >
+                    Function
+                  </th>
+                  <th scope="col">Library</th>
+                  <th scope="col">Version</th>
+                  <th scope="col" style="text-align: right; cursor: help;"
+                      title="Find a bug in this function and earn the bounty."
+                  >
+                    Bounty
+                  </th>
+                  <th scope="col" style="text-align: right; cursor: help;"
+                    title="The quality of the function measured in dollar-years. A function has a quality of 100 $Y if a $50 dollar bounty has stood unclaimed for two years."
+                  >Quality&nbsp;($Y)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat-start="row in rows | orderBy : 'amount' : true" ng-click="row.expand = !row.expand; GetBugbountyDescription(row)" style="cursor: pointer;">
+                  <td>{{row.function}}</td>
+                  <td>{{row.lib}}</td>
+                  <td>v{{row.version}}</td>
+                  <td style="text-align: right" ng-show="!row.candidate && !row.underreview">
+                    ${{row.amount}}
+                  </td>
+                  <td style="text-align: right" ng-show="!row.candidate && !row.underreview">
+                    {{row.dy}}
+                  </td>
+                  <td colspan="2" style="text-align: center" ng-show="row.candidate || row.underreview">
+                      <span ng-show="row.underreview">Under Review</span>
+                      <span ng-show="row.candidate">Candidate</span>
+                  <td>
+                </tr>
+                <tr ng-repeat-end>
+                  <td colspan="5" ng-show="row.expand" class="pb-5 pt-3">
+
+                  <h3>Overview</h3>
+
+                  <div>Function:
+                    <a href="https://repo.progsbase.com/repoviewer/{{row.orgnamespace}}/{{row.lib}}/{{row.version}}///{{row.function}}/">
+                      {{row.function}}
+                    </a>
+                  </div>
+
+                  <div>Library:
+                    <a href="https://repo.progsbase.com/repoviewer/{{row.orgnamespace}}/{{row.lib}}/{{row.version}}/">
+                      {{row.lib}}
+                      v{{row.version}}
+                    </a>
+                  </div>
+
+                  <div>Namespace:
+                    <a href="https://repo.progsbase.com/repoviewer/{{row.orgnamespace}}/">
+                      {{row.orgnamespace}}
+                    </a>
+                  </div>
+
+                  <div>Scientific namespace:
+                     <a href="https://repo.progsbase.com/repoviewer/{{row.scinamespace}}/">
+                      {{row.scinamespace}}
+                    </a>
+                  </div>
+
+                  <div>Last bug found:
+                    <span ng-show="row.awarded">{{row.awardtime}} by {{row.awardedTo}}</span>
+                    <i ng-show="!row.awarded">Before a bug bounty was issued.</i>
+                  </div>
+
+                  <div ng-show="!row.candidate">Bounty: ${{row.amount}}</div>
+
+                  <!--<div ng-show="row.amount > 0">Bounty issued: TODO</div>-->
+                  <div ng-show="!row.candidate && row.amount > 0">Quality score: {{row.dy}} $Y (Dollar-Years)</div>
+
+                  <div ng-show="!row.candidate && row.amount > 0">Report bug: <a href="/cdn-cgi/l/email-protection#e4898596908d8a828e8b8c858a97818aa494968b839786859781ca878b89"><span class="__cf_email__" data-cfemail="234e4251574a4d45494c4b424d50464d6353514c4450414250460d404c4e">[email&#160;protected]</span></a></div>
+
+                  <div ng-show="!row.candidate && !row.underreview">Status: Active</div>
+                  <div ng-show="row.candidate">Status: Candidate</div>
+                  <div ng-show="row.underreview">Status: Under Review</div>
+
+                  <div ng-show="row.description">
+                    <h3>About the function</h3>
+
+                    <div ng-bind-html="row.description"></div>
+
+                  </div>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+        </p>
+        <h2>About the Bug Bounty Program</h2>
+        <p>
+            Make money by finding bugs! Find bugs in functions in libraries. We select which functions in which libraries are a part of the bug bounty program. A function in a library enters the program if it 1) solves a problem and solves it well and 2) has been used in production for some time without a bug being reported or found.
+        </p>
+        <p>
+            The goal of this bug bounty program is to create completley bug free libraries that can be reused by anyone for all time. This is made possible by creating programs that only depend on the <a href="/isa/">Timeless Instruction Set</a>. This instruction set is stricter that most languages, which means that if it runs there, it most likely runs in most other languages as well.
+        </p>
+        <p>
+            These libraries are valuable even to those who do not use them directly. The libraries can be used as reference implementations or testing oracles for auditing other implementation of the same functionality.
+        </p>
+        <h2>Rules</h2>
+        <p>
+            <ul>
+                <li>
+                    A bug is valid input to a function which then produces the wrong output. What are allowed inputs and correct outputs are described for each function in the bug bounty program. The purpose of the bug bounty is to increase the quality of the code as a tool for productive activities. Therefore, the bug reported will be judged for realism. If the input will never occur in practise, then we might not award the bounty.
+                </li>
+                <li>
+                    A bug report must merely contain the function being tested, the input to the function and the expected output. Send it to <a href="/cdn-cgi/l/email-protection#b6dbd7c4c2dfd8d0dcd9ded7d8c5d3d8f6c6c4d9d1c5d4d7c5d398d5d9db"><span class="__cf_email__" data-cfemail="bbd6dac9cfd2d5ddd1d4d3dad5c8ded5fbcbc9d4dcc8d9dac8de95d8d4d6">[email&#160;protected]</span></a>, and we will give you a reply swiftly.
+                </li>
+                <li>
+                    Out-of-memory exceptions or timeouts are not considered bugs unless it can be shown that these are because of another bug causing a too high memory usage or spending too much time.
+                </li>
+                <li>
+                    The bug must be reproducible when the code is run using the <a href="/isa/">Timeless Instruction Set</a>. In general, if the bug is present when running in Java, it will probably be present there as well.
+                </li>
+                <li>
+                    There is a publicly available list of functions in the bug bounty program with associated rewards for finding one bug. Only one bug will be considered at a time. Whether a bug is being considered will be shown in the list. If there is no bug being considered at this point in time, go search for one to earn the bounty!
+                </li>
+                <li>
+                    When a bug is reported, the bug bounty for that function will be marked as under review. If the bug is confirmed, the reward will be payed, the bug fixed and the library will go back to candidate status until we think it is of high enough quality to reenter the bug bounty program.
+                </li>
+                <li>
+                    If a bug is not found for some time, we will raise the bounty. If you would like to contribute to raising the bounty, you can purchase a bug guarantee certificate for a certain amount, and we will add that amount to the bounty (minus a fee). This money will then be awarded to someone who finds a bug, the bug will be fixed and you will be notified.
+                </li>
+            </ul>
+        </p>
+        <h2>Building and Running the Libraries</h2>
+        <p>
+            Building and running the libraries are easy as they are all completely computational. Follow these guides to run and test the libraries:
+            <ul>
+                <li>Run it directly in your browser using the links in the descriptions.</li>
+                <li><a href="/blog/develop-progsbase-code-using-the-command-line/">Command Line</a></li>
+                <li><a href="/blog/develop-progsbase-using-intellij-idea/">IntelliJ IDEA</a></li>
+            </ul>
+            Once the tests run, you know you have successfully built the libraries and you can start looking for bugs. Most libraries have a function called test, run it to test the library, even in the browser. For example, for the <a href="https://repo.progsbase.com/repoviewer/no.inductive.idea10.programs/JSON/0.5.7///test/">JSON library</a>. They usually return the number of tests that failed, so expect a return of 0.
+        </p>
+        <h2>Guarantee Certificates</h2>
+        <p>
+            You can buy a certificate for a function guaranteeing that it is bug-free. If a bug is found, the money will go to the person who found the bug (minus a fee). The more people buy these, the higher the rewards for finding bugs in this function will be. The higher the reward and the longer it stands, the less likely it is that there is a bug. Progsbase itself will issue rewards for finding bugs as well.
+        </p>
+        <p>
+            If there are no bugs found for a long time, we can issue certificates stating the current amount of rewards and how long they have stood, the library's dollar years. For example, if a bounty of $1000 has stood for four years, the dollar years will be 4000 dollar years. This can be used as an indication for the quality of the library.
+        </p>
+        <h2>Frequently Asked Questions (FAQ)</h2>
+        <p>
+            <b>What is the requirement for processing the payment?</b> You must send a valid invoice to our business, Inductive AS, Organization number NO913965639MVA. The invoice must contain valid information, and in general satisfy Norwegian tax and accounting laws. We can pay via PayPal. Please also send us a link to one of your websites, so we can credit you with finding the bug.
+        </p>
+        <p>
+					 <b>Can I use any tool?</b> Yes, the goal is correct libraries, we put no restriction on what tool you use to find a bug. This include AI-tools like LLMs and related technologies. Note, however, that we do receive many reports generated by AI models. This makes processing slower. Please instruct your tools to create realistic bugs and not to send us low quality reports (slop).
+        </p>
+        <p>
+					 <b>Where can I find the code?</b> All the code is available as open source with the MIT license. You will find the links to the code on this page.
+        </p>
+        <p>
+					 <b>Did I find a bug related to binary floating points?</b> The number type is restricted to 15 decimal digits and a 2 digit exponent. When running the timeless instruction set, we use a number type that supports this. It is natively supported by <a href="https://en.wikipedia.org/wiki/Densely_packed_decimal">Densely Packed Decimal (DPD)</a> <a href="https://en.wikipedia.org/wiki/Decimal64_floating-point_format">Decimal64</a> with slight adjustments. Regarding speed, PowerPC processors natively support this format. We believe other CPUs will in the future. When parsing and writing floating point values, there are direct methods of doing this for DPD Decimal64s.
+        </p>
+    </div>
+    <div class="col-md-2">
+    </div>
+</div>
+
+
+</div>
+
+    <div class="container-fluid text-bg-light p-3 mt-5 list-unstyled small text-muted">
+      <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-4">
+          <h6>Contact Information</h6>
+          <p>We would be more than happy to help you. Our opening hours are 9–15 (CET).</p>
+
+          <p>✉ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5c2f292c2c332e281c353238293f28352a39723233">[email&#160;protected]</a></p>
+
+          <p>&#128222; (+47) 93 68 22 77</p>
+
+          <p>Nils Bays vei 50, 0876 Oslo, Norway</p>
+        </div>
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-4">
+          <h6>progsbase.com</h6>
+          <div><a href="/">Home</a></div>
+          <div><a href="/">Services</a></div>
+          <div><a href="/blog/">Blog</a></div>
+          <div><a href="https://manage.progsbase.com/createaccount">Create Account</a></div>
+          <div><a href="https://manage.progsbase.com/">Manage Account and Users</a></div>
+          <div><a href="https://repo.progsbase.com/">Program Database</a></div>
+          <div><a href="/docs/">Documentation</a></div>
+          <div><a href="/docs/whitepaper.pdf">White Paper</a></div>
+          <div><a href="/terms-and-conditions/">Terms and Conditions</a></div>
+        </div>
+        <div class="col-sm-1">
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid text-center text-bg-light p-3 small text-muted">
+      <div class="row">
+          <div class="col">
+            Copyright © 2018-24 progsbase.com by <a href="https://inductive.no">Inductive AS</a>.
+          </div>
+      </div>
+    </div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"9f4891a13cee46b5823528444a3ee725","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
