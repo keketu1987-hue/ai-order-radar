@@ -161,6 +161,7 @@ jobs:
 
               const viable = details
                 .filter(j => j.success_type !== "code_test")
+                .filter(j => !(j.ipfs_fetch_failures > 0 && j.passed_attempts === 0))
                 .sort((a,b) => {
                   const ap = a.passed_attempts > 0 ? 1 : 0;
                   const bp = b.passed_attempts > 0 ? 1 : 0;
@@ -240,14 +241,22 @@ jobs:
               const job = detail.body?.job ?? detail.body;
               const successType = job?.spec?.success_condition?.type ?? job?.deliverable_format?.type ?? null;
 
-              if (successType === "code_test" && req.force_broken_oracle !== true) {
+              const attempts = Array.isArray(job?.attempts) ? job.attempts : [];
+              const ipfsFetchFailures = attempts.filter(a =>
+                Array.isArray(a?.verification_result?.details?.checksFailed) &&
+                a.verification_result.details.checksFailed.includes("ipfs_fetch")
+              ).length;
+              const passedAttempts = attempts.filter(a => a?.verification_result?.passed === true).length;
+              if ((successType === "code_test" || (ipfsFetchFailures > 0 && passedAttempts === 0)) && req.force_broken_oracle !== true) {
                 return write({
                   ok:false,
                   action,
                   error:"BOSS_BOUNTYBOOK_ORACLE_CLASS_BLOCKED",
                   job_id:jobId,
                   success_type:successType,
-                  reason:"code_test verifier has observed ipfs_fetch failures before substantive checks"
+                  passed_attempts:passedAttempts,
+                  ipfs_fetch_failures:ipfsFetchFailures,
+                  reason:"verifier history shows transport/oracle failure before substantive checks"
                 });
               }
 
@@ -286,14 +295,22 @@ jobs:
               if (!detail.ok) return write({ ok:false, action, error:"JOB_LOOKUP_FAILED", http:detail.status });
               const job = detail.body?.job ?? detail.body;
               const successType = job?.spec?.success_condition?.type ?? job?.deliverable_format?.type ?? null;
-              if (successType === "code_test" && req.force_broken_oracle !== true) {
+              const attempts = Array.isArray(job?.attempts) ? job.attempts : [];
+              const ipfsFetchFailures = attempts.filter(a =>
+                Array.isArray(a?.verification_result?.details?.checksFailed) &&
+                a.verification_result.details.checksFailed.includes("ipfs_fetch")
+              ).length;
+              const passedAttempts = attempts.filter(a => a?.verification_result?.passed === true).length;
+              if ((successType === "code_test" || (ipfsFetchFailures > 0 && passedAttempts === 0)) && req.force_broken_oracle !== true) {
                 return write({
                   ok:false,
                   action,
                   error:"BOSS_BOUNTYBOOK_ORACLE_CLASS_BLOCKED",
                   job_id:jobId,
                   success_type:successType,
-                  reason:"refusing repeat submission into verifier class with observed ipfs_fetch failures"
+                  passed_attempts:passedAttempts,
+                  ipfs_fetch_failures:ipfsFetchFailures,
+                  reason:"refusing submission into verifier path with observed ipfs_fetch failures and zero passes"
                 });
               }
 
