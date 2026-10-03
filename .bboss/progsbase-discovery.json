@@ -1,0 +1,11 @@
+{
+  "page": "https://www.progsbase.com/bug-bounty/",
+  "scripts": [
+    "https://www.progsbase.com/lib/bootstrap/js/bootstrap.bundle.min.js",
+    "https://www.googletagmanager.com/gtag/js?id=UA-120901997-1",
+    "https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js",
+    "https://www.progsbase.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
+    "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495"
+  ],
+  "matches": []
+}
