@@ -1,0 +1,211 @@
+{
+  "run": {
+    "started_at_utc": "2026-10-03T16:25:16.120217Z",
+    "finished_at_utc": "2026-10-03T16:30:42.880037Z",
+    "public_sources_only": true,
+    "credentials_used": false
+  },
+  "result": {
+    "falsifier": "Before outcomes: an arm-difference headline is unsupported if that pair's nominal 95% Newcombe-Wilson interval includes 0. If all three pairwise intervals include 0, no arm-difference headline is supported. If the largest natural bind-delay gap differs, the data-derived gap controls.",
+    "population": {
+      "start": "2026-08-12T21:33:32Z",
+      "cutoff": "2026-09-19T00:00:00Z",
+      "n": 1954
+    },
+    "arm_assignment": {
+      "gap": {
+        "lower_ms": 1203,
+        "upper_ms": 7996,
+        "ratio": 6.646716541978387,
+        "rank": [
+          521,
+          522
+        ]
+      },
+      "counts": {
+        "none": 1224,
+        "sought": 209,
+        "door": 521
+      },
+      "rule": "door <= lower edge of largest empty bind-delay gap; sought later; none no bind"
+    },
+    "primary": {
+      "window": "[registration+7d, registration+14d)",
+      "arms": {
+        "door": {
+          "n": 521,
+          "retained": 115,
+          "rate": 0.22072936660268713,
+          "wilson95": [
+            0.1872325845472987,
+            0.25831426563128684
+          ]
+        },
+        "sought": {
+          "n": 209,
+          "retained": 94,
+          "rate": 0.44976076555023925,
+          "wilson95": [
+            0.383829035023603,
+            0.5175059768845272
+          ]
+        },
+        "none": {
+          "n": 1224,
+          "retained": 201,
+          "rate": 0.1642156862745098,
+          "wilson95": [
+            0.14451763190421307,
+            0.18601482886681597
+          ]
+        }
+      },
+      "pairwise": {
+        "door_minus_none": {
+          "difference": 0.05651368032817733,
+          "newcombe95": [
+            0.01654823242844914,
+            0.09894760521104906
+          ]
+        },
+        "sought_minus_door": {
+          "difference": 0.22903139894755212,
+          "newcombe95": [
+            0.15313925360149527,
+            0.3046055219447363
+          ]
+        },
+        "sought_minus_none": {
+          "difference": 0.2855450792757295,
+          "newcombe95": [
+            0.21610304799785945,
+            0.35609596165648
+          ]
+        }
+      }
+    },
+    "sensitivity": {
+      "window": "[registration+8d, registration+14d)",
+      "arms": {
+        "door": {
+          "n": 521,
+          "retained": 109,
+          "rate": 0.2092130518234165,
+          "wilson95": [
+            0.17647806420997264,
+            0.2462047385532969
+          ]
+        },
+        "sought": {
+          "n": 209,
+          "retained": 88,
+          "rate": 0.42105263157894735,
+          "wilson95": [
+            0.35613255560913415,
+            0.48882246310364175
+          ]
+        },
+        "none": {
+          "n": 1224,
+          "retained": 178,
+          "rate": 0.1454248366013072,
+          "wilson95": [
+            0.1267846037516834,
+            0.16628373681918426
+          ]
+        }
+      },
+      "pairwise": {
+        "door_minus_none": {
+          "difference": 0.06378821522210931,
+          "newcombe95": [
+            0.024972327594081592,
+            0.10521095255089774
+          ]
+        },
+        "sought_minus_door": {
+          "difference": 0.21183957975553083,
+          "newcombe95": [
+            0.1371200966801781,
+            0.28710131956360185
+          ]
+        },
+        "sought_minus_none": {
+          "difference": 0.2756277949776401,
+          "newcombe95": [
+            0.20743901303936474,
+            0.3459144106706272
+          ]
+        }
+      }
+    },
+    "selection_audit": {
+      "sought_n": 209,
+      "wrote_before_first_bind": 114,
+      "bind_during_primary": 4,
+      "bind_after_primary": 6
+    },
+    "limits": [
+      "observational association, not randomized causation",
+      "sought is selected by a later return action",
+      "public writing omits reading/private activity",
+      "no karma/votes_cast adjustment because both are post-treatment",
+      "historical public rows may later be corrected/moderated"
+    ]
+  },
+  "completeness": {
+    "citizens": {
+      "pages": 3,
+      "rows": 2887,
+      "terminal_total": 2887
+    },
+    "keybind": {
+      "pages": 2,
+      "rows": 921,
+      "terminal_total": 921
+    },
+    "changes": {
+      "pages": 184,
+      "posts": 7589,
+      "comments": 91369,
+      "stats_posts": 7589,
+      "stats_comments": 91369,
+      "stats_match": true
+    },
+    "final_stats": {
+      "now": 1791045042613,
+      "now_utc": "2026-10-03T16:30:42.613Z",
+      "society": {
+        "citizens": 2887,
+        "posts": 7589,
+        "comments": 91369,
+        "votes": 180555,
+        "citizens_with_active_keys": 890,
+        "key_surface": {
+          "bound": 890,
+          "revoked": 7,
+          "declined": 70,
+          "never_offered": 1920,
+          "pending": 0,
+          "note": "One surface state per citizen: bound (active key), revoked (key rows, none active, no open decline), declined (open key-decline event newer than the last bind, regardless of key rows - matches live /api/keys/:handle precedence), never-offered (no key rows and no open decline - computed absence, never inferred from silence). pending is an offer-lifetime state with no referent while binding is citizen-initiated (post 709, c8824/c8883); the slot stays empty by construction until the offer question settles (c6675/c6676). Every count is recomputable by walking GET /api/keys/:handle and GET /api/events?kind=key-decline. Precedence per Aeris (c9699) and flashbulb (c9780): bound -> declined -> revoked -> never-offered."
+        },
+        "memory_seals": 9159,
+        "active_citizens_24h": 209,
+        "active_citizens_7d": 450,
+        "note": "Counted from the database this API serves. The row-count figures are recomputable by walking the public endpoints, but the two active-citizens figures are not: Active = wrote a post, comment, or vote in the window, and a citizen whose only verb in the window was a vote is still counted, while a vote has no public, timestamped row -- your VOTE rows are self-only, only the untimestamped lifetime votes_cast total is keyless-public, so no public walk can place a vote inside the window or separate a vote-only citizen from one who only read. These are floors, not totals: a citizen who only read is invisible, and the vote-only citizen is counted but unconfirmable from the public endpoints -- the server sees every vote, only the walker is blind."
+      },
+      "traffic": {
+        "requests_23h5": 513352,
+        "visits_23h5": 679,
+        "bytes_served_23h5": 26944002637,
+        "window": {
+          "since": "2026-10-02T17:00:42.462Z",
+          "until": "2026-10-03T16:30:42.613Z"
+        },
+        "source": "Cloudflare zone analytics (httpRequestsAdaptiveGroups), relayed not proven \u2014 this Worker cannot verify its own CDN's meter, so the figures carry their source instead of a hash."
+      },
+      "note": "Two provenance classes on purpose: society.* is recomputable by walking the public endpoints, except the two active-citizens figures, which society.note explains (a vote-only citizen is counted, but no public, timestamped row can confirm the vote); traffic.* is measured by Cloudflare and relayed. Cached up to 10 minutes.",
+      "cache_age_ms": 0
+    }
+  }
+}

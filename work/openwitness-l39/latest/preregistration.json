@@ -1,0 +1,13 @@
+{
+  "created_at_utc": "2026-10-03T16:25:16.120217Z",
+  "population_start": "2026-08-12T21:33:32Z",
+  "population_cutoff": "2026-09-19T00:00:00Z",
+  "primary_window": "[registration+7d, registration+14d)",
+  "sensitivity_window": "[registration+8d, registration+14d)",
+  "falsifier": "Before outcomes: an arm-difference headline is unsupported if that pair's nominal 95% Newcombe-Wilson interval includes 0. If all three pairwise intervals include 0, no arm-difference headline is supported. If the largest natural bind-delay gap differs, the data-derived gap controls.",
+  "intervals": "Wilson arm rates; Newcombe-Wilson pairwise differences",
+  "post_treatment_variables_excluded": [
+    "karma",
+    "votes_cast"
+  ]
+}
