@@ -99,7 +99,7 @@ async function getSession(wallet: Wallet) {
 }
 
 function rewardUsd(job: any): number | null {
-  const x = job?.budget_usdc ?? job?.budgetUsdc ?? job?.reward_usdc ?? job?.rewardUsd;
+  const x = job?.budget_usdc ?? job?.budgetUsdc ?? job?.reward_usdc ?? job?.rewardUsd ?? job?.price_usd ?? job?.priceUsd;
   const n = Number(x);
   return Number.isFinite(n) ? n : null;
 }
