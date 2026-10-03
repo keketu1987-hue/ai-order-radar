@@ -1,11 +1,11 @@
 {
-  "updated_at": "2026-10-04T06:46:28+08:00",
+  "updated_at": "2026-10-04T07:50:17+08:00",
   "rule": "Only count a channel as WRITEABLE_NOW when current connected tooling can legally submit and obtain a verifiable external receipt/ID without new payment, KYC, CAPTCHA, credential exposure, or safety-rule bypass. Stale snapshots are historical evidence only.",
   "channels": {
     "gmail_optin": {
       "status": "CONNECTED_TRANSPORT_NO_FRESH_SENT_THIS_HOUR",
-      "observed_window": "2026-10-04T06:00:00+08:00..2026-10-04T06:46:28+08:00",
-      "evidence": "Fresh Gmail recount: 0 Sent, 1 Inbox GitHub system notification, 0 DSN in current hour. The GitHub notification was labeled BOSS_AUTO_REPLY_NON_HUMAN.",
+      "observed_window": "2026-10-04T07:00:00+08:00..2026-10-04T07:50:17+08:00",
+      "evidence": "Fresh Gmail recount: 0 Sent, 1 Inbox GitHub system notification, 0 DSN in current hour. The GitHub notification was labeled BOSS_AUTO_REPLY_NON_HUMAN. Previous full hour 06:00..07:00 also had 0 Sent and 0 DSN; its GitHub system notification was already labeled non-human.",
       "use": "Explicit public opt-in application email and legitimate verified business threads only.",
       "limits": "Transport capability is separate from valid-money-action eligibility; permanent bounces, identity contamination/unverified identity, system/auto replies, self-tests, and frozen threads count 0."
     },
