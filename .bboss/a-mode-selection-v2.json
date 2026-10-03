@@ -9,24 +9,64 @@
   ],
   "exclude_from_primary_race": [
     "Non-cash task rewards or subscription credits.",
-    "Referral programs without a live referred buyer or near-term conversion event.",
+    "Referral or affiliate qualification enquiries without a live referred buyer, current conversion event, or already-earned commission.",
     "Generic roles with no current compensated trial evidence.",
-    "Destinations with a known permanent delivery failure."
+    "Destinations with a known permanent delivery failure.",
+    "Gmail threads missing any of BOSS_IDENTITY_CLEAN_TRUE, BOSS_BUSINESS_ACTION_ELIGIBLE_TRUE, BOSS_IDENTITY_SCOPE_THREAD_ONLY.",
+    "Any Gmail thread carrying BOSS_WRITE_SAFETY_BLOCKED_CURRENT, BOSS_IDENTITY_UNVERIFIED, BOSS_IDENTITY_CONTAMINATED or BOSS_PERM_BOUNCE.",
+    "Bounties whose advertised amount is not backed by current platform/maintainer funding evidence, or whose payout rail requires new spend before earning."
   ],
   "offer_and_cta": [
     "Prefer bounded deliverables with acceptance checks and a defined delivery window.",
     "Ask for the exact compensated scope, acceptance criteria and payment route when any are still missing.",
-    "For warm leads, use a new factual trigger and keep the unpaid proof smaller than the paid core."
+    "For warm leads, use a new factual trigger and keep the unpaid proof smaller than the paid core.",
+    "Do not send another follow-up to the same warm thread on the same day without a new human reply or a materially new buyer-controlled trigger."
   ],
+  "conversion_rescue": {
+    "resource_floor_pct_when_back_half_weak": 70,
+    "priority_order": [
+      "paid_customer_new_trigger",
+      "payment_ready",
+      "quoted",
+      "scope_locked",
+      "S_cash_lock",
+      "A_cash_lock",
+      "warm_human_reply",
+      "new_explicitly_funded_opportunity"
+    ],
+    "stop_condition": "Do not add generic first-touch volume while HUMAN_REPLY, SCOPE_LOCKED, PAYMENT_READY and COMPLETED remain weak and a valid near-cash pool exists.",
+    "affiliate_referral_volume_counts_as_success": false
+  },
+  "cash_lock_inventory": {
+    "target_S_or_A_unique_opportunities": 3,
+    "replenish_when_below_target": true,
+    "replenish_from": [
+      "LOST_MONEY_RECOVERY",
+      "DOWNTIME_EMERGENCY_SUPPLY",
+      "TRIGGER_COMMERCE",
+      "EXPIRING_CAPACITY",
+      "AI_INCIDENT_RESCUE",
+      "explicitly_funded_bounties_with_valid_payout_access"
+    ],
+    "requirements": [
+      "Money-in-motion is current and evidenced.",
+      "ONE_FRICTION is explicit.",
+      "ONE_HOP_TO_CASH is explicit.",
+      "The action channel is writable now.",
+      "No spend, identity, KYC, credential or safety fact is invented."
+    ]
+  },
   "next_sample": {
-    "explicit_compensation": 6,
-    "warm_triggered": 3,
-    "receipt_capable_fixed_scope": 3
+    "paid_warm_quoted_SA_near_cash_pct": 70,
+    "new_explicit_compensation_pct_max": 30,
+    "affiliate_referral_qualification_only": 0
   },
   "switch_rule": "If six delivered high-confidence actions produce zero buyer-controlled compensated next steps, change source or offer before sending another six.",
   "invariants": [
     "Keep existing P0 and S++ quality gates.",
     "Do not count a reply, interview, invitation, invoice, credit, voucher or payment notice as settled revenue.",
-    "Do not add paid tools, paid memberships or new KYC."
+    "Do not add paid tools, paid memberships or new KYC.",
+    "Only real external buyer/platform actions count as money work; configuration, research, scans and self-tests count as zero.",
+    "Never clear or overwrite identity/safety labels merely to make an opportunity count."
   ]
 }
