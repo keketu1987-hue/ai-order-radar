@@ -37,12 +37,13 @@ jobs:
                   matches.append({'script':u,'matches':ms[:80]})
           out={'page':page,'scripts':scripts,'matches':matches}
           open('.bboss/progsbase-discovery.json','w',encoding='utf-8').write(json.dumps(out,ensure_ascii=False,indent=2))
+          open('.bboss/progsbase-page.html','w',encoding='utf-8').write(html)
           PY
       - name: Record discovery
         shell: bash
         run: |
           git config user.email "keketu1987@gmail.com"
           git config user.name "B-Boss Executor"
-          git add .bboss/progsbase-discovery.json
+          git add .bboss/progsbase-discovery.json .bboss/progsbase-page.html
           git commit -m "chore: record Progsbase bounty data source" || exit 0
           git push
