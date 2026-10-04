@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmm5p2a5u000cjr04c6lnw14u",
-  "request_id": "toku-inspect-due-diligence-20261004-2020"
+  "action": "scan",
+  "request_id": "toku-scan-20261004-2029"
 }
