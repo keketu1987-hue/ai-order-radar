@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmm5zi4a6005al504uqutsvre",
-  "request_id": "toku-inspect-revenue-buyer-20261004-current"
+  "action": "scan",
+  "request_id": "toku-scan-20261004-2018"
 }
