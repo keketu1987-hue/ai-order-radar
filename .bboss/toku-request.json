@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmtx9iosk0001gm0aeq87jv7c",
-  "request_id": "toku-inspect-x402-orders-20261004-2118"
+  "action": "scan",
+  "request_id": "toku-scan-20261004-2138"
 }
