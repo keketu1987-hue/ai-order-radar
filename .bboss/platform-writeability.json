@@ -1,27 +1,30 @@
 {
-  "updated_at": "2026-10-04T21:42:12+08:00",
-  "rule": "Only count a channel as WRITEABLE_NOW when current connected tooling can legally submit and obtain a verifiable external receipt/ID without new payment, KYC, CAPTCHA, credential exposure, or safety-rule bypass. Stale snapshots are historical evidence only.",
+  "updated_at": "2026-10-05T02:57:22+08:00",
+  "rule": "Only count a channel as WRITEABLE_NOW when current connected tooling can legally submit and obtain a verifiable external receipt/ID without new payment, KYC, CAPTCHA, credential exposure, or safety-rule bypass. Channel transport evidence is separate from strict money-action eligibility. Relative 'current hour' facts must never be reused after their as_of window expires.",
   "channels": {
     "gmail_optin": {
-      "status": "CONNECTED_TRANSPORT_NO_FRESH_SENT_THIS_HOUR",
-      "observed_window": "2026-10-04T21:00:00+08:00..2026-10-04T21:42:12+08:00",
-      "previous_full_hour": "2026-10-04T20:00:00+08:00..2026-10-04T21:00:00+08:00",
-      "evidence": "Fresh Gmail recount: 0 Sent, 0 Inbox, 0 DSN in current hour; previous full hour also 0 Sent, 0 Inbox, 0 DSN. Triple-true identity intersection=75; conflicts with UNVERIFIED/CONTAMINATED/REVALIDATION=0. Two frozen threads contain 10 total messages and every message carries BOSS_WRITE_SAFETY_BLOCKED_CURRENT. BOSS_AUTO_REPLY_NON_HUMAN total=32; no current-hour message required a new label.",
-      "use": "Explicit public opt-in application email and legitimate verified business threads only.",
-      "limits": "Transport capability is separate from valid-money-action eligibility; permanent bounces, identity contamination/unverified identity, system/auto replies, self-tests, mechanical followups, and frozen threads count 0."
+      "status": "CONNECTED_TRANSPORT_NO_FRESH_MONEY_ACTION_RECEIPT",
+      "as_of": "2026-10-05T02:57:22+08:00",
+      "observed_window": "2026-10-05T02:00:00+08:00..2026-10-05T02:57:22+08:00",
+      "previous_full_hour": "2026-10-05T01:00:00+08:00..2026-10-05T01:59:59+08:00",
+      "evidence": "Fresh Gmail recount: current partial hour has 0 Sent and no human business Inbox; one temporary Delivery Status Notification (Delay) at 02:33 is system/non-human and not a permanent bounce. Previous full hour has 0 Sent and no human business Inbox; GitHub notification mail is system/non-human. Historical 2026-10-04 22:00-22:59 regression Sent IDs remain historical only and are not current action evidence.",
+      "use": "Only explicit public opt-in application email and legitimate existing business threads that pass the authoritative thread identity ledger in real time.",
+      "limits": "Transport capability is separate from valid-money-action eligibility; permanent bounces, identity contamination/unverified identity, system/auto replies, self-tests, mechanical followups, affiliate eligibility fallbacks, and frozen threads count 0."
     },
     "frantic": {
-      "status": "NO_FRESH_CURRENT_WRITE_RECEIPT",
+      "status": "NO_FRESH_ACCOUNT_WRITE_RECEIPT",
+      "as_of": "2026-10-05T02:57:22+08:00",
       "last_account_write_evidence_at": "2026-10-04T01:17:16+08:00",
-      "evidence": "Fresh repository audit through 21:42 found no newer Frantic account-specific claim/delivery receipt. .bboss/frantic-result.json remains action=netlify_probe, HTTP 404.",
+      "evidence": "Fresh repository audit found no newer account-specific claim/delivery receipt. .bboss/frantic-result.json still records action=netlify_probe with HTTP 404; public status/board or other-agent activity does not upgrade this account.",
       "use": "Do not classify READY from public status/board, other agents, old workflow success, or historical OIDC/Floot/token snapshots.",
       "limits": "Only a fresh account-specific claim/delivery external receipt may upgrade current writeability."
     },
     "github_own_repo": {
       "status": "AVAILABLE_CURRENT",
-      "evidence": "Authenticated account can read/write keketu1987-hue/ai-order-radar; current fact-ledger reads are successful.",
+      "as_of": "2026-10-05T02:57:22+08:00",
+      "evidence": "Authenticated account can read/write keketu1987-hue/ai-order-radar. Recent repository commits are executor/fact-ledger/inspection artifacts; they are internal evidence and count 0 as external money actions.",
       "use": "Owned artifact hosting, evidence, fixed workflows.",
-      "limits": "Does not imply fork/PR write access to external repos."
+      "limits": "Does not imply fork/PR/issue/comment write access to external repositories and does not itself prove a money action."
     },
     "lever": {
       "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
@@ -76,19 +79,19 @@
       "limits": "Do not recharge before cumulative real income >=US$100."
     },
     "bountybook": {
-      "status": "NO_FRESH_CURRENT_HOUR_WRITE_RECEIPT_TASKSET_BLOCKED",
-      "last_triage_at": "2026-10-04T18:41:30+08:00",
-      "evidence": "Latest repository result remains triage with total_open=124, sampled=24, viable=[], and code_test blocked because verifier/IPFS-fetch failures occur before substantive checks. No current-hour account-specific claim/submit receipt found.",
+      "status": "NO_FRESH_WRITE_RECEIPT_TASKSET_BLOCKED",
+      "as_of": "2026-10-05T02:57:22+08:00",
+      "evidence": "Latest .bboss/bountybook-result.json remains triage with total_open=124, sampled=24, viable=[], and code_test tasks blocked because verifier/IPFS-fetch failures occur before substantive checks. No fresh account-specific claim/submit receipt was found.",
       "use": "Read/triage only until a fresh viable task and legitimate write receipt exist.",
-      "limits": "Earlier claim/submit receipts remain historical proof that the channel has been writable, but are not a current-hour READY snapshot."
+      "limits": "Earlier claim/submit receipts are historical writeability proof only, not a current strict-money action."
     },
     "toku": {
-      "status": "WRITEABLE_PREVIOUSLY_VERIFIED_NO_FRESH_CURRENT_HOUR_RECEIPT",
-      "last_scan_at": "2026-10-04T21:41:15+08:00",
-      "last_inspect_at": "2026-10-04T21:42:34+08:00",
-      "evidence": "Current-hour Toku executor commits show scan/inspect activity through 21:42. Latest .bboss/toku-result.json is action=inspect for job cmm601bx600x5l504cosxfbrc; no current-hour account bid/submit external receipt is present. Historical bid receipts remain write evidence only.",
-      "use": "May be considered only when a fresh funded task is eligible and identity/safety gates pass.",
-      "limits": "Do not treat scans, inspections, repository commits, or historical receipts as current-hour money actions."
+      "status": "NO_FRESH_MONEY_ACTION_RECEIPT",
+      "as_of": "2026-10-05T02:57:22+08:00",
+      "last_result_at": "2026-10-05T01:36:40+08:00",
+      "evidence": "Latest .bboss/toku-result.json is action=inspect for OPEN job cmm60fshb0205l5041ptnt02q (DeFi research, $1-$3, bidCount=132). No bid/submit external receipt is present. The 01:36 repository commit only records inspection output and counts 0 as a money action.",
+      "use": "May be considered only when a fresh funded task passes identity, eligibility, spread, and action gates.",
+      "limits": "Scans, inspections, repository commits, and historical receipts are not current strict-money actions."
     }
   }
 }
