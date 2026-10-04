@@ -1,18 +1,18 @@
 {
-  "updated_at": "2026-10-04T09:48:05+08:00",
+  "updated_at": "2026-10-04T10:48:44+08:00",
   "rule": "Only count a channel as WRITEABLE_NOW when current connected tooling can legally submit and obtain a verifiable external receipt/ID without new payment, KYC, CAPTCHA, credential exposure, or safety-rule bypass. Stale snapshots are historical evidence only.",
   "channels": {
     "gmail_optin": {
       "status": "CONNECTED_TRANSPORT_NO_FRESH_SENT_THIS_HOUR",
-      "observed_window": "2026-10-04T09:00:00+08:00..2026-10-04T09:48:05+08:00",
-      "evidence": "Fresh Gmail recount: 0 Sent, 0 Inbox, 0 DSN in current hour. Previous full hour 08:00..09:00 also had 0 Sent and 0 Inbox. Identity true-label intersection=75; conflicts with UNVERIFIED/CONTAMINATED/REVALIDATION=0. Two frozen threads contain 10 total messages and every message carries BOSS_WRITE_SAFETY_BLOCKED_CURRENT.",
+      "observed_window": "2026-10-04T10:00:00+08:00..2026-10-04T10:48:44+08:00",
+      "evidence": "Fresh Gmail recount: 0 Sent, 0 Inbox, 0 DSN in current hour. Previous full hour 09:00..10:00 also had 0 Sent, 0 Inbox, 0 DSN. Identity true-label intersection=75; conflicts with UNVERIFIED/CONTAMINATED/REVALIDATION=0. Two frozen threads contain 10 total messages and every message carries BOSS_WRITE_SAFETY_BLOCKED_CURRENT. BOSS_AUTO_REPLY_NON_HUMAN total=27; no current-hour message required a new label.",
       "use": "Explicit public opt-in application email and legitimate verified business threads only.",
       "limits": "Transport capability is separate from valid-money-action eligibility; permanent bounces, identity contamination/unverified identity, system/auto replies, self-tests, and frozen threads count 0."
     },
     "frantic": {
       "status": "NO_FRESH_CURRENT_WRITE_RECEIPT",
-      "last_account_write_evidence_at": "2026-10-04T01:17:09+08:00",
-      "evidence": "Fresh repository audit through 09:48 found no newer Frantic account-specific claim/delivery receipt. Latest repository-recorded Frantic bridge probe remains HTTP 404.",
+      "last_account_write_evidence_at": "2026-10-04T01:17:16+08:00",
+      "evidence": "Fresh repository audit through 10:48 found no newer Frantic account-specific claim/delivery receipt. Latest Frantic result commit remains 2026-10-04 01:17:16+08:00 and .bboss/frantic-result.json remains a netlify_probe HTTP 404.",
       "use": "Do not classify READY from public status/board, other agents, old workflow success, or historical OIDC/Floot/token snapshots.",
       "limits": "Only a fresh account-specific claim/delivery external receipt may upgrade current writeability."
     },
@@ -25,26 +25,41 @@
     "lever": {
       "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
       "evidence": "Lever Postings API application POST requires site API key.",
-      "fallback": ["hosted application form","explicit public application email"]
+      "fallback": [
+        "hosted application form",
+        "explicit public application email"
+      ]
     },
     "greenhouse": {
       "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
       "evidence": "Greenhouse Job Board POST submit application requires API key.",
-      "fallback": ["Greenhouse hosted application form","explicit public application email"]
+      "fallback": [
+        "Greenhouse hosted application form",
+        "explicit public application email"
+      ]
     },
     "ashby": {
       "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
       "evidence": "applicationForm.submit requires candidatesWrite permission.",
-      "fallback": ["Ashby hosted application form","explicit public application email"]
+      "fallback": [
+        "Ashby hosted application form",
+        "explicit public application email"
+      ]
     },
     "workable": {
       "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
       "evidence": "Workable API requires API token for account write/API use.",
-      "fallback": ["hosted application form","explicit public application email"]
+      "fallback": [
+        "hosted application form",
+        "explicit public application email"
+      ]
     },
     "freelancer": {
       "status": "NO_NATIVE_CONNECTOR_CURRENT",
-      "fallback": ["connected browser only","client invite/message via Gmail if legitimate"],
+      "fallback": [
+        "connected browser only",
+        "client invite/message via Gmail if legitimate"
+      ],
       "limits": "No new paid bids/membership/KYC."
     },
     "upwork": {
@@ -61,17 +76,17 @@
     },
     "bountybook": {
       "status": "NO_FRESH_CURRENT_HOUR_WRITE_RECEIPT_TASKSET_BLOCKED",
-      "last_triage_at": "2026-10-04T02:22:28+08:00",
-      "evidence": "Fresh repository audit through 09:48 found no newer BountyBook claim/submit receipt. Latest triage remains 125 open, sampled 25, viable=[], with code_test blocked due verifier/IPFS-fetch failures.",
+      "last_triage_at": "2026-10-04T02:23:08+08:00",
+      "evidence": "Fresh repository audit through 10:48 found no newer BountyBook claim/submit receipt. Latest BountyBook result commit remains 2026-10-04 02:23:08+08:00; current triage is 125 open, sampled 25, viable=[], with code_test blocked due verifier/IPFS-fetch failures.",
       "use": "Read/triage only until a fresh viable task and legitimate write receipt exist.",
       "limits": "Earlier claim/submit receipts remain historical proof that the channel has been writable, but are not a current-hour READY snapshot."
     },
     "toku": {
       "status": "WRITEABLE_PREVIOUSLY_VERIFIED_NO_FRESH_CURRENT_HOUR_RECEIPT",
-      "last_inspect_at": "2026-10-04T08:58:47+08:00",
-      "evidence": "Previous full hour had fresh Toku inspections through 08:58, including open buyer-funded tasks, but commit audit found no new bid commit in 08:00..09:00 or current 09:00 hour. Earlier bid receipts remain historical write evidence only.",
+      "evidence": "Fresh current-hour Toku executor scan completed at 10:31:58+08:00 with action=scan, total=349 and buyer_viable_count=66. The fresh result contains no account bid/submit external receipt; earlier bid receipts remain historical write evidence only.",
       "use": "May be considered only when a fresh funded task is eligible and identity/safety gates pass.",
-      "limits": "Do not treat scans/inspections or historical receipts as current-hour money actions."
+      "limits": "Do not treat scans/inspections or historical receipts as current-hour money actions.",
+      "last_scan_at": "2026-10-04T10:31:58+08:00"
     }
   }
 }
