@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmox4fb0v000vjy04suy5b856",
-  "request_id": "inspect-20261004T1530+0800-video-buyer"
+  "action": "scan",
+  "request_id": "scan-20261004T1544+0800-zero-action-breaker"
 }
