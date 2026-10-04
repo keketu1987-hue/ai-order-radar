@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmtqbjykm0001gm0a8e1w542b",
-  "request_id": "toku-inspect-marketplace-analysis-20261004-2032"
+  "action": "scan",
+  "request_id": "toku-scan-20261004-2035b"
 }
