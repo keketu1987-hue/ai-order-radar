@@ -1,4 +1,5 @@
 {
-  "action": "scan",
-  "request_id": "boss-scan-20261004T1303+0800"
+  "action": "inspect",
+  "job_id": "cmm5p2a5u000cjr04c6lnw14u",
+  "request_id": "inspect-cmm5p2a5u-20261004T1306+0800"
 }
