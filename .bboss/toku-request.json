@@ -1,4 +1,5 @@
 {
-  "action": "scan",
-  "request_id": "toku-scan-20261004-2219"
+  "action": "inspect",
+  "job_id": "cmm5v7jbv01aql1047od1kplr",
+  "request_id": "inspect-competitive-analysis-2219"
 }
