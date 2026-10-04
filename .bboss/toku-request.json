@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmmczz86v00fdjj041qj4o0sn",
-  "request_id": "hourly-inspect-protocol-20261004T0857+0800"
+  "action": "scan",
+  "request_id": "scan-20261004-1033"
 }
