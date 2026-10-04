@@ -1,65 +1,50 @@
 {
-  "updated_at": "2026-10-04T07:50:17+08:00",
+  "updated_at": "2026-10-04T09:48:05+08:00",
   "rule": "Only count a channel as WRITEABLE_NOW when current connected tooling can legally submit and obtain a verifiable external receipt/ID without new payment, KYC, CAPTCHA, credential exposure, or safety-rule bypass. Stale snapshots are historical evidence only.",
   "channels": {
     "gmail_optin": {
       "status": "CONNECTED_TRANSPORT_NO_FRESH_SENT_THIS_HOUR",
-      "observed_window": "2026-10-04T07:00:00+08:00..2026-10-04T07:50:17+08:00",
-      "evidence": "Fresh Gmail recount: 0 Sent, 1 Inbox GitHub system notification, 0 DSN in current hour. The GitHub notification was labeled BOSS_AUTO_REPLY_NON_HUMAN. Previous full hour 06:00..07:00 also had 0 Sent and 0 DSN; its GitHub system notification was already labeled non-human.",
+      "observed_window": "2026-10-04T09:00:00+08:00..2026-10-04T09:48:05+08:00",
+      "evidence": "Fresh Gmail recount: 0 Sent, 0 Inbox, 0 DSN in current hour. Previous full hour 08:00..09:00 also had 0 Sent and 0 Inbox. Identity true-label intersection=75; conflicts with UNVERIFIED/CONTAMINATED/REVALIDATION=0. Two frozen threads contain 10 total messages and every message carries BOSS_WRITE_SAFETY_BLOCKED_CURRENT.",
       "use": "Explicit public opt-in application email and legitimate verified business threads only.",
       "limits": "Transport capability is separate from valid-money-action eligibility; permanent bounces, identity contamination/unverified identity, system/auto replies, self-tests, and frozen threads count 0."
     },
     "frantic": {
       "status": "NO_FRESH_CURRENT_WRITE_RECEIPT",
       "last_account_write_evidence_at": "2026-10-04T01:17:09+08:00",
-      "evidence": "Latest repository-recorded Frantic bridge probe returned HTTP 404; no newer account-specific claim/delivery external ID was found in the fresh repository audit.",
-      "use": "Do not classify READY from public status/board, other agents, or old workflow success.",
-      "limits": "Only a fresh account-specific claim/delivery receipt may upgrade current writeability. Historical OIDC/Floot/token states are not reused as current facts."
+      "evidence": "Fresh repository audit through 09:48 found no newer Frantic account-specific claim/delivery receipt. Latest repository-recorded Frantic bridge probe remains HTTP 404.",
+      "use": "Do not classify READY from public status/board, other agents, old workflow success, or historical OIDC/Floot/token snapshots.",
+      "limits": "Only a fresh account-specific claim/delivery external receipt may upgrade current writeability."
     },
     "github_own_repo": {
       "status": "AVAILABLE_CURRENT",
-      "evidence": "Authenticated account has admin/push on keketu1987-hue/ai-order-radar; Actions runs execute.",
+      "evidence": "Authenticated account can read/write keketu1987-hue/ai-order-radar; current fact-ledger reads are successful.",
       "use": "Owned artifact hosting, evidence, fixed workflows.",
       "limits": "Does not imply fork/PR write access to external repos."
     },
     "lever": {
       "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
       "evidence": "Lever Postings API application POST requires site API key.",
-      "fallback": [
-        "hosted application form",
-        "explicit public application email"
-      ]
+      "fallback": ["hosted application form","explicit public application email"]
     },
     "greenhouse": {
       "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
       "evidence": "Greenhouse Job Board POST submit application requires API key.",
-      "fallback": [
-        "Greenhouse hosted application form",
-        "explicit public application email"
-      ]
+      "fallback": ["Greenhouse hosted application form","explicit public application email"]
     },
     "ashby": {
       "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
       "evidence": "applicationForm.submit requires candidatesWrite permission.",
-      "fallback": [
-        "Ashby hosted application form",
-        "explicit public application email"
-      ]
+      "fallback": ["Ashby hosted application form","explicit public application email"]
     },
     "workable": {
       "status": "NO_CREDENTIAL_FREE_APPLICATION_API",
       "evidence": "Workable API requires API token for account write/API use.",
-      "fallback": [
-        "hosted application form",
-        "explicit public application email"
-      ]
+      "fallback": ["hosted application form","explicit public application email"]
     },
     "freelancer": {
       "status": "NO_NATIVE_CONNECTOR_CURRENT",
-      "fallback": [
-        "connected browser only",
-        "client invite/message via Gmail if legitimate"
-      ],
+      "fallback": ["connected browser only","client invite/message via Gmail if legitimate"],
       "limits": "No new paid bids/membership/KYC."
     },
     "upwork": {
@@ -77,16 +62,16 @@
     "bountybook": {
       "status": "NO_FRESH_CURRENT_HOUR_WRITE_RECEIPT_TASKSET_BLOCKED",
       "last_triage_at": "2026-10-04T02:22:28+08:00",
-      "evidence": "Latest repository triage recorded 125 open, sampled 25, viable=[], with code_test blocked due verifier/IPFS-fetch failures. No newer current-hour claim/submit receipt found.",
+      "evidence": "Fresh repository audit through 09:48 found no newer BountyBook claim/submit receipt. Latest triage remains 125 open, sampled 25, viable=[], with code_test blocked due verifier/IPFS-fetch failures.",
       "use": "Read/triage only until a fresh viable task and legitimate write receipt exist.",
       "limits": "Earlier claim/submit receipts remain historical proof that the channel has been writable, but are not a current-hour READY snapshot."
     },
     "toku": {
       "status": "WRITEABLE_PREVIOUSLY_VERIFIED_NO_FRESH_CURRENT_HOUR_RECEIPT",
-      "last_scan_at": "2026-10-04T04:14:25+08:00",
-      "evidence": "Latest repository scan recorded total=348 and buyer_viable_count=66. Earlier bid receipts are historical write evidence; no new current-hour receipt was found.",
+      "last_inspect_at": "2026-10-04T08:58:47+08:00",
+      "evidence": "Previous full hour had fresh Toku inspections through 08:58, including open buyer-funded tasks, but commit audit found no new bid commit in 08:00..09:00 or current 09:00 hour. Earlier bid receipts remain historical write evidence only.",
       "use": "May be considered only when a fresh funded task is eligible and identity/safety gates pass.",
-      "limits": "Do not treat scans or historical receipts as current-hour money actions."
+      "limits": "Do not treat scans/inspections or historical receipts as current-hour money actions."
     }
   }
 }
