@@ -1,24 +1,10 @@
 {
   "ok": true,
   "action": "triage",
-  "total_open": 125,
-  "sampled": 25,
+  "total_open": 124,
+  "sampled": 24,
   "viable": [],
   "blocked_code_test": [
-    {
-      "id": "aae57a60-95bd-48ed-8645-10dfda1b8e0a",
-      "title": "Build markdown_table.py with render_table function to convert dicts to Markdown ",
-      "job_type": "code",
-      "budget_usdc": "3.00",
-      "estimated_minutes": 15,
-      "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 25,
-      "payout_status": "none",
-      "payout_tx_hash": null,
-      "spread_per_hour": 12
-    },
     {
       "id": "01f7ea51-9dbb-40d1-8806-8a7266e4483a",
       "title": "Build extract_products.py parser for HTML product listings to JSON",
@@ -42,7 +28,7 @@
       "status": "open",
       "success_type": "code_test",
       "passed_attempts": 0,
-      "ipfs_fetch_failures": 1504,
+      "ipfs_fetch_failures": 1505,
       "payout_status": "none",
       "payout_tx_hash": null,
       "spread_per_hour": 12
@@ -56,7 +42,7 @@
       "status": "open",
       "success_type": "code_test",
       "passed_attempts": 0,
-      "ipfs_fetch_failures": 3292,
+      "ipfs_fetch_failures": 3320,
       "payout_status": "none",
       "payout_tx_hash": null,
       "spread_per_hour": 12
@@ -84,7 +70,7 @@
       "status": "open",
       "success_type": "code_test",
       "passed_attempts": 0,
-      "ipfs_fetch_failures": 1681,
+      "ipfs_fetch_failures": 1682,
       "payout_status": "none",
       "payout_tx_hash": null,
       "spread_per_hour": 10
