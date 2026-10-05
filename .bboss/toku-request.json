@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmtx9iosk0001gm0aeq87jv7c",
-  "request_id": "radar-20261005T1711+08"
+  "action": "scan",
+  "request_id": "bboss-20261005T1722+08-scan"
 }
