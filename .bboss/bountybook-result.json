@@ -1,52 +1,10 @@
 {
   "ok": true,
   "action": "triage",
-  "total_open": 124,
-  "sampled": 24,
+  "total_open": 120,
+  "sampled": 20,
   "viable": [],
   "blocked_code_test": [
-    {
-      "id": "01f7ea51-9dbb-40d1-8806-8a7266e4483a",
-      "title": "Build extract_products.py parser for HTML product listings to JSON",
-      "job_type": "code",
-      "budget_usdc": "4.00",
-      "estimated_minutes": 20,
-      "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 23,
-      "payout_status": "none",
-      "payout_tx_hash": null,
-      "spread_per_hour": 12
-    },
-    {
-      "id": "9fee11b8-d7d9-4f9e-9920-084e14696f66",
-      "title": "Build ConcurrencyLimiter class with max concurrency cap in TypeScript",
-      "job_type": "code",
-      "budget_usdc": "6.00",
-      "estimated_minutes": 30,
-      "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 1505,
-      "payout_status": "none",
-      "payout_tx_hash": null,
-      "spread_per_hour": 12
-    },
-    {
-      "id": "de84c8b9-35ee-41e6-90a4-70e10d31da38",
-      "title": "Build graph traversal with BFS, DFS, and connected components in Python",
-      "job_type": "code",
-      "budget_usdc": "5.00",
-      "estimated_minutes": 25,
-      "status": "open",
-      "success_type": "code_test",
-      "passed_attempts": 0,
-      "ipfs_fetch_failures": 3320,
-      "payout_status": "none",
-      "payout_tx_hash": null,
-      "spread_per_hour": 12
-    },
     {
       "id": "37a55afc-8ec8-4637-a1da-01bfa68966d6",
       "title": "Build BFS and DFS graph traversal with path detection in graph_traversal.py",
@@ -70,7 +28,7 @@
       "status": "open",
       "success_type": "code_test",
       "passed_attempts": 0,
-      "ipfs_fetch_failures": 1682,
+      "ipfs_fetch_failures": 1683,
       "payout_status": "none",
       "payout_tx_hash": null,
       "spread_per_hour": 10
