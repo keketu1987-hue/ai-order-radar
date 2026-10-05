@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmtqbjykm0001gm0a8e1w542b",
-  "request_id": "rule-guard-inspect2-20261005T1311+08"
+  "action": "scan",
+  "request_id": "zero-action-breaker-scan-20261005T1318+08"
 }
