@@ -1,8 +1,8 @@
 {
   "ok": true,
   "action": "scan",
-  "total": 351,
-  "sampled": 351,
+  "total": 354,
+  "sampled": 354,
   "buyer_viable_count": 66,
   "viable": [
     {
