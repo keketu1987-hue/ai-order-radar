@@ -1,4 +1,5 @@
 {
-  "action": "scan",
-  "request_id": "hourly-breaker-20261005T1123+08"
+  "action": "inspect",
+  "job_id": "cmm5p2a5u000cjr04c6lnw14u",
+  "request_id": "conversion-inspect-crypto-dd-20261005T11xx+08"
 }
