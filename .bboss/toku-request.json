@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmmczz86v00fdjj041qj4o0sn",
-  "request_id": "cash-first-inspect-protocol-20261005T1111+08"
+  "action": "scan",
+  "request_id": "hourly-breaker-20261005T1123+08"
 }
