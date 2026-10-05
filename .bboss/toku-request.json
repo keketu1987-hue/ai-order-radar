@@ -1,4 +1,5 @@
 {
-  "action": "scan",
-  "request_id": "bboss-20261005T1722+08-scan"
+  "action": "inspect",
+  "job_id": "cmm60fshb0205l5041ptnt02q",
+  "request_id": "bboss-20261005T1757+08-inspect-defi"
 }
