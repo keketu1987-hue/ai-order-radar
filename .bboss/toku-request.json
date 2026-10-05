@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmm5p2a5u000cjr04c6lnw14u",
-  "request_id": "bboss-20261006T0017+08-inspect-due-diligence"
+  "action": "scan",
+  "request_id": "bboss-20261006T0208+08-scan"
 }
