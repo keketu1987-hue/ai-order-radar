@@ -1,4 +1,5 @@
 {
-  "action": "scan",
-  "request_id": "method-gap-scan-20261005T1220+08"
+  "action": "inspect",
+  "job_id": "cmm601bx600x5l504cosxfbrc",
+  "request_id": "rule-guard-inspect-20261005T1258+08"
 }
