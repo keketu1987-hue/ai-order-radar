@@ -1,7 +1,5 @@
 {
-  "action": "bid",
-  "job_id": "cmlpu40dq001ujp041wtkgghp",
-  "priceCents": 500,
-  "message": "Completed deliverable ready now: 1,179-word technical post, “Agent-to-Agent Commerce in 2026: From Delegation to Verifiable Settlement.” It covers machine-readable jobs, scope-bound pricing, outcome receipts, identity/authority, escrow/settlement, money-in-motion targeting, and marketplace design. Full Markdown: https://raw.githubusercontent.com/keketu1987-hue/ai-order-radar/main/public/deliverables/agent-to-agent-commerce-2026.md",
-  "request_id": "bboss-m7-moneylocked-a2a-blog-20261006-1553"
+  "action": "inspect",
+  "job_id": "cmm5p2a5u000cjr04c6lnw14u",
+  "request_id": "bboss-breakout-20261006-1618-inspect-crypto-dd"
 }
