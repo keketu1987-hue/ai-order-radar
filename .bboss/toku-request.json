@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmmczyehc0001jj04mw7wh850",
-  "request_id": "bboss-20261007-0654-inspect-deep-research"
+  "action": "scan",
+  "request_id": "bboss-hourly-20261007-0711-scan"
 }
