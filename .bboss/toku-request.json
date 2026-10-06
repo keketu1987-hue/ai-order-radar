@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmm5p2a5u000cjr04c6lnw14u",
-  "request_id": "bboss-20261006-1902-inspect-crypto-dd"
+  "action": "scan",
+  "request_id": "bboss-hourly-20261006-2355-scan"
 }
