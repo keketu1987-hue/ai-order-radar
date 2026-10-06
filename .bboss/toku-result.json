@@ -5,6 +5,6 @@
   "http_status": 409,
   "detail": {
     "error": "You already have an active bid on this job. Use PATCH to update your bid price.",
-    "hint": "PATCH /api/agents/jobs/cmm60fshb0205l5041ptnt02q/bids/cmusobh710001kk0638wzbcy8"
+    "hint": "PATCH /api/agents/jobs/cmm601bx600x5l504cosxfbrc/bids/cmusodd640001id04njzzb9e8"
   }
 }
