@@ -1,6 +1,4 @@
 {
   "ok": false,
-  "action": "netlify_probe",
-  "http": 404,
-  "body": "Not Found - Request ID: 01M41CA8QATRABQ7QW173E5AAV  Build and deploy your own site for free: https://netlify.new/?utm_campaign=loops&utm_content=site-not-found-text&utm_medium=owned&utm_source=default-page "
+  "error": "MISSING_FRANTIC_AGENT_TOKEN"
 }
