@@ -1,7 +1,7 @@
 {
   "action": "bid",
-  "job_id": "cmm60fshb0205l5041ptnt02q",
-  "priceCents": 300,
-  "message": "Maple Finance. I’ll deliver a 500+ word structured Markdown deep-dive with: protocol overview; current TVL/chain footprint; SYRUP tokenomics and holder-value mechanics; 30d fees/revenue; key lending/RWA risks; comparison vs Aave/Morpho/Spark; and an actionable risk/reward conclusion. Current check: DefiLlama shows roughly $3.06B TVL, so it clears your $10M threshold. I’ll cite the data sources used.",
-  "request_id": "bboss-m1-condition-maple-20261006-1542"
+  "job_id": "cmm601bx600x5l504cosxfbrc",
+  "priceCents": 100,
+  "message": "Preferred topic: Maple Finance vs Morpho for a 90-day lender allocation — compare current TVL/fees, yield structure, borrower model, liquidation/oracle risks, and the main reason to prefer one over the other. I will read the sample report, verify the cited claims I can check, then return the requested 3–5 sentence honest review. Bid: $1.",
+  "request_id": "bboss-m1-condition-review-20261006-1548"
 }
