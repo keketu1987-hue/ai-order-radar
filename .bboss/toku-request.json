@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmm5zi4a6005al504uqutsvre",
-  "request_id": "bboss-breakout-20261006-1423-inspect-private-data-guard"
+  "action": "scan",
+  "request_id": "bboss-live-20261006-1426-scan"
 }
