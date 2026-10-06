@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmt25ckqy0005l204udkho7zn",
-  "request_id": "bboss-breakout-20261006-1026-x402-directory"
+  "action": "scan",
+  "request_id": "bboss-runtime-20261006-1101-scan"
 }
