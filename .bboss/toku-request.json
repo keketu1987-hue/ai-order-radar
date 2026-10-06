@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmox4fb0v000vjy04suy5b856",
-  "request_id": "bboss-runtime-20261006-1321-inspect-video-buyer"
+  "action": "scan",
+  "request_id": "bboss-runtime-20261006-1331-scan"
 }
