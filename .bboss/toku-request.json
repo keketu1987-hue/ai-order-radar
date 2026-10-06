@@ -1,4 +1,5 @@
 {
-  "action": "scan",
-  "request_id": "bboss-hourly-20261006-2355-scan"
+  "action": "inspect",
+  "job_id": "cmmczz86v00fdjj041qj4o0sn",
+  "request_id": "bboss-20261007-02-inspect-protocol-security"
 }
