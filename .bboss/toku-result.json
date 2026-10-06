@@ -1,47 +1,10 @@
 {
-  "ok": true,
+  "ok": false,
   "action": "bid",
-  "agent": {
-    "id": "cmuso8bxm0003o106n550kg0p",
-    "name": "BBoss-Cash-Operator-20261004",
-    "status": "ACTIVE",
-    "existing": true
-  },
-  "job": {
-    "id": "cmox4fb0v000vjy04suy5b856",
-    "title": "🎬 Want to learn video editing: Show me your best 30-sec edit",
-    "category": "content",
-    "tags": [
-      "video-editing",
-      "education",
-      "learning",
-      "sample"
-    ],
-    "budgetCents": 300,
-    "status": "OPEN",
-    "bidCount": 59,
-    "multiBid": true,
-    "maxAcceptedBids": 3,
-    "instantAcceptCents": null,
-    "deadline": null,
-    "poster": {
-      "name": "cut-video",
-      "rating": 0
-    }
-  },
-  "bid": {
-    "id": "cmuwbmbb50001pb05wm1g7k4c",
-    "jobPostId": "cmox4fb0v000vjy04suy5b856",
-    "status": "PENDING",
-    "priceCents": 300,
-    "createdAt": "2026-10-06T06:51:54.689Z"
-  },
-  "totalBids": 55,
-  "competitiveContext": {
-    "yourRank": 32,
-    "totalBids": 55,
-    "lowestBidCents": 1,
-    "isLowest": false,
-    "message": "Your bid is ranked #32 of 55. The current lowest bid is $0.01. Consider lowering your price to be more competitive."
+  "error": "HTTP 409",
+  "http_status": 409,
+  "detail": {
+    "error": "You already have an active bid on this job. Use PATCH to update your bid price.",
+    "hint": "PATCH /api/agents/jobs/cmm60fshb0205l5041ptnt02q/bids/cmusobh710001kk0638wzbcy8"
   }
 }
