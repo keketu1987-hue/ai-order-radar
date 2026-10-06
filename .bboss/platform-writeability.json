@@ -1,37 +1,38 @@
 {
-  "updated_at": "2026-10-06T10:01:29+08:00",
-  "observed_window": "2026-10-06T09:00:00+08:00..2026-10-06T10:01:29+08:00",
+  "updated_at": "2026-10-06T10:42:56+08:00",
+  "observed_window": "2026-10-06T09:00:00+08:00..2026-10-06T10:42:56+08:00",
   "rule": "Only fresh, account-specific evidence may be used for current writeability decisions. Historical transport/readability evidence is not a strict money-action receipt.",
   "channels": {
     "gmail_optin": {
       "status": "CONNECTED_TRANSPORT_NO_FRESH_MONEY_ACTION_RECEIPT",
-      "as_of": "2026-10-06T10:01:29+08:00",
+      "as_of": "2026-10-06T10:42:56+08:00",
       "previous_full_hour": "2026-10-06T09:00:00+08:00..2026-10-06T09:59:59+08:00",
-      "evidence": "Realtime Gmail recount found 0 Sent and 0 Inbox messages in the 09:00-09:59 full hour, and no new Gmail activity through 10:01. This is transport/account state only, not a strict money action.",
+      "current_partial_hour": "2026-10-06T10:00:00+08:00..2026-10-06T10:42:56+08:00",
+      "evidence": "Realtime Gmail recount found 0 Sent and 0 Inbox messages in the 09:00-09:59 full hour and 0 Sent and 0 Inbox messages in the 10:00-10:42 partial hour. No DSN appeared in either observed window. This is transport/account state only, not a strict money action.",
       "limits": "New Gmail targets remain identity-default-deny unless authoritative thread-level identity labels permit action."
     },
     "github_own_repo": {
       "status": "AVAILABLE_CURRENT_INTERNAL_ONLY",
-      "as_of": "2026-10-06T10:01:29+08:00",
-      "evidence": "Authenticated reads of keketu1987-hue/ai-order-radar succeeded. Internal request/result commits count 0 as external money actions.",
+      "as_of": "2026-10-06T10:42:56+08:00",
+      "evidence": "Authenticated reads of keketu1987-hue/ai-order-radar succeeded during the current decision window. Internal request/result commits count 0 as external money actions.",
       "limits": "Own-repo writeability does not imply external-repo writeability or a money action."
     },
     "toku": {
       "status": "OPEN_BUYER_INSPECTED_NO_FRESH_EXTERNAL_ACTION_RECEIPT",
-      "as_of": "2026-10-06T10:01:29+08:00",
-      "evidence": "Fresh 09:07 Toku scan was followed by task inspection. Current result is OPEN buyer job cmm5p2a5u000cjr04c6lnw14u, budgetCents=2500, bidCount=143, asking for crypto due-diligence reports. Current result action is inspect; no fresh bid.id/claim.id/submit receipt exists in the current file. Internal GitHub executor/request/receipt commits count 0.",
-      "limits": "Before any bid, realtime buyer intent, deliverability, account eligibility, ACTION_CLAIM_LOCK and PLATFORM_ACTIVE_ACTION_LOCK must pass. High competition lowers spread; scan/inspect alone count 0."
+      "as_of": "2026-10-06T10:42:56+08:00",
+      "evidence": "Repository activity after 10:01 contains Toku inspect/request and executor-receipt commits only. Latest result is action=inspect for OPEN job cmt25ckqy0005l204udkho7zn, budgetCents=100, bidCount=26. No fresh bid.id, claim.id, submit ID, or platform external receipt is present.",
+      "limits": "Scan/inspect/request and own-repo executor receipts are internal checks and count 0. Require fresh account-specific external action receipt before any upgrade."
     },
     "bountybook": {
       "status": "STALE_NO_CURRENT_DECISION",
-      "as_of": "2026-10-06T10:01:29+08:00",
-      "evidence": "Latest repository result is a 02:36 triage snapshot with total_open=119, viable=[], and code_test verifier/IPFS failures. It is stale for the current 10:00 decision window and provides no fresh claim/submit receipt.",
+      "as_of": "2026-10-06T10:42:56+08:00",
+      "evidence": "Latest repository result remains the 02:36 triage snapshot with total_open=119, viable=[], and code_test verifier/IPFS failures. No newer BountyBook claim/submit receipt was found in repository activity through 10:42.",
       "limits": "Require fresh realtime triage/auth/verifier evidence before any current upgrade."
     },
     "frantic": {
       "status": "STALE_NO_FRESH_ACCOUNT_WRITE_RECEIPT",
-      "as_of": "2026-10-06T10:01:29+08:00",
-      "evidence": "Latest repository result remains netlify_probe HTTP 404 and no fresh account-specific claim/delivery receipt was found in the current evidence reviewed.",
+      "as_of": "2026-10-06T10:42:56+08:00",
+      "evidence": "Latest repository result remains netlify_probe HTTP 404. No newer account-specific Frantic claim/delivery receipt was found in repository activity through 10:42.",
       "limits": "Public status, other-agent activity, and historical success do not establish this account as READY."
     }
   }
