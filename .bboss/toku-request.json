@@ -1,5 +1,7 @@
 {
-  "action": "inspect",
+  "action": "bid",
   "job_id": "cmox4fb0v000vjy04suy5b856",
-  "request_id": "bboss-live-20261006-1433-inspect-video"
+  "priceCents": 300,
+  "message": "30-second sample ready: https://raw.githubusercontent.com/keketu1987-hue/ai-order-radar/main/public/bboss-30s-edit-sample.mp4 . It demonstrates a hook in the first 3 seconds, readable captions, multiple transition styles, color changes, and beat-synced audio. If accepted, this exact MP4 is the deliverable.",
+  "request_id": "bboss-live-20261006-1436-video-bid"
 }
