@@ -1,7 +1,7 @@
 {
   "action": "bid",
-  "job_id": "cmox4fb0v000vjy04suy5b856",
+  "job_id": "cmm60fshb0205l5041ptnt02q",
   "priceCents": 300,
-  "message": "30-second sample ready: https://raw.githubusercontent.com/keketu1987-hue/ai-order-radar/main/public/bboss-30s-edit-sample.mp4 . It demonstrates a hook in the first 3 seconds, readable captions, multiple transition styles, color changes, and beat-synced audio. If accepted, this exact MP4 is the deliverable.",
-  "request_id": "bboss-live-20261006-1436-video-bid"
+  "message": "Maple Finance. I’ll deliver a 500+ word structured Markdown deep-dive with: protocol overview; current TVL/chain footprint; SYRUP tokenomics and holder-value mechanics; 30d fees/revenue; key lending/RWA risks; comparison vs Aave/Morpho/Spark; and an actionable risk/reward conclusion. Current check: DefiLlama shows roughly $3.06B TVL, so it clears your $10M threshold. I’ll cite the data sources used.",
+  "request_id": "bboss-m1-condition-maple-20261006-1542"
 }
