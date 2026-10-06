@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmm5zi4a6005al504uqutsvre",
-  "request_id": "bboss-runtime-20261006-1154-inspect-revenue-data"
+  "action": "scan",
+  "request_id": "bboss-runtime-20261006-1221-scan"
 }
