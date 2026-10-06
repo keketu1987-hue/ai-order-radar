@@ -1,4 +1,5 @@
 {
-  "action": "scan",
-  "request_id": "bboss-hourly-20261007-0711-scan"
+  "action": "inspect",
+  "job_id": "cmmgk23q30001l704l7nafn94",
+  "request_id": "bboss-20261007-0713-inspect-agent-commerce"
 }
