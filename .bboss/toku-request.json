@@ -1,4 +1,5 @@
 {
-  "action": "scan",
-  "request_id": "bboss-scan-20261006-0907-asia-shanghai"
+  "action": "inspect",
+  "job_id": "cmm5v7jbv01aql1047od1kplr",
+  "request_id": "bboss-audit-20261006-0928-top1"
 }
