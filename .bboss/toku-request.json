@@ -1,4 +1,20 @@
 {
   "action": "scan",
-  "request_id": "bboss-20261007-1818-breaker-scan-after-diversification"
+  "request_id": "bboss-20261008-0006-recovery-scan",
+  "diversification_proof": [
+    {
+      "source": "Frantic",
+      "industry": "agent bounty marketplace",
+      "target_ref": "https://gofrantic.com/bounties/120",
+      "evidence_time": "2026-10-08T00:05:30+08:00",
+      "evidence_type": "live_funded_open_bounty"
+    },
+    {
+      "source": "Opire",
+      "industry": "open-source software bounty",
+      "target_ref": "https://github.com/claude-builders-bounty/claude-builders-bounty/issues/1",
+      "evidence_time": "2026-10-08T00:06:00+08:00",
+      "evidence_type": "open_paid_bounty_issue"
+    }
+  ]
 }
