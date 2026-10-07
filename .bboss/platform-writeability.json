@@ -1,36 +1,36 @@
 {
-  "updated_at": "2026-10-07T08:35:25+08:00",
-  "observed_window": "2026-10-07T07:00:00+08:00..2026-10-07T08:35:25+08:00",
-  "rule": "Only fresh, account-specific evidence may be used for current writeability decisions. Historical transport/readability evidence is not a strict money-action receipt.",
+  "updated_at": "2026-10-07T13:50:58+08:00",
+  "observed_window": "2026-10-07T12:00:00+08:00..2026-10-07T13:50:58+08:00",
+  "rule": "Only fresh, account-specific evidence may be used for current writeability decisions. Historical transport/readability evidence, scan/inspect, own-repo request commits, workflow receipts, and system notifications are not strict money-action receipts.",
   "channels": {
     "gmail_optin": {
-      "status": "CONNECTED_TRANSPORT_NO_FRESH_MONEY_ACTION_RECEIPT",
-      "as_of": "2026-10-07T08:35:25+08:00",
-      "evidence": "07:00-07:59 contained one GitHub noreply notification and no qualifying human business reply; 08:00-08:35 contained no Gmail messages. No strict money-action Gmail receipt was found.",
-      "limits": "New Gmail targets remain identity-default-deny unless authoritative thread-level identity labels permit action."
+      "status": "CONNECTED_READ_CURRENT_NO_FRESH_STRICT_MONEY_ACTION_RECEIPT",
+      "as_of": "2026-10-07T13:50:58+08:00",
+      "evidence": "12:00-12:59 contained one GitHub noreply Frantic issue notification (message 1a1149b9628f77c7), not a HUMAN_REPLY or Payment-ready trigger. 13:00-13:50 contained no Sent, Inbox, or DSN messages. No fresh qualifying Gmail money-action receipt was found.",
+      "limits": "New Gmail targets remain identity-default-deny unless authoritative thread-level identity evidence permits action."
     },
     "github_own_repo": {
-      "status": "AVAILABLE_CURRENT_INTERNAL_ONLY",
-      "as_of": "2026-10-07T08:35:25+08:00",
-      "evidence": "Authenticated reads of keketu1987-hue/ai-order-radar succeeded. Internal request/result/receipt commits count 0 as external money actions.",
-      "limits": "Own-repo writeability does not imply external-repo writeability or a money action."
+      "status": "READ_AVAILABLE_CURRENT_INTERNAL_ONLY",
+      "as_of": "2026-10-07T13:50:58+08:00",
+      "evidence": "Authenticated reads of keketu1987-hue/ai-order-radar and .bboss fact files succeeded in this window.",
+      "limits": "Own-repo read or fact-ledger maintenance does not imply external-repo writeability or a strict money action."
     },
     "toku": {
-      "status": "FRESH_SCAN_NO_STRICT_EXTERNAL_ACTION_RECEIPT",
-      "as_of": "2026-10-07T08:35:25+08:00",
-      "evidence": "08:03 fresh scan request completed with a matching executor receipt. Current result is scan-only; no fresh bid.id, claim.id, submit ID, or external money receipt. Candidate pool includes many seller/self-offer listings and must be reclassified before action.",
-      "limits": "Scan/inspect/request and own-repo executor receipts count 0. Low-spread/same-source barriers and active-action checks remain mandatory."
+      "status": "STALE_FOR_CURRENT_DECISION_NO_FRESH_EXTERNAL_RECEIPT",
+      "as_of": "2026-10-07T13:50:58+08:00",
+      "evidence": "Latest visible Toku request/result and matching workflow activity are from about 09:03-09:08 +08 and are inspect-only seller-self-offer evidence. No Toku request commit, workflow run, bid.id, claim.id, submit ID, or external money receipt was found in 12:00-13:50.",
+      "limits": "Historical inspect/result files are not current active-action or writeability proof. Realtime job/action status is required before any future bid/claim/submit."
     },
     "bountybook": {
       "status": "STALE_NO_CURRENT_DECISION",
-      "as_of": "2026-10-07T08:35:25+08:00",
-      "evidence": "No fresh account-specific BountyBook claim/submit receipt was established in the current decision window.",
+      "as_of": "2026-10-07T13:50:58+08:00",
+      "evidence": "No fresh account-specific BountyBook claim/submit receipt or current executor activity was established in 12:00-13:50.",
       "limits": "Require fresh realtime triage/auth/verifier evidence before upgrade."
     },
     "frantic": {
-      "status": "PUBLIC_ACTIVITY_NO_FRESH_ACCOUNT_WRITE_RECEIPT",
-      "as_of": "2026-10-07T08:35:25+08:00",
-      "evidence": "Frantic board issue #1 received a GitHub notification relaying another user's comment and PR activity. This is not this account's claim/delivery receipt and is not a Gmail HUMAN_REPLY.",
+      "status": "SYSTEM_NOTIFICATION_ONLY_NO_FRESH_ACCOUNT_WRITE_RECEIPT",
+      "as_of": "2026-10-07T13:50:58+08:00",
+      "evidence": "The only Frantic-related Gmail item in the observed window was a GitHub noreply issue notification relaying another user's oath comment; there is no fresh account-specific claim/delivery/payment receipt.",
       "limits": "Public or other-agent activity does not establish this account as READY or Payment-ready."
     }
   }
