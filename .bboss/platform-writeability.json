@@ -1,36 +1,36 @@
 {
-  "updated_at": "2026-10-07T13:50:58+08:00",
-  "observed_window": "2026-10-07T12:00:00+08:00..2026-10-07T13:50:58+08:00",
+  "updated_at": "2026-10-07T19:49:33+08:00",
+  "observed_window": "2026-10-07T18:00:00+08:00..2026-10-07T19:49:33+08:00",
   "rule": "Only fresh, account-specific evidence may be used for current writeability decisions. Historical transport/readability evidence, scan/inspect, own-repo request commits, workflow receipts, and system notifications are not strict money-action receipts.",
   "channels": {
     "gmail_optin": {
       "status": "CONNECTED_READ_CURRENT_NO_FRESH_STRICT_MONEY_ACTION_RECEIPT",
-      "as_of": "2026-10-07T13:50:58+08:00",
-      "evidence": "12:00-12:59 contained one GitHub noreply Frantic issue notification (message 1a1149b9628f77c7), not a HUMAN_REPLY or Payment-ready trigger. 13:00-13:50 contained no Sent, Inbox, or DSN messages. No fresh qualifying Gmail money-action receipt was found.",
+      "as_of": "2026-10-07T19:49:33+08:00",
+      "evidence": "18:00-18:59 and 19:00-19:49 contained 0 Sent, 0 Inbox, and 0 DSN messages.",
       "limits": "New Gmail targets remain identity-default-deny unless authoritative thread-level identity evidence permits action."
     },
     "github_own_repo": {
       "status": "READ_AVAILABLE_CURRENT_INTERNAL_ONLY",
-      "as_of": "2026-10-07T13:50:58+08:00",
-      "evidence": "Authenticated reads of keketu1987-hue/ai-order-radar and .bboss fact files succeeded in this window.",
+      "as_of": "2026-10-07T19:49:33+08:00",
+      "evidence": "Authenticated reads of keketu1987-hue/ai-order-radar and .bboss fact files succeeded in the current decision window.",
       "limits": "Own-repo read or fact-ledger maintenance does not imply external-repo writeability or a strict money action."
     },
     "toku": {
-      "status": "STALE_FOR_CURRENT_DECISION_NO_FRESH_EXTERNAL_RECEIPT",
-      "as_of": "2026-10-07T13:50:58+08:00",
-      "evidence": "Latest visible Toku request/result and matching workflow activity are from about 09:03-09:08 +08 and are inspect-only seller-self-offer evidence. No Toku request commit, workflow run, bid.id, claim.id, submit ID, or external money receipt was found in 12:00-13:50.",
-      "limits": "Historical inspect/result files are not current active-action or writeability proof. Realtime job/action status is required before any future bid/claim/submit."
+      "status": "NO_CURRENT_STRICT_MONEY_ACTION_RECEIPT",
+      "as_of": "2026-10-07T19:49:33+08:00",
+      "evidence": "Latest visible Toku activity is the 18:22 +08 breaker scan and matching own-repo executor receipt. No bid.id, claim.id, submit ID, or external money receipt is visible in 18:00-19:49.",
+      "limits": "Scan/inspect and own-repo receipts count 0. Realtime job/action state is required before any future bid/claim/submit."
     },
     "bountybook": {
       "status": "STALE_NO_CURRENT_DECISION",
-      "as_of": "2026-10-07T13:50:58+08:00",
-      "evidence": "No fresh account-specific BountyBook claim/submit receipt or current executor activity was established in 12:00-13:50.",
+      "as_of": "2026-10-07T19:49:33+08:00",
+      "evidence": "No fresh account-specific BountyBook claim/submit/payout receipt was established in 18:00-19:49.",
       "limits": "Require fresh realtime triage/auth/verifier evidence before upgrade."
     },
     "frantic": {
-      "status": "SYSTEM_NOTIFICATION_ONLY_NO_FRESH_ACCOUNT_WRITE_RECEIPT",
-      "as_of": "2026-10-07T13:50:58+08:00",
-      "evidence": "The only Frantic-related Gmail item in the observed window was a GitHub noreply issue notification relaying another user's oath comment; there is no fresh account-specific claim/delivery/payment receipt.",
+      "status": "NO_FRESH_ACCOUNT_WRITE_RECEIPT",
+      "as_of": "2026-10-07T19:49:33+08:00",
+      "evidence": "No fresh account-specific claim/delivery/payment receipt is visible in the current decision window.",
       "limits": "Public or other-agent activity does not establish this account as READY or Payment-ready."
     }
   }
