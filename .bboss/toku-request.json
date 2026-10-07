@@ -1,20 +1,5 @@
 {
-  "action": "scan",
-  "request_id": "bboss-20261008-0006-recovery-scan",
-  "diversification_proof": [
-    {
-      "source": "Frantic",
-      "industry": "agent bounty marketplace",
-      "target_ref": "https://gofrantic.com/bounties/120",
-      "evidence_time": "2026-10-08T00:05:30+08:00",
-      "evidence_type": "live_funded_open_bounty"
-    },
-    {
-      "source": "Opire",
-      "industry": "open-source software bounty",
-      "target_ref": "https://github.com/claude-builders-bounty/claude-builders-bounty/issues/1",
-      "evidence_time": "2026-10-08T00:06:00+08:00",
-      "evidence_type": "open_paid_bounty_issue"
-    }
-  ]
+  "action": "inspect",
+  "request_id": "bboss-20261008-0012-inspect-protocol-security",
+  "job_id": "cmmczz86v00fdjj041qj4o0sn"
 }
