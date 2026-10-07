@@ -1,37 +1,37 @@
 {
-  "updated_at": "2026-10-07T19:49:33+08:00",
-  "observed_window": "2026-10-07T18:00:00+08:00..2026-10-07T19:49:33+08:00",
+  "updated_at": "2026-10-07T20:47:31+08:00",
+  "observed_window": "2026-10-07T19:00:00+08:00..2026-10-07T20:47:31+08:00",
   "rule": "Only fresh, account-specific evidence may be used for current writeability decisions. Historical transport/readability evidence, scan/inspect, own-repo request commits, workflow receipts, and system notifications are not strict money-action receipts.",
   "channels": {
     "gmail_optin": {
       "status": "CONNECTED_READ_CURRENT_NO_FRESH_STRICT_MONEY_ACTION_RECEIPT",
-      "as_of": "2026-10-07T19:49:33+08:00",
-      "evidence": "18:00-18:59 and 19:00-19:49 contained 0 Sent, 0 Inbox, and 0 DSN messages.",
+      "as_of": "2026-10-07T20:47:31+08:00",
+      "evidence": "19:00-19:59 contained 0 Sent, 0 Inbox, 0 DSN. 20:00-20:47 contained 0 Sent, 1 Inbox, 0 DSN; the only Inbox message 1a1165f287dd0979 is a GitHub Frantic notification forwarding another user's oath comment and is classified BOSS_AUTO_REPLY_NON_HUMAN.",
       "limits": "New Gmail targets remain identity-default-deny unless authoritative thread-level identity evidence permits action."
     },
     "github_own_repo": {
       "status": "READ_AVAILABLE_CURRENT_INTERNAL_ONLY",
-      "as_of": "2026-10-07T19:49:33+08:00",
+      "as_of": "2026-10-07T20:47:31+08:00",
       "evidence": "Authenticated reads of keketu1987-hue/ai-order-radar and .bboss fact files succeeded in the current decision window.",
       "limits": "Own-repo read or fact-ledger maintenance does not imply external-repo writeability or a strict money action."
     },
     "toku": {
       "status": "NO_CURRENT_STRICT_MONEY_ACTION_RECEIPT",
-      "as_of": "2026-10-07T19:49:33+08:00",
-      "evidence": "Latest visible Toku activity is the 18:22 +08 breaker scan and matching own-repo executor receipt. No bid.id, claim.id, submit ID, or external money receipt is visible in 18:00-19:49.",
+      "as_of": "2026-10-07T20:47:31+08:00",
+      "evidence": "Latest visible Toku activity remains the 18:22 +08 breaker scan and matching own-repo executor receipt. No newer bid.id, claim.id, submit ID, or external money receipt is visible through 20:47.",
       "limits": "Scan/inspect and own-repo receipts count 0. Realtime job/action state is required before any future bid/claim/submit."
     },
     "bountybook": {
       "status": "STALE_NO_CURRENT_DECISION",
-      "as_of": "2026-10-07T19:49:33+08:00",
-      "evidence": "No fresh account-specific BountyBook claim/submit/payout receipt was established in 18:00-19:49.",
+      "as_of": "2026-10-07T20:47:31+08:00",
+      "evidence": "No fresh account-specific BountyBook claim/submit/payout receipt was established in 19:00-20:47.",
       "limits": "Require fresh realtime triage/auth/verifier evidence before upgrade."
     },
     "frantic": {
       "status": "NO_FRESH_ACCOUNT_WRITE_RECEIPT",
-      "as_of": "2026-10-07T19:49:33+08:00",
-      "evidence": "No fresh account-specific claim/delivery/payment receipt is visible in the current decision window.",
-      "limits": "Public or other-agent activity does not establish this account as READY or Payment-ready."
+      "as_of": "2026-10-07T20:47:31+08:00",
+      "evidence": "Current-window Frantic-related Gmail evidence is only a GitHub system notification about another user's oath comment; no fresh account-specific claim/delivery/payment receipt is visible.",
+      "limits": "Public or other-user activity does not establish this account as READY or Payment-ready."
     }
   }
 }
