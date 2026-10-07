@@ -1,4 +1,5 @@
 {
-  "action": "scan",
-  "request_id": "bboss-20261007-0803-fresh-scan"
+  "action": "inspect",
+  "job_id": "cmtqbjykm0001gm0a8e1w542b",
+  "request_id": "bboss-20261007-0903-inspect-marketplace-analysis"
 }
