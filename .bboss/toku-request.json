@@ -1,5 +1,4 @@
 {
-  "action": "inspect",
-  "job_id": "cmm60fshb0205l5041ptnt02q",
-  "request_id": "bboss-20261007-0721-watchdog-inspect-defi-buyer"
+  "action": "scan",
+  "request_id": "bboss-20261007-0803-fresh-scan"
 }
