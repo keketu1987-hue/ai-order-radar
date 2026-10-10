@@ -1,5 +1,20 @@
 {
-  "action": "inspect",
-  "request_id": "bboss-20261008-0208-inspect-crypto-dd",
-  "job_id": "cmm5p2a5u000cjr04c6lnw14u"
+  "action": "scan",
+  "request_id": "bboss-20261010-2122-diversification-proof-scan",
+  "diversification_proof": [
+    {
+      "source": "Algora",
+      "industry": "scientific_research_software_bounties",
+      "target_ref": "https://github.com/SCIBASE-AI/SCIBASE.AI/issues/13",
+      "evidence_time": "2026-10-10T21:22:25+08:00",
+      "evidence_type": "algora_open_bounty_400_usd_and_github_open_issue_checked"
+    },
+    {
+      "source": "Opire",
+      "industry": "browser_pwa_bounty",
+      "target_ref": "https://github.com/trovu/trovu/issues/329",
+      "evidence_time": "2026-10-10T21:22:25+08:00",
+      "evidence_type": "opire_listing_30_usd_and_github_open_issue_checked"
+    }
+  ]
 }
